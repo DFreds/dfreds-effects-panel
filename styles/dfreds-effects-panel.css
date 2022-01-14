@@ -1,0 +1,138 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  list-style-type: none;
+  margin-bottom: 2px;
+}
+.tags .tag {
+  text-rendering: optimizeLegibility;
+  background-color: hsl(235, 28.5%, 37.8%);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 3px 4px;
+  text-transform: uppercase;
+}
+.tags .tag_primary.tag {
+  background-color: hsl(235, 28.5%, 37.8%);
+  color: #fff;
+}
+.tags .tag_secondary.tag {
+  background-color: hsl(13, 39%, 53.7%);
+  color: #fff;
+}
+.tags .tag_tertiary.tag {
+  background-color: hsl(0, 70%, 28.4%);
+  color: #fff;
+}
+.tags .tag_alt.tag {
+  background-color: #786452;
+  color: #fff;
+}
+.tags .tag_material.tag {
+  background-color: #666;
+  color: #fff;
+}
+
+#sidebar.app.collapsed ~ .effect-panel {
+  right: 40px;
+}
+.effect-panel {
+  position: fixed;
+  right: 310px;
+  top: 5px;
+}
+.effect-panel.collapsed {
+  right: 40px;
+}
+.effect-panel .effect-item {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+.effect-panel .effect-item:hover .effect-info {
+  display: block;
+}
+.effect-panel .effect-item .effect-info {
+  background-color: rgba(0, 0, 0, 0.75);
+  display: none;
+  border-radius: 5px;
+  height: 100%;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+  padding-bottom: 0.1em;
+  padding-top: 0.1em;
+}
+.effect-panel .effect-item .effect-info h1 {
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+.effect-panel .effect-item .effect-info h2 {
+  border: none;
+  color: #fff;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+.effect-panel .effect-item .effect-info .tags {
+  justify-content: flex-end;
+}
+.effect-panel .effect-item .effect-info .tags .tag {
+  margin-bottom: 0;
+}
+.effect-panel .effect-item .effect-info .tags .tag + .tag,
+.effect-panel .effect-item .effect-info .tags .tag:first-child {
+  margin-left: 3px;
+  margin-right: -2px;
+}
+.effect-panel .effect-item .icon {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px silver, 0 0 0 2px gray;
+  box-shadow: 0 0 0 1px silver, 0 0 0 2px gray, inset 0 0 4px rgba(0, 0, 0, 0.5);
+  color: transparent;
+  display: flex;
+  height: 42px;
+  justify-content: center;
+  margin: 2px 0;
+  position: relative;
+  width: 42px;
+}
+.effect-panel .effect-item .icon .expired {
+  text-rendering: optimizeLegibility;
+  background-color: #5e0000;
+  bottom: -1px;
+  color: #fff;
+  font-size: 9px;
+  left: 0;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 2px 1px;
+  position: absolute;
+  text-transform: uppercase;
+  width: 100%;
+}
+.effect-panel .effect-item .icon .badge {
+  background-color: rgba(0, 0, 0, 0.75);
+  bottom: -1px;
+  color: #fff;
+  display: inline-block;
+  left: -1px;
+  padding: 2px 4px;
+  position: absolute;
+}
