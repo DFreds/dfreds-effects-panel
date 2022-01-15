@@ -40,6 +40,7 @@ export default class EffectsPanelApp extends Application {
         effectData.remainingSeconds = this._getSecondsRemaining(
           effectData.duration
         );
+        effectData.turns = effectData.duration.turns;
         return effectData;
       })
       .filter((effectData) => !effectData.disabled)
@@ -85,6 +86,7 @@ export default class EffectsPanelApp extends Application {
     }
   }
 
+  // TODO consider handling rounds/seconds/turns based on whatever is defined for the effect rather than do conversions
   _getSecondsRemaining(duration) {
     if (duration.seconds || duration.rounds) {
       const seconds = duration.seconds ?? duration.rounds * 6; // todo extract calculation for other systems
