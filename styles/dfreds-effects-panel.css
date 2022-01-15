@@ -47,9 +47,6 @@
   right: 310px;
   top: 5px;
 }
-.effect-panel.collapsed {
-  right: 40px;
-}
 .effect-panel .effect-item {
   align-items: center;
   display: flex;
