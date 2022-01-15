@@ -1,3 +1,5 @@
+import Settings from '../settings.js';
+
 /**
  * Application class for handling the UI of the effects panel
  */
@@ -14,6 +16,7 @@ export default class EffectsPanelApp extends Application {
    */
   constructor() {
     super();
+    this._settings = new Settings();
     /**
      * Debounce and slightly delayed request to re-render this panel. Necessary for situations where it is not possible
      * to properly wait for promises to resolve before refreshing the UI.
@@ -25,19 +28,26 @@ export default class EffectsPanelApp extends Application {
   getData(options) {
     const data = {
       ...super.getData(options),
-      actor: this._actor,
       effects: [],
     };
+    const actor = this._actor;
 
-    if (!data.actor) return data;
+    if (!actor) return data;
 
-    data.effects = data.actor.effects.map((effect) => {
-      const effectData = effect.clone({}, { keepId: true }).data;
-      effectData.remainingSeconds = this._getSecondsRemaining(
-        effectData.duration
-      );
-      return effectData;
-    });
+    data.effects = actor.effects
+      .map((effect) => {
+        const effectData = effect.clone({}, { keepId: true }).data;
+        effectData.remainingSeconds = this._getSecondsRemaining(
+          effectData.duration
+        );
+        return effectData;
+      })
+      .filter((effectData) => !effectData.disabled)
+      .filter((effectData) => {
+        return (
+          this._settings.showPassiveEffects || effectData.document.isTemporary
+        );
+      });
 
     return data;
   }

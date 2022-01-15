@@ -2,11 +2,13 @@ import EffectsPanelApp from './app/effects-panel-app.js';
 import HandlebarHelpers from './handlebar-helpers.js';
 import { libWrapper } from './lib/shim.js';
 import Constants from './constants.js';
+import Settings from './settings.js';
 
 /**
  * Initializes the handlebar helpers
  */
 Hooks.once('init', () => {
+  new Settings().registerSettings();
   new HandlebarHelpers().registerHelpers();
 
   game.dfreds = game.dfreds || {};
