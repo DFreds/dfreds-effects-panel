@@ -100,8 +100,17 @@ export default class EffectsPanelApp extends Application {
     const $target = $(event.currentTarget);
     const actor = this._actor;
     const effect = actor?.effects.get($target.attr('data-effect-id') ?? '');
-    await effect.delete();
-    this.refresh();
+
+    if (!effect) return;
+
+    return Dialog.confirm({
+      title: 'Delete Effect',
+      content: `<h4>Delete ${effect.data.label}?</h4>`,
+      yes: async () => {
+        await effect.delete();
+        this.refresh();
+      },
+    });
   }
 
   _onIconDoubleClick(event) {
