@@ -105,6 +105,14 @@ export default class EffectsPanelApp extends Application {
 
     if (!effect) return;
 
+    if (event.shiftKey) {
+      await this._deleteEffect(effect);
+    } else {
+      await effect.update({ disabled: !effect.data.disabled });
+    }
+  }
+
+  async _deleteEffect(effect) {
     return Dialog.confirm({
       title: 'Delete Effect',
       content: `<h4>Delete ${effect.data.label}?</h4>`,
