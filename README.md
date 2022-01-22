@@ -30,9 +30,14 @@ the following:
   "Expired".
 - You can double click the icon to immediately open the configuration sheet for
   that effect.
-- You can right click the icon to immediately delete the effect.
+- You can right click the icon to immediately disable the effect.
+- You can shift + right click the icon to be prompted to delete the effect.
 
 ![Effects Panel](docs/effects-panel.png)
+
+You can configure some stuff:
+
+![Settings](docs/settings.png)
 
 ## Required Modules
 
