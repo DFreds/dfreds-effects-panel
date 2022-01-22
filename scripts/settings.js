@@ -28,7 +28,7 @@ export default class Settings {
         hint: 'If enabled, disabled effects will be shown in the panel with a grey tint.',
         scope: 'client',
         config: true,
-        default: false,
+        default: true,
         type: Boolean,
         onChange: () => game.dfreds.effectsPanel.refresh(),
       }
