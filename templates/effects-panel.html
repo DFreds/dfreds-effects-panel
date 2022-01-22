@@ -1,5 +1,5 @@
 <section class="effect-panel">
-  {{#each effects as |effect|}}
+  {{#each enabledEffects as |effect|}}
     {{#canViewEffectsPanel}}
     <div class="effect-item">
       <div class="effect-info">
@@ -14,6 +14,30 @@
         </div>
       </div>
       <div class="icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}})">
+        {{#if (lt effect.remainingSeconds 0)}}
+          <span class="expired">expired</span>
+        {{/if}}
+        <i class="fas fa-comment-alt"></i>
+      </div>
+    </div>
+    {{/canViewEffectsPanel}}
+  {{/each}}
+  {{#if (and enabledEffects.length disabledEffects.length (canShowDisabledEffects))}}<hr />{{/if}}
+  {{#each disabledEffects as |effect|}}
+    {{#canViewEffectsPanel}}
+    <div class="effect-item">
+      <div class="effect-info">
+        <h1>{{effect.label}}</h1>
+        {{#if effect.flags.convenientDescription}}
+          <h2>{{effect.flags.convenientDescription}}</h2>
+        {{/if}}
+        <div class="tags">
+          <div class="tag tag_secondary">
+            {{remainingTimeLabel effect}}
+          </div>
+        </div>
+      </div>
+      <div class="disabled icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}});">
         {{#if (lt effect.remainingSeconds 0)}}
           <span class="expired">expired</span>
         {{/if}}

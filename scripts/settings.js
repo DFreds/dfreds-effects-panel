@@ -5,6 +5,7 @@ import Constants from './constants.js';
  */
 export default class Settings {
   // Settings keys
+  static SHOW_DISABLED_EFFECTS = 'showDisabledEffects';
   static SHOW_PASSIVE_EFFECTS = 'showPassiveEffects';
   static VIEW_PERMISSION = 'viewPermission';
 
@@ -18,6 +19,20 @@ export default class Settings {
     userRoles[CONST.USER_ROLES.ASSISTANT] = 'Assistant GM';
     userRoles[CONST.USER_ROLES.GAMEMASTER] = 'Game Master';
     userRoles[5] = 'None';
+
+    game.settings.register(
+      Constants.MODULE_ID,
+      Settings.SHOW_DISABLED_EFFECTS,
+      {
+        name: 'Show Disabled Effects',
+        hint: 'If enabled, disabled effects will be shown in the panel with a grey tint.',
+        scope: 'client',
+        config: true,
+        default: false,
+        type: Boolean,
+        onChange: () => game.dfreds.effectsPanel.refresh(),
+      }
+    );
 
     game.settings.register(Constants.MODULE_ID, Settings.SHOW_PASSIVE_EFFECTS, {
       name: 'Show Passive Effects',
@@ -39,6 +54,18 @@ export default class Settings {
       type: String,
       onChange: () => game.dfreds.effectsPanel.refresh(),
     });
+  }
+
+  /**
+   * Returns the game setting for showing disabled effects
+   *
+   * @returns {boolean} true if disabled effects should be shown
+   */
+  get showDisabledEffects() {
+    return game.settings.get(
+      Constants.MODULE_ID,
+      Settings.SHOW_DISABLED_EFFECTS
+    );
   }
 
   /**

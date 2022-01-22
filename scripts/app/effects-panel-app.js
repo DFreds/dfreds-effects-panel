@@ -34,7 +34,7 @@ export default class EffectsPanelApp extends Application {
 
     if (!actor) return data;
 
-    data.effects = actor.effects
+    const effects = actor.effects
       .map((effect) => {
         const effectData = effect.clone({}, { keepId: true }).data;
         effectData.remainingSeconds = this._getSecondsRemaining(
@@ -43,12 +43,14 @@ export default class EffectsPanelApp extends Application {
         effectData.turns = effectData.duration.turns;
         return effectData;
       })
-      .filter((effectData) => !effectData.disabled)
       .filter((effectData) => {
         return (
           this._settings.showPassiveEffects || effectData.document.isTemporary
         );
       });
+
+    data.enabledEffects = effects.filter((effectData) => !effectData.disabled);
+    data.disabledEffects = effects.filter((effectData) => effectData.disabled);
 
     return data;
   }

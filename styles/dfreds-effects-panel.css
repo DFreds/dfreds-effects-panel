@@ -47,6 +47,10 @@
   right: 310px;
   top: 5px;
 }
+.effect-panel hr {
+  margin-right: 0;
+  width: 42px;
+}
 .effect-panel .effect-item {
   align-items: center;
   display: flex;
@@ -109,6 +113,9 @@
   margin: 2px 0;
   position: relative;
   width: 42px;
+}
+.effect-panel .effect-item .disabled.icon {
+  filter: grayscale(1);
 }
 .effect-panel .effect-item .icon .expired {
   text-rendering: optimizeLegibility;
