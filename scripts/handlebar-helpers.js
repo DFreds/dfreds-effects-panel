@@ -1,14 +1,28 @@
 import Constants from './constants.js';
+import Settings from './settings.js';
 
 /**
  * Handles setting up all handlebar helpers
  */
 export default class HandlebarHelpers {
+  constructor() {
+    this._settings = new Settings();
+  }
+
   /**
    * Registers the handlebar helpers
    */
   registerHelpers() {
+    this._registerCanViewEffectsPanelHelper();
     this._registerRemainingTimeLabelHelper();
+  }
+
+  _registerCanViewEffectsPanelHelper() {
+    Handlebars.registerHelper('canViewEffectsPanel', (options) => {
+      return game.user.role >= this._settings.viewPermission
+        ? options.fn(this)
+        : options.inverse(this);
+    });
   }
 
   _registerRemainingTimeLabelHelper() {
