@@ -14,15 +14,20 @@
         </div>
       </div>
       <div class="icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}})">
-        {{#if (lt effect.remainingSeconds 0)}}
-          <span class="expired">expired</span>
+        {{#if effect.isExpired}}
+          <i class="expired badge fas fa-clock"></i>
+        {{else if effect.isPassive}}
+          <i class="unlimited badge fas fa-infinity"></i>
+        {{else}}
+          <i class="badge fas fa-clock"></i>
         {{/if}}
-        <i class="fas fa-comment-alt"></i>
       </div>
     </div>
     {{/canViewEffectsPanel}}
   {{/each}}
+
   {{#if (and enabledEffects.length disabledEffects.length (canShowDisabledEffects))}}<hr />{{/if}}
+
   {{#if (canShowDisabledEffects)}}
     {{#each disabledEffects as |effect|}}
       {{#canViewEffectsPanel}}
@@ -39,10 +44,13 @@
           </div>
         </div>
         <div class="disabled icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}});">
-          {{#if (lt effect.remainingSeconds 0)}}
-            <span class="expired">expired</span>
+          {{#if effect.isExpired}}
+            <i class="expired badge fas fa-clock"></i>
+          {{else if effect.isPassive}}
+            <i class="unlimited badge fas fa-infinity"></i>
+          {{else}}
+            <i class="badge fas fa-clock"></i>
           {{/if}}
-          <i class="fas fa-comment-alt"></i>
         </div>
       </div>
       {{/canViewEffectsPanel}}

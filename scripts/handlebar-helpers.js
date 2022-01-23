@@ -14,6 +14,7 @@ export default class HandlebarHelpers {
    */
   registerHelpers() {
     this._registerCanShowDisabledEffectsHelper();
+    this._registerCanShowPassiveEffectsHelper();
     this._registerCanViewEffectsPanelHelper();
     this._registerRemainingTimeLabelHelper();
   }
@@ -21,6 +22,12 @@ export default class HandlebarHelpers {
   _registerCanShowDisabledEffectsHelper() {
     Handlebars.registerHelper('canShowDisabledEffects', () => {
       return this._settings.showDisabledEffects;
+    });
+  }
+
+  _registerCanShowPassiveEffectsHelper() {
+    Handlebars.registerHelper('canShowPassiveEffects', () => {
+      return this._settings.showPassiveEffects;
     });
   }
 

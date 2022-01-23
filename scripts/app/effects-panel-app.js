@@ -41,6 +41,8 @@ export default class EffectsPanelApp extends Application {
           effectData.duration
         );
         effectData.turns = effectData.duration.turns;
+        effectData.isPassive = effectData.remainingSeconds === Infinity;
+        effectData.isExpired = effectData.remainingSeconds < 0;
         return effectData;
       })
       .filter((effectData) => {

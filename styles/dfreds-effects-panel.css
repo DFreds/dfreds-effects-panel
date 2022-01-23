@@ -115,28 +115,19 @@
   width: 42px;
 }
 .effect-panel .effect-item .disabled.icon {
-  filter: grayscale(1);
-}
-.effect-panel .effect-item .icon .expired {
-  text-rendering: optimizeLegibility;
-  background-color: #5e0000;
-  bottom: -1px;
-  color: #fff;
-  font-size: 9px;
-  left: 0;
-  letter-spacing: 0.05em;
-  line-height: 1;
-  padding: 2px 1px;
-  position: absolute;
-  text-transform: uppercase;
-  width: 100%;
+  filter: grayscale(0.8);
 }
 .effect-panel .effect-item .icon .badge {
-  background-color: rgba(0, 0, 0, 0.75);
-  bottom: -1px;
+  bottom: 1px;
   color: #fff;
   display: inline-block;
-  left: -1px;
-  padding: 2px 4px;
+  left: 1px;
   position: absolute;
+  text-shadow: 0px 0px 2px black;
+}
+.effect-panel .effect-item .icon .badge.unlimited {
+  color: lightblue;
+}
+.effect-panel .effect-item .icon .badge.expired {
+  color: orange;
 }
