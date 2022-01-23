@@ -112,10 +112,12 @@ export default class EffectsPanelApp extends Application {
 
     if (!effect) return;
 
-    if (event.shiftKey) {
-      await this._deleteEffect(effect);
-    } else {
+    const isEffectPassive =
+      this._getSecondsRemaining(effect.data.duration) === Infinity;
+    if (isEffectPassive) {
       await effect.update({ disabled: !effect.data.disabled });
+    } else {
+      await this._deleteEffect(effect);
     }
   }
 
