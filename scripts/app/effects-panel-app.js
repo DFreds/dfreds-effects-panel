@@ -45,6 +45,11 @@ export default class EffectsPanelApp extends Application {
         effectData.isExpired = effectData.remainingSeconds < 0;
         return effectData;
       })
+      .sort((a, b) => {
+        if (a.isPassive) return 1;
+        if (b.isPassive) return -1;
+        return 0;
+      })
       .filter((effectData) => {
         return (
           this._settings.showPassiveEffects || effectData.document.isTemporary
