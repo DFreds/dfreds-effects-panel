@@ -8,6 +8,13 @@
           <h2>{{effect.flags.convenientDescription}}</h2>
         {{/if}}
         <div class="tags">
+          <div class="tag tag_primary">
+            {{#if effect.isPassive}}
+              passive
+            {{else}}
+              temporary
+            {{/if}}
+          </div>
           <div class="tag tag_secondary">
             {{remainingTimeLabel effect}}
           </div>
@@ -38,8 +45,18 @@
             <h2>{{effect.flags.convenientDescription}}</h2>
           {{/if}}
           <div class="tags">
+            <div class="tag tag_primary">
+              {{#if effect.isPassive}}
+                passive
+              {{else}}
+                temporary
+              {{/if}}
+            </div>
             <div class="tag tag_secondary">
               {{remainingTimeLabel effect}}
+            </div>
+            <div class="tag tag_tertiary">
+              disabled
             </div>
           </div>
         </div>
