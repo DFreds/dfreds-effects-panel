@@ -1,3 +1,4 @@
+import Constants from '../constants.js';
 import Settings from '../settings.js';
 
 /**
@@ -115,9 +116,23 @@ export default class EffectsPanelApp extends Application {
     const isEffectPassive =
       this._getSecondsRemaining(effect.data.duration) === Infinity;
     if (isEffectPassive) {
-      await effect.update({ disabled: !effect.data.disabled });
+      const shouldDisable =
+        this._settings.passiveEffectsRightClickBehavior ===
+        Constants.RIGHT_CLICK_BEHAVIOR.DISABLE;
+      await this._handleEffectChange(effect, shouldDisable);
     } else {
-      await this._deleteEffect(effect);
+      const shouldDisable =
+        this._settings.temporaryEffectsRightClickBehavior ===
+        Constants.RIGHT_CLICK_BEHAVIOR.DISABLE;
+      await this._handleEffectChange(effect, shouldDisable);
+    }
+  }
+
+  _handleEffectChange(effect, shouldDisable) {
+    if (shouldDisable) {
+      return effect.update({ disabled: !effect.data.disabled });
+    } else {
+      return this._deleteEffect(effect);
     }
   }
 

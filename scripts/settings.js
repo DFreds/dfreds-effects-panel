@@ -5,6 +5,10 @@ import Constants from './constants.js';
  */
 export default class Settings {
   // Settings keys
+  static PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR =
+    'passiveEffectsRightClickBehavior';
+  static TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR =
+    'temporaryEffectsRightClickBehavior';
   static SHOW_DISABLED_EFFECTS = 'showDisabledEffects';
   static SHOW_PASSIVE_EFFECTS = 'showPassiveEffects';
   static VIEW_PERMISSION = 'viewPermission';
@@ -19,6 +23,10 @@ export default class Settings {
     userRoles[CONST.USER_ROLES.ASSISTANT] = 'Assistant GM';
     userRoles[CONST.USER_ROLES.GAMEMASTER] = 'Game Master';
     userRoles[5] = 'None';
+
+    const rightClickBehaviors = {};
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DELETE] = 'Delete';
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DISABLE] = 'Disable';
 
     game.settings.register(
       Constants.MODULE_ID,
@@ -44,6 +52,36 @@ export default class Settings {
       onChange: () => game.dfreds.effectsPanel.refresh(),
     });
 
+    game.settings.register(
+      Constants.MODULE_ID,
+      Settings.PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
+      {
+        name: 'Passive Effects Right-Click Behavior',
+        hint: 'This defines the behavior when right-clicking a passive effect.',
+        scope: 'client',
+        config: true,
+        default: Constants.RIGHT_CLICK_BEHAVIOR.DISABLE,
+        choices: rightClickBehaviors,
+        type: String,
+        onChange: () => game.dfreds.effectsPanel.refresh(),
+      }
+    );
+
+    game.settings.register(
+      Constants.MODULE_ID,
+      Settings.TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
+      {
+        name: 'Temporary Effects Right-Click Behavior',
+        hint: 'This defines the behavior when right-clicking a temporary effect.',
+        scope: 'client',
+        config: true,
+        default: Constants.RIGHT_CLICK_BEHAVIOR.DELETE,
+        choices: rightClickBehaviors,
+        type: String,
+        onChange: () => game.dfreds.effectsPanel.refresh(),
+      }
+    );
+
     game.settings.register(Constants.MODULE_ID, Settings.VIEW_PERMISSION, {
       name: 'View Permission',
       hint: 'This defines the minimum permission level to see the effects panel. Setting this to None will never show the effects panel.',
@@ -54,6 +92,30 @@ export default class Settings {
       type: String,
       onChange: () => game.dfreds.effectsPanel.refresh(),
     });
+  }
+
+  /**
+   * Returns the game setting for the passive right-click behavior
+   *
+   * @returns {string} the string representing the behavior
+   */
+  get passiveEffectsRightClickBehavior() {
+    return game.settings.get(
+      Constants.MODULE_ID,
+      Settings.PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR
+    );
+  }
+
+  /**
+   * Returns the game setting for the temporary right-click behavior
+   *
+   * @returns {string} the string representing the behavior
+   */
+  get temporaryEffectsRightClickBehavior() {
+    return game.settings.get(
+      Constants.MODULE_ID,
+      Settings.TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR
+    );
   }
 
   /**

@@ -4,6 +4,11 @@
 export default class Constants {
   static MODULE_ID = 'dfreds-effects-panel';
 
+  static RIGHT_CLICK_BEHAVIOR = {
+    DELETE: 'delete',
+    DISABLE: 'disable',
+  };
+
   static SECONDS = {
     IN_ONE_ROUND: 6,
     IN_ONE_MINUTE: 60,
