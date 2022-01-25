@@ -1,24 +1,28 @@
 <section class="effect-panel">
   {{#each enabledEffects as |effect|}}
-    {{#canViewEffectsPanel}}
+    {{#if (canViewEffectsPanel)}}
     <div class="effect-item">
       <div class="effect-info">
         <h1>{{effect.label}}</h1>
-        {{#if effect.flags.convenientDescription}}
-          <h2>{{effect.flags.convenientDescription}}</h2>
-        {{/if}}
-        <div class="tags">
-          <div class="tag tag_primary">
-            {{#if effect.isTemporary}}
-              temporary
-            {{else}}
-              passive
+        {{#if (canViewEffectDetails)}}
+          <div class="effect-info-details">
+            {{#if effect.flags.convenientDescription}}
+              <h2>{{effect.flags.convenientDescription}}</h2>
             {{/if}}
+            <div class="tags">
+              <div class="tag tag_primary">
+                {{#if effect.isTemporary}}
+                  temporary
+                {{else}}
+                  passive
+                {{/if}}
+              </div>
+              <div class="tag tag_secondary">
+                {{remainingTimeLabel effect}}
+              </div>
+            </div>
           </div>
-          <div class="tag tag_secondary">
-            {{remainingTimeLabel effect}}
-          </div>
-        </div>
+        {{/if}}
       </div>
       <div class="icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}})">
         {{#if effect.isExpired}}
@@ -30,35 +34,39 @@
         {{/if}}
       </div>
     </div>
-    {{/canViewEffectsPanel}}
+    {{/if}}
   {{/each}}
 
-  {{#if (and enabledEffects.length disabledEffects.length (canShowDisabledEffects))}}<hr />{{/if}}
+  {{#if (and enabledEffects.length disabledEffects.length (canShowDisabledEffects) (canViewEffectsPanel))}}<hr />{{/if}}
 
   {{#if (canShowDisabledEffects)}}
     {{#each disabledEffects as |effect|}}
-      {{#canViewEffectsPanel}}
+      {{#if (canViewEffectsPanel)}}
       <div class="effect-item">
         <div class="effect-info">
           <h1>{{effect.label}}</h1>
-          {{#if effect.flags.convenientDescription}}
-            <h2>{{effect.flags.convenientDescription}}</h2>
-          {{/if}}
-          <div class="tags">
-            <div class="tag tag_primary">
-              {{#if effect.isTemporary}}
-                temporary
-              {{else}}
-                passive
+          {{#if (canViewEffectDetails)}}
+            <div class="effect-info-details">
+              {{#if effect.flags.convenientDescription}}
+                <h2>{{effect.flags.convenientDescription}}</h2>
               {{/if}}
+              <div class="tags">
+                <div class="tag tag_primary">
+                  {{#if effect.isTemporary}}
+                    temporary
+                  {{else}}
+                    passive
+                  {{/if}}
+                </div>
+                <div class="tag tag_secondary">
+                  {{remainingTimeLabel effect}}
+                </div>
+                <div class="tag tag_tertiary">
+                  disabled
+                </div>
+              </div>
             </div>
-            <div class="tag tag_secondary">
-              {{remainingTimeLabel effect}}
-            </div>
-            <div class="tag tag_tertiary">
-              disabled
-            </div>
-          </div>
+          {{/if}}
         </div>
         <div class="disabled icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}});">
           {{#if effect.isExpired}}
@@ -70,7 +78,7 @@
           {{/if}}
         </div>
       </div>
-      {{/canViewEffectsPanel}}
+      {{/if}}
     {{/each}}
   {{/if}}
 </section>

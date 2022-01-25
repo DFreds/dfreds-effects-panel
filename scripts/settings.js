@@ -12,6 +12,7 @@ export default class Settings {
   static SHOW_DISABLED_EFFECTS = 'showDisabledEffects';
   static SHOW_PASSIVE_EFFECTS = 'showPassiveEffects';
   static VIEW_PERMISSION = 'viewPermission';
+  static VIEW_DETAILS_PERMISSION = 'viewDetailsPermission';
 
   /**
    * Register all settings for the module
@@ -92,6 +93,21 @@ export default class Settings {
       type: String,
       onChange: () => game.dfreds.effectsPanel.refresh(),
     });
+
+    game.settings.register(
+      Constants.MODULE_ID,
+      Settings.VIEW_DETAILS_PERMISSION,
+      {
+        name: 'View Details Permission',
+        hint: 'This defines the minimum permission level to see the details of the effects in the panel such as the duration and description. Setting this to None will never show any details.',
+        scope: 'world',
+        config: true,
+        default: CONST.USER_ROLES.PLAYER,
+        choices: userRoles,
+        type: String,
+        onChange: () => game.dfreds.effectsPanel.refresh(),
+      }
+    );
   }
 
   /**
@@ -150,6 +166,17 @@ export default class Settings {
   get viewPermission() {
     return parseInt(
       game.settings.get(Constants.MODULE_ID, Settings.VIEW_PERMISSION)
+    );
+  }
+
+  /**
+   * Returns the game setting for view details permission
+   *
+   * @returns {number} a number representing the chosen role
+   */
+  get viewDetailsPermission() {
+    return parseInt(
+      game.settings.get(Constants.MODULE_ID, Settings.VIEW_DETAILS_PERMISSION)
     );
   }
 }

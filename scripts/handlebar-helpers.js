@@ -15,6 +15,7 @@ export default class HandlebarHelpers {
   registerHelpers() {
     this._registerCanShowDisabledEffectsHelper();
     this._registerCanShowPassiveEffectsHelper();
+    this._registerCanViewEffectDetailsHelper();
     this._registerCanViewEffectsPanelHelper();
     this._registerRemainingTimeLabelHelper();
   }
@@ -31,11 +32,15 @@ export default class HandlebarHelpers {
     });
   }
 
+  _registerCanViewEffectDetailsHelper() {
+    Handlebars.registerHelper('canViewEffectDetails', () => {
+      return game.user.role >= this._settings.viewDetailsPermission;
+    });
+  }
+
   _registerCanViewEffectsPanelHelper() {
-    Handlebars.registerHelper('canViewEffectsPanel', (options) => {
-      return game.user.role >= this._settings.viewPermission
-        ? options.fn(this)
-        : options.inverse(this);
+    Handlebars.registerHelper('canViewEffectsPanel', () => {
+      return game.user.role >= this._settings.viewPermission;
     });
   }
 
