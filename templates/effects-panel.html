@@ -9,10 +9,10 @@
         {{/if}}
         <div class="tags">
           <div class="tag tag_primary">
-            {{#if effect.isPassive}}
-              passive
-            {{else}}
+            {{#if effect.isTemporary}}
               temporary
+            {{else}}
+              passive
             {{/if}}
           </div>
           <div class="tag tag_secondary">
@@ -23,10 +23,10 @@
       <div class="icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}})">
         {{#if effect.isExpired}}
           <i class="expired badge fas fa-clock"></i>
-        {{else if effect.isPassive}}
-          <i class="unlimited badge fas fa-infinity"></i>
-        {{else}}
+        {{else if effect.isTemporary}}
           <i class="badge fas fa-clock"></i>
+        {{else}}
+          <i class="unlimited badge fas fa-infinity"></i>
         {{/if}}
       </div>
     </div>
@@ -46,10 +46,10 @@
           {{/if}}
           <div class="tags">
             <div class="tag tag_primary">
-              {{#if effect.isPassive}}
-                passive
-              {{else}}
+              {{#if effect.isTemporary}}
                 temporary
+              {{else}}
+                passive
               {{/if}}
             </div>
             <div class="tag tag_secondary">
@@ -63,10 +63,10 @@
         <div class="disabled icon" data-effect-id="{{effect._id}}" style="background-image: url({{effect.icon}});">
           {{#if effect.isExpired}}
             <i class="expired badge fas fa-clock"></i>
-          {{else if effect.isPassive}}
-            <i class="unlimited badge fas fa-infinity"></i>
-          {{else}}
+          {{else if effect.isTemporary}}
             <i class="badge fas fa-clock"></i>
+          {{else}}
+            <i class="unlimited badge fas fa-infinity"></i>
           {{/if}}
         </div>
       </div>

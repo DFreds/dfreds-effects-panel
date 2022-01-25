@@ -42,13 +42,13 @@ export default class EffectsPanelApp extends Application {
           effectData.duration
         );
         effectData.turns = effectData.duration.turns;
-        effectData.isPassive = effectData.remainingSeconds === Infinity;
+        effectData.isTemporary = effect.isTemporary;
         effectData.isExpired = effectData.remainingSeconds < 0;
         return effectData;
       })
       .sort((a, b) => {
-        if (a.isPassive) return 1;
-        if (b.isPassive) return -1;
+        if (a.isTemporary) return -1;
+        if (b.isTemporary) return 1;
         return 0;
       })
       .filter((effectData) => {
@@ -113,16 +113,15 @@ export default class EffectsPanelApp extends Application {
 
     if (!effect) return;
 
-    const isEffectPassive =
-      this._getSecondsRemaining(effect.data.duration) === Infinity;
-    if (isEffectPassive) {
+    const isEffectTemporary = effect.isTemporary;
+    if (isEffectTemporary) {
       const shouldDisable =
-        this._settings.passiveEffectsRightClickBehavior ===
+        this._settings.temporaryEffectsRightClickBehavior ===
         Constants.RIGHT_CLICK_BEHAVIOR.DISABLE;
       await this._handleEffectChange(effect, shouldDisable);
     } else {
       const shouldDisable =
-        this._settings.temporaryEffectsRightClickBehavior ===
+        this._settings.passiveEffectsRightClickBehavior ===
         Constants.RIGHT_CLICK_BEHAVIOR.DISABLE;
       await this._handleEffectChange(effect, shouldDisable);
     }
