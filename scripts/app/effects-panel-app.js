@@ -150,6 +150,9 @@ export default class EffectsPanelApp extends Application {
     const $target = $(event.currentTarget);
     const actor = this._actor;
     const effect = actor?.effects.get($target.attr('data-effect-id') ?? '');
+
+    if (!effect) return;
+
     effect.sheet.render(true);
   }
 
