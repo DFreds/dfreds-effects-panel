@@ -99,7 +99,8 @@ export default class EffectsPanelApp extends Application {
   // TODO consider handling rounds/seconds/turns based on whatever is defined for the effect rather than do conversions
   _getSecondsRemaining(duration) {
     if (duration.seconds || duration.rounds) {
-      const seconds = duration.seconds ?? duration.rounds * 6; // todo extract calculation for other systems
+      const seconds =
+        duration.seconds ?? duration.rounds * (CONFIG.time?.roundTime ?? 6);
       return duration.startTime + seconds - game.time.worldTime;
     } else {
       return Infinity;
