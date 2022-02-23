@@ -6,6 +6,7 @@ import EffectsPanelController from './effects-panel-controller.js';
 export default class EffectsPanelApp extends Application {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
+      id: 'effects-panel',
       popOut: false,
       template: 'modules/dfreds-effects-panel/templates/effects-panel.html',
     });

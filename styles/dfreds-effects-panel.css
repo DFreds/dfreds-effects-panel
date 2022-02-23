@@ -39,9 +39,6 @@
   color: #fff;
 }
 
-#sidebar.app.collapsed ~ .effect-panel {
-  right: 40px;
-}
 .effect-panel {
   position: fixed;
   right: 310px;
@@ -53,9 +50,9 @@
   width: 42px;
 }
 .effect-panel .effect-item {
-  align-items: center;
   display: flex;
   justify-content: flex-end;
+  height: 46px;
   margin-bottom: 4px;
 }
 .effect-panel .effect-item:hover .effect-info {
