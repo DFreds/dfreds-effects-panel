@@ -5,7 +5,8 @@ export default class Constants {
   static MODULE_ID = 'dfreds-effects-panel';
 
   static RIGHT_CLICK_BEHAVIOR = {
-    DELETE: 'delete',
+    DELETE_WITH_DIALOG: 'delete-with-dialog',
+    DELETE_IMMEDIATELY: 'delete-immediately',
     DISABLE: 'disable',
   };
 

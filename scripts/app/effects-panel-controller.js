@@ -62,37 +62,39 @@ export default class EffectsPanelController {
 
     if (!effect) return;
 
-    const isEffectTemporary = effect.isTemporary;
-    if (isEffectTemporary) {
-      const shouldDisable =
-        this._settings.temporaryEffectsRightClickBehavior ===
-        Constants.RIGHT_CLICK_BEHAVIOR.DISABLE;
-      await this._handleEffectChange(effect, shouldDisable);
+    if (effect.isTemporary) {
+      await this._handleEffectChange(
+        effect,
+        this._settings.temporaryEffectsRightClickBehavior
+      );
     } else {
-      const shouldDisable =
-        this._settings.passiveEffectsRightClickBehavior ===
-        Constants.RIGHT_CLICK_BEHAVIOR.DISABLE;
-      await this._handleEffectChange(effect, shouldDisable);
+      await this._handleEffectChange(
+        effect,
+        this._settings.passiveEffectsRightClickBehavior
+      );
     }
   }
 
-  _handleEffectChange(effect, shouldDisable) {
-    if (shouldDisable) {
-      return effect.update({ disabled: !effect.data.disabled });
-    } else {
-      return this._deleteEffect(effect);
+  async _handleEffectChange(effect, rightClickBehavior) {
+    if (
+      rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DELETE_WITH_DIALOG
+    ) {
+      return Dialog.confirm({
+        title: 'Delete Effect',
+        content: `<h4>Delete ${effect.data.label}?</h4>`,
+        yes: async () => {
+          await effect.delete();
+          this._viewMvc.refresh();
+        },
+      });
+    } else if (
+      rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DELETE_IMMEDIATELY
+    ) {
+      await effect.delete();
+      this._viewMvc.refresh();
+    } else if (rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DISABLE) {
+      await effect.update({ disabled: !effect.data.disabled });
     }
-  }
-
-  async _deleteEffect(effect) {
-    return Dialog.confirm({
-      title: 'Delete Effect',
-      content: `<h4>Delete ${effect.data.label}?</h4>`,
-      yes: async () => {
-        await effect.delete();
-        this._viewMvc.refresh();
-      },
-    });
   }
 
   onIconDoubleClick(event) {
