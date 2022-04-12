@@ -17,7 +17,7 @@ Hooks.once('init', () => {
 /**
  * Handle setting up the app and lib wrapper overrides
  */
-Hooks.once('setup', () => {
+Hooks.once('renderSidebar', () => {
   game.dfreds.effectsPanel = new EffectsPanelApp();
 
   libWrapper.register(

@@ -17,12 +17,16 @@ export default class EffectsPanelApp extends Application {
    */
   constructor() {
     super();
+
     this._controller = new EffectsPanelController(this);
+
     /**
      * Debounce and slightly delayed request to re-render this panel. Necessary for situations where it is not possible
      * to properly wait for promises to resolve before refreshing the UI.
      */
     this.refresh = foundry.utils.debounce(this.render.bind(this), 100);
+
+    this._initialSidebarWidth = ui.sidebar.element.outerWidth();
   }
 
   /** @override */
@@ -52,9 +56,8 @@ export default class EffectsPanelApp extends Application {
    * Handles when the sidebar expands
    */
   handleExpand() {
-    this.element.animate({ right: '310px' }, 150, () => {
-      this.element.css({ right: '' });
-    });
+    const right = this._initialSidebarWidth + 18 + 'px';
+    this.element.animate({ right: right }, 150);
   }
 
   /**
@@ -69,6 +72,8 @@ export default class EffectsPanelApp extends Application {
     await super._render(force, options);
     if (ui.sidebar._collapsed) {
       this.element.css('right', '50px');
+    } else {
+      this.element.css('right', this._initialSidebarWidth + 18 + 'px');
     }
   }
 
