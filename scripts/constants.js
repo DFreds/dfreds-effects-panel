@@ -23,4 +23,8 @@ export default class Constants {
     IN_ONE_YEAR: 31_536_000,
     IN_TWO_YEARS: 63_072_000,
   };
+
+  static USER_FLAGS = {
+    TOP_POSITION: 'topPosition',
+  };
 }

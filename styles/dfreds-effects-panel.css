@@ -42,7 +42,6 @@
 .effect-panel {
   position: fixed;
   right: 310px;
-  top: 5px;
   z-index: 50;
 }
 .effect-panel hr {

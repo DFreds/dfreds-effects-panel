@@ -1,5 +1,6 @@
-<section class="effect-panel">
+<section id="effects-panel" class="effect-panel" style="{{topStyle}}">
   {{#if (canViewEffectsPanel)}}
+    <div id="effects-panel-drag-handler" />
     {{#each enabledEffects as |effect|}}
       <div class="effect-item">
         <div class="effect-info">

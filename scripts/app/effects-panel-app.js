@@ -42,6 +42,10 @@ export default class EffectsPanelApp extends Application {
       'dblclick',
       this._controller.onIconDoubleClick.bind(this._controller)
     );
+    this._dragHandler.on(
+      'mousedown',
+      this._controller.onMouseDown.bind(this._controller)
+    );
   }
 
   /**
@@ -70,5 +74,9 @@ export default class EffectsPanelApp extends Application {
 
   get _icons() {
     return this._rootView.find('div[data-effect-id]');
+  }
+
+  get _dragHandler() {
+    return this._rootView.find('#effects-panel-drag-handler');
   }
 }

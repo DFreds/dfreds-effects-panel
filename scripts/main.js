@@ -69,6 +69,7 @@ Hooks.once('setup', () => {
     },
     'WRAPPER'
   );
+
   libWrapper.register(
     Constants.MODULE_ID,
     'Sidebar.prototype.expand',

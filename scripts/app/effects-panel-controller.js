@@ -16,6 +16,7 @@ export default class EffectsPanelController {
     return {
       enabledEffects: this._enabledEffects,
       disabledEffects: this._disabledEffects,
+      topStyle: this._getTopStyle(),
     };
   }
 
@@ -120,5 +121,86 @@ export default class EffectsPanelController {
     } else {
       return Infinity;
     }
+  }
+
+  onMouseDown(ev) {
+    ev.preventDefault();
+    ev = ev || window.event;
+
+    let isRightMB = false;
+    if ('which' in ev) {
+      // Gecko (Firefox), WebKit (Safari/Chrome) & Opera
+      isRightMB = ev.which == 3;
+    } else if ('button' in ev) {
+      // IE, Opera
+      isRightMB = ev.button == 2;
+    }
+
+    if (isRightMB) return;
+
+    // TODO extract view logic
+    dragElement(document.getElementById('effects-panel'));
+
+    // TODO put in private functions?
+    function dragElement(elmnt) {
+      let newYPosition = 0,
+        mouseYPosition = 0;
+      elmnt.onmousedown = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup
+        mouseYPosition = e.clientY;
+
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        newYPosition = mouseYPosition - e.clientY;
+        mouseYPosition = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = elmnt.offsetTop - newYPosition + 'px';
+      }
+
+      function closeDragElement() {
+        // stop moving when mouse button is released:
+        elmnt.onmousedown = null;
+        document.onmouseup = null;
+        document.onmousemove = null;
+
+        let topPosition = elmnt.offsetTop - newYPosition + 1;
+        elmnt.style.top = topPosition + 'px';
+
+        game.user.setFlag(
+          Constants.MODULE_ID,
+          Constants.USER_FLAGS.TOP_POSITION,
+          topPosition
+        );
+      }
+    }
+  }
+
+  _getTopStyle() {
+    let topPosition = game.user.getFlag(
+      Constants.MODULE_ID,
+      Constants.USER_FLAGS.TOP_POSITION
+    );
+
+    if (topPosition == undefined) {
+      topPosition = 5;
+      game.user.setFlag(
+        Constants.MODULE_ID,
+        Constants.USER_FLAGS.TOP_POSITION,
+        topPosition
+      );
+    }
+
+    return 'top: ' + topPosition + 'px;';
   }
 }
