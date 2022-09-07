@@ -1,5 +1,5 @@
 {
-  "name": "dfreds-effects-panel",
+  "id": "dfreds-effects-panel",
   "title": "DFreds Effects Panel",
   "description": "A FoundryVTT module that adds a panel of active effects for the selected tokens.",
   "author": "DFreds",
@@ -17,8 +17,11 @@
   "changelog": "https://github.com/DFreds/dfreds-effects-panel/releases",
   "flags": {},
   "version": "1.0.0",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "9",
+  "compatibility": {
+    "minimum": 10,
+    "verified": "10.284",
+    "maximum": 10
+  },
   "scripts": [],
   "esmodules": ["./scripts/main.js"],
   "styles": ["./styles/dfreds-effects-panel.css"],

@@ -35,12 +35,11 @@ export default class EffectsPanelController {
 
     return actor.effects
       .map((effect) => {
-        const effectData = effect.clone({}, { keepId: true }).data;
+        const effectData = effect.clone({}, { keepId: true });
         effectData.remainingSeconds = this._getSecondsRemaining(
           effectData.duration
         );
         effectData.turns = effectData.duration.turns;
-        effectData.isTemporary = effect.isTemporary;
         effectData.isExpired = effectData.remainingSeconds < 0;
         return effectData;
       })
@@ -50,9 +49,7 @@ export default class EffectsPanelController {
         return 0;
       })
       .filter((effectData) => {
-        return (
-          this._settings.showPassiveEffects || effectData.document.isTemporary
-        );
+        return this._settings.showPassiveEffects || effectData.isTemporary;
       });
   }
 
@@ -82,7 +79,7 @@ export default class EffectsPanelController {
     ) {
       return Dialog.confirm({
         title: 'Delete Effect',
-        content: `<h4>Delete ${effect.data.label}?</h4>`,
+        content: `<h4>Delete ${effect.label}?</h4>`,
         yes: async () => {
           await effect.delete();
           this._viewMvc.refresh();
@@ -94,7 +91,7 @@ export default class EffectsPanelController {
       await effect.delete();
       this._viewMvc.refresh();
     } else if (rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DISABLE) {
-      await effect.update({ disabled: !effect.data.disabled });
+      await effect.update({ disabled: !effect.disabled });
     }
   }
 
