@@ -142,6 +142,8 @@ export default class EffectsPanelController {
     function dragElement(elmnt) {
       let newYPosition = 0,
         mouseYPosition = 0;
+      let timer;
+
       elmnt.onmousedown = dragMouseDown;
 
       function dragMouseDown(e) {
@@ -151,8 +153,11 @@ export default class EffectsPanelController {
         mouseYPosition = e.clientY;
 
         document.onmouseup = closeDragElement;
+
         // call a function whenever the cursor moves
-        document.onmousemove = elementDrag;
+        timer = setTimeout(() => {
+          document.onmousemove = elementDrag;
+        }, 200);
       }
 
       function elementDrag(e) {
@@ -170,8 +175,9 @@ export default class EffectsPanelController {
         elmnt.onmousedown = null;
         document.onmouseup = null;
         document.onmousemove = null;
+        clearTimeout(timer);
 
-        let topPosition = elmnt.offsetTop - newYPosition + 1;
+        let topPosition = elmnt.offsetTop - newYPosition;
         elmnt.style.top = topPosition + 'px';
 
         game.user.setFlag(
