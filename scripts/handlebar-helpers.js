@@ -13,23 +13,9 @@ export default class HandlebarHelpers {
    * Registers the handlebar helpers
    */
   registerHelpers() {
-    this._registerCanShowDisabledEffectsHelper();
-    this._registerCanShowPassiveEffectsHelper();
     this._registerCanViewEffectDetailsHelper();
     this._registerCanViewEffectsPanelHelper();
     this._registerRemainingTimeLabelHelper();
-  }
-
-  _registerCanShowDisabledEffectsHelper() {
-    Handlebars.registerHelper('canShowDisabledEffects', () => {
-      return this._settings.showDisabledEffects;
-    });
-  }
-
-  _registerCanShowPassiveEffectsHelper() {
-    Handlebars.registerHelper('canShowPassiveEffects', () => {
-      return this._settings.showPassiveEffects;
-    });
   }
 
   _registerCanViewEffectDetailsHelper() {

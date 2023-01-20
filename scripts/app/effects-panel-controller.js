@@ -12,20 +12,29 @@ export default class EffectsPanelController {
     this._settings = new Settings();
   }
 
-  get data() {
+  getEffectData() {
+    const temporaryEffects = [];
+    const disabledEffects = [];
+    const passiveEffects = [];
+
+    const effects = this._actorEffects;
+
+    for (const effect of effects) {
+      if (effect.disabled && this._settings.showDisabledEffects) {
+        disabledEffects.push(effect);
+      } else if (effect.isTemporary) {
+        temporaryEffects.push(effect);
+      } else if (this._settings.showPassiveEffects) {
+        passiveEffects.push(effect);
+      }
+    }
+
     return {
-      enabledEffects: this._enabledEffects,
-      disabledEffects: this._disabledEffects,
+      temporaryEffects,
+      disabledEffects,
+      passiveEffects,
       topStyle: this._getTopStyle(),
     };
-  }
-
-  get _enabledEffects() {
-    return this._actorEffects.filter((effectData) => !effectData.disabled);
-  }
-
-  get _disabledEffects() {
-    return this._actorEffects.filter((effectData) => effectData.disabled);
   }
 
   get _actorEffects() {
@@ -35,12 +44,20 @@ export default class EffectsPanelController {
 
     return actor.effects
       .map((effect) => {
+        const src = this._getSourceName(effect);
         const effectData = effect.clone({}, { keepId: true });
+
         effectData.remainingSeconds = this._getSecondsRemaining(
           effectData.duration
         );
         effectData.turns = effectData.duration.turns;
-        effectData.isExpired = effectData.remainingSeconds < 0;
+        effectData.isExpired = effectData.remainingSeconds <= 0;
+        effectData.infinite = effectData.remainingSeconds === Infinity;
+
+        effectData.description = effect.flags.convenientDescription;
+        effectData.isSuppressed = effect.isSuppressed;
+        effectData.src = src;
+
         return effectData;
       })
       .sort((a, b) => {
@@ -49,8 +66,17 @@ export default class EffectsPanelController {
         return 0;
       })
       .filter((effectData) => {
-        return this._settings.showPassiveEffects || effectData.isTemporary;
+        return !effectData.isSuppressed;
       });
+  }
+
+  _getSourceName(effect) {
+    if (!effect.origin) return false;
+    try {
+      return fromUuidSync(effect.origin).name;
+    } catch {
+      return false;
+    }
   }
 
   async onIconRightClick(event) {
