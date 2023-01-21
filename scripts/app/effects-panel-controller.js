@@ -55,7 +55,7 @@ export default class EffectsPanelController {
         effectData.infinite = effectData.remainingSeconds === Infinity;
 
         effectData.description = effect.flags.convenientDescription;
-        effectData.isSuppressed = effect.isSuppressed;
+        effectData.isSupp = effect.isSuppressed;
         effectData.src = src;
 
         return effectData;
@@ -66,7 +66,7 @@ export default class EffectsPanelController {
         return 0;
       })
       .filter((effectData) => {
-        return !effectData.isSuppressed;
+        return !effectData.isSupp;
       });
   }
 
