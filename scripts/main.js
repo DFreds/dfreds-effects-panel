@@ -69,25 +69,14 @@ Hooks.once('renderSidebar', () => {
     },
     'WRAPPER'
   );
+});
 
-  libWrapper.register(
-    Constants.MODULE_ID,
-    'Sidebar.prototype.expand',
-    function (wrapper, ...args) {
-      wrapper(...args);
-      game.dfreds.effectsPanel.handleExpand();
-    },
-    'WRAPPER'
-  );
-  libWrapper.register(
-    Constants.MODULE_ID,
-    'Sidebar.prototype.collapse',
-    function (wrapper, ...args) {
-      wrapper(...args);
-      game.dfreds.effectsPanel.handleCollapse();
-    },
-    'WRAPPER'
-  );
+Hooks.on('collapseSidebar', () => {
+  game.dfreds.effectsPanel.updateFromRightPx();
+});
+
+Hooks.on('rtcSettingsChanged', () => {
+  game.dfreds.effectsPanel.updateFromRightPx();
 });
 
 /**
