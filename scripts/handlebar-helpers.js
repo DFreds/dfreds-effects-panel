@@ -15,6 +15,7 @@ export default class HandlebarHelpers {
   registerHelpers() {
     this._registerCanViewEffectDetailsHelper();
     this._registerCanViewEffectsPanelHelper();
+    this._registerShowDurationOverlaysHelper();
     this._registerRemainingTimeLabelHelper();
   }
 
@@ -27,6 +28,12 @@ export default class HandlebarHelpers {
   _registerCanViewEffectsPanelHelper() {
     Handlebars.registerHelper('canViewEffectsPanel', () => {
       return game.user.role >= this._settings.viewPermission;
+    });
+  }
+
+  _registerShowDurationOverlaysHelper() {
+    Handlebars.registerHelper('showDurationOverlays', () => {
+      return this._settings.showDurationOverlays;
     });
   }
 

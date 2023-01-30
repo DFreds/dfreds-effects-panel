@@ -30,12 +30,14 @@
           data-effect-id="{{effect._id}}"
           style="background-image: url({{effect.icon}})"
         >
-          {{#if effect.isExpired}}
-            <i class="expired badge fas fa-clock"></i>
-          {{else if effect.isTemporary}}
-            <i class="badge fas fa-clock"></i>
-          {{else}}
-            <i class="unlimited badge fas fa-infinity"></i>
+          {{#if (showDurationOverlays)}}
+            {{#if effect.isExpired}}
+              <i class="expired badge fas fa-clock"></i>
+            {{else if effect.isTemporary}}
+              <i class="badge fas fa-clock"></i>
+            {{else}}
+              <i class="unlimited badge fas fa-infinity"></i>
+            {{/if}}
           {{/if}}
         </div>
       </div>
@@ -78,7 +80,9 @@
           data-effect-id="{{effect._id}}"
           style="background-image: url({{effect.icon}})"
         >
-          <i class="unlimited badge fas fa-infinity"></i>
+          {{#if (showDurationOverlays)}}
+            <i class="unlimited badge fas fa-infinity"></i>
+          {{/if}}
         </div>
       </div>
     {{/each}}
@@ -127,12 +131,14 @@
           data-effect-id="{{effect._id}}"
           style="background-image: url({{effect.icon}});"
         >
-          {{#if effect.isExpired}}
-            <i class="expired badge fas fa-clock"></i>
-          {{else if effect.isTemporary}}
-            <i class="badge fas fa-clock"></i>
-          {{else}}
-            <i class="unlimited badge fas fa-infinity"></i>
+          {{#if (showDurationOverlays)}}
+            {{#if effect.isExpired}}
+              <i class="expired badge fas fa-clock"></i>
+            {{else if effect.isTemporary}}
+              <i class="badge fas fa-clock"></i>
+            {{else}}
+              <i class="unlimited badge fas fa-infinity"></i>
+            {{/if}}
           {{/if}}
         </div>
       </div>

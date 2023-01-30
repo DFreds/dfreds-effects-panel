@@ -11,6 +11,7 @@ export default class Settings {
     'temporaryEffectsRightClickBehavior';
   static SHOW_DISABLED_EFFECTS = 'showDisabledEffects';
   static SHOW_PASSIVE_EFFECTS = 'showPassiveEffects';
+  static SHOW_DURATION_OVERLAYS = 'showDurationOverlays';
   static VIEW_PERMISSION = 'viewPermission';
   static VIEW_DETAILS_PERMISSION = 'viewDetailsPermission';
 
@@ -55,6 +56,20 @@ export default class Settings {
       type: Boolean,
       onChange: () => game.dfreds.effectsPanel.refresh(),
     });
+
+    game.settings.register(
+      Constants.MODULE_ID,
+      Settings.SHOW_DURATION_OVERLAYS,
+      {
+        name: 'Show Duration Overlays',
+        hint: 'If enabled, an overlay icon will be shown over each effect to indicate its duration.',
+        scope: 'client',
+        config: true,
+        default: true,
+        type: Boolean,
+        onChange: () => game.dfreds.effectsPanel.refresh(),
+      }
+    );
 
     game.settings.register(
       Constants.MODULE_ID,
@@ -158,6 +173,18 @@ export default class Settings {
     return game.settings.get(
       Constants.MODULE_ID,
       Settings.SHOW_PASSIVE_EFFECTS
+    );
+  }
+
+  /**
+   * Returns the game setting for showing duration overlays
+   *
+   * @returns {boolean} true if overlays should be shown
+   */
+  get showDurationOverlays() {
+    return game.settings.get(
+      Constants.MODULE_ID,
+      Settings.SHOW_DURATION_OVERLAYS
     );
   }
 
