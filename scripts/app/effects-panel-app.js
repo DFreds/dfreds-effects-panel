@@ -8,7 +8,7 @@ export default class EffectsPanelApp extends Application {
     return mergeObject(super.defaultOptions, {
       id: 'effects-panel',
       popOut: false,
-      template: 'modules/dfreds-effects-panel/templates/effects-panel.html',
+      template: 'modules/dfreds-effects-panel/templates/effects-panel.hbs',
     });
   }
 
