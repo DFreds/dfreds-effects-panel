@@ -22,10 +22,14 @@ export default class EffectsPanelController {
     for (const effect of effects) {
       if (effect.disabled && this._settings.showDisabledEffects) {
         disabledEffects.push(effect);
-      } else if (effect.isTemporary) {
-        temporaryEffects.push(effect);
-      } else if (this._settings.showPassiveEffects) {
-        passiveEffects.push(effect);
+      }
+
+      if (!effect.disabled) {
+        if (effect.isTemporary) {
+          temporaryEffects.push(effect);
+        } else if (this._settings.showPassiveEffects) {
+          passiveEffects.push(effect);
+        }
       }
     }
 
