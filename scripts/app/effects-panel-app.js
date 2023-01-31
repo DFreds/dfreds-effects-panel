@@ -51,24 +51,13 @@ export default class EffectsPanelApp extends Application {
   }
 
   updateFromRightPx() {
-    let newPosition =
-      ui.sidebar.element.outerWidth() +
-      ui.webrtc.element.outerWidth() +
-      18 +
-      'px';
-    this.element.animate({ right: newPosition });
+    this.element.animate({ right: this._fromRightPx });
   }
 
   /** @inheritdoc */
   async _render(force = false, options = {}) {
     await super._render(force, options);
-
-    let fromRightPx =
-      ui.sidebar.element.outerWidth() +
-      ui.webrtc.element.outerWidth() +
-      18 +
-      'px';
-    this.element.css('right', fromRightPx);
+    this.element.css('right', this._fromRightPx);
   }
 
   get _icons() {
@@ -77,5 +66,18 @@ export default class EffectsPanelApp extends Application {
 
   get _dragHandler() {
     return this._rootView.find('#effects-panel-drag-handler');
+  }
+
+  get _fromRightPx() {
+    if (ui.webrtc.element.hasClass('camera-position-right')) {
+      return (
+        ui.sidebar.element.outerWidth() +
+        ui.webrtc.element.outerWidth() +
+        18 +
+        'px'
+      );
+    } else {
+      return ui.sidebar.element.outerWidth() + 18 + 'px';
+    }
   }
 }
