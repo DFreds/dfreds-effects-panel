@@ -58,7 +58,13 @@ export default class EffectsPanelController {
         effectData.isExpired = effectData.remainingSeconds <= 0;
         effectData.infinite = effectData.remainingSeconds === Infinity;
 
-        effectData.description = effect.flags.convenientDescription;
+        if (game.modules.get('dfreds-convenient-effects')?.active) {
+          effectData.description = effect.getFlag(
+            'dfreds-convenient-effects',
+            'description'
+          );
+        }
+
         effectData.isSupp = effect.isSuppressed;
         effectData.src = src;
 
