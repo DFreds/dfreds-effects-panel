@@ -41,7 +41,7 @@
 
 .effect-panel {
   /* Note that exact positioning is all handled in the app */
-  position: fixed;
+  position: absolute;
   z-index: 50;
 }
 .effect-panel hr {
