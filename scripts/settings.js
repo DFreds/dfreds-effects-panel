@@ -106,7 +106,7 @@ export default class Settings {
       hint: 'This defines the minimum permission level to see the effects panel. Setting this to None will never show the effects panel.',
       scope: 'world',
       config: true,
-      default: CONST.USER_ROLES.GAMEMASTER,
+      default: CONST.USER_ROLES.PLAYER,
       choices: userRoles,
       type: String,
       onChange: () => game.dfreds.effectsPanel.refresh(),
