@@ -68,6 +68,9 @@
   padding-left: 0.25em;
   padding-bottom: 0.1em;
   padding-top: 0.1em;
+  height: max-content;
+  min-height: 100%;
+  max-width: 300px;
 }
 .effect-panel .effect-item .effect-info h1 {
   border: none;
