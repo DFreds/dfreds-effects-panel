@@ -118,20 +118,29 @@ export default class EffectsPanelController {
   }
 
   async _handleEffectChange(effect, rightClickBehavior) {
-    if (
-      rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DELETE_WITH_DIALOG
-    ) {
-      return Dialog.confirm({
-        title: 'Delete Effect',
-        content: `<h4>Delete ${effect.label}?</h4>`,
-        yes: async () => {
-          await effect.delete();
-          this._viewMvc.refresh();
+    if (rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DIALOG) {
+      return Dialog.wait({
+        title: 'Delete or Disable Effect',
+        content: `<h4>Delete or disable ${effect.label}?</h4>`,
+        buttons: {
+          delete: {
+            icon: '<i class="fas fa-trash"></i>',
+            label: 'Delete',
+            callback: async () => {
+              await effect.delete();
+              this._viewMvc.refresh();
+            },
+          },
+          disable: {
+            icon: '<i class="fas fa-close"></i>',
+            label: 'Disable',
+            callback: async () => {
+              await effect.update({ disabled: !effect.disabled });
+            },
+          },
         },
       });
-    } else if (
-      rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DELETE_IMMEDIATELY
-    ) {
+    } else if (rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DELETE) {
       await effect.delete();
       this._viewMvc.refresh();
     } else if (rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DISABLE) {

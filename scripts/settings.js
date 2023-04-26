@@ -27,10 +27,8 @@ export default class Settings {
     userRoles[5] = 'None';
 
     const rightClickBehaviors = {};
-    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DELETE_WITH_DIALOG] =
-      'Delete with Dialog';
-    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DELETE_IMMEDIATELY] =
-      'Delete Immediately';
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DIALOG] = 'Dialog';
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DELETE] = 'Delete';
     rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DISABLE] = 'Disable';
 
     game.settings.register(
@@ -94,7 +92,7 @@ export default class Settings {
         hint: 'This defines the behavior when right-clicking a temporary effect.',
         scope: 'client',
         config: true,
-        default: Constants.RIGHT_CLICK_BEHAVIOR.DELETE_WITH_DIALOG,
+        default: Constants.RIGHT_CLICK_BEHAVIOR.DIALOG,
         choices: rightClickBehaviors,
         type: String,
         onChange: () => game.dfreds.effectsPanel.refresh(),
