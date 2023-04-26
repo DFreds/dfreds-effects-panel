@@ -89,6 +89,9 @@
   padding: 0;
   text-align: left;
 }
+.effect-panel .effect-item .effect-info a.content-link {
+  color: black;
+}
 .effect-panel .effect-item .effect-info .tags {
   justify-content: flex-end;
   margin: 8px;

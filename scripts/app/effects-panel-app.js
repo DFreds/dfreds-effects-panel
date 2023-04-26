@@ -28,8 +28,8 @@ export default class EffectsPanelApp extends Application {
   }
 
   /** @override */
-  getData(options) {
-    return this._controller.getEffectData();
+  async getData(options) {
+    return await this._controller.getEffectData();
   }
 
   /** @override */

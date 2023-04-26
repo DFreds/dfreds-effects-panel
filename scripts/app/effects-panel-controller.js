@@ -12,7 +12,7 @@ export default class EffectsPanelController {
     this._settings = new Settings();
   }
 
-  getEffectData() {
+  async getEffectData() {
     const temporaryEffects = [];
     const passiveEffects = [];
     const disabledTemporaryEffects = [];
@@ -21,6 +21,9 @@ export default class EffectsPanelController {
     const effects = this._actorEffects;
 
     for (const effect of effects) {
+      effect.description = await TextEditor.enrichHTML(effect.description, {
+        async: true,
+      });
       if (effect.disabled && this._settings.showDisabledEffects) {
         if (effect.isTemporary) {
           disabledTemporaryEffects.push(effect);
