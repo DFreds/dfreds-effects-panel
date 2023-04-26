@@ -26,7 +26,7 @@
           {{/if}}
         </div>
         <div
-          class="icon"
+          class="temporary icon"
           data-effect-id="{{effect._id}}"
           style="background-image: url({{effect.icon}})"
         >
@@ -76,7 +76,7 @@
           {{/if}}
         </div>
         <div
-          class="icon"
+          class="passive icon"
           data-effect-id="{{effect._id}}"
           style="background-image: url({{effect.icon}})"
         >
@@ -89,13 +89,13 @@
 
     {{#if
       (and
-        disabledEffects.length (or temporaryEffects.length passiveEffects.length)
+        (or disabledTemporaryEffects.length disabledPassiveEffects.length) (or temporaryEffects.length passiveEffects.length)
       )
     }}
       <hr />
     {{/if}}
 
-    {{#each disabledEffects as |effect|}}
+    {{#each disabledTemporaryEffects as |effect|}}
       <div class="effect-item">
         <div class="effect-info">
           <h1>
@@ -110,11 +110,7 @@
               {{/if}}
               <div class="tags">
                 <div class="tag tag_primary">
-                  {{#if effect.isTemporary}}
-                    temporary
-                  {{else}}
-                    passive
-                  {{/if}}
+                  temporary
                 </div>
                 <div class="tag tag_secondary">
                   {{remainingTimeLabel effect}}
@@ -127,7 +123,52 @@
           {{/if}}
         </div>
         <div
-          class="disabled icon"
+          class="disabled temporary icon"
+          data-effect-id="{{effect._id}}"
+          style="background-image: url({{effect.icon}});"
+        >
+          {{#if (showDurationOverlays)}}
+            {{#if effect.isExpired}}
+              <i class="expired badge fas fa-clock"></i>
+            {{else if effect.isTemporary}}
+              <i class="badge fas fa-clock"></i>
+            {{else}}
+              <i class="unlimited badge fas fa-infinity"></i>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+
+    {{#each disabledPassiveEffects as |effect|}}
+      <div class="effect-item">
+        <div class="effect-info">
+          <h1>
+            {{effect.label}}
+          </h1>
+          {{#if (canViewEffectDetails)}}
+            <div class="effect-info-details">
+              {{#if effect.description}}
+                <h2>
+                  {{{effect.description}}}
+                </h2>
+              {{/if}}
+              <div class="tags">
+                <div class="tag tag_primary">
+                  passive
+                </div>
+                <div class="tag tag_secondary">
+                  {{remainingTimeLabel effect}}
+                </div>
+                <div class="tag tag_tertiary">
+                  disabled
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+        <div
+          class="disabled passive icon"
           data-effect-id="{{effect._id}}"
           style="background-image: url({{effect.icon}});"
         >

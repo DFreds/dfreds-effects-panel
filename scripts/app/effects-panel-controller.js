@@ -14,14 +14,19 @@ export default class EffectsPanelController {
 
   getEffectData() {
     const temporaryEffects = [];
-    const disabledEffects = [];
     const passiveEffects = [];
+    const disabledTemporaryEffects = [];
+    const disabledPassiveEffects = [];
 
     const effects = this._actorEffects;
 
     for (const effect of effects) {
       if (effect.disabled && this._settings.showDisabledEffects) {
-        disabledEffects.push(effect);
+        if (effect.isTemporary) {
+          disabledTemporaryEffects.push(effect);
+        } else {
+          disabledPassiveEffects.push(effect);
+        }
       }
 
       if (!effect.disabled) {
@@ -35,8 +40,9 @@ export default class EffectsPanelController {
 
     return {
       temporaryEffects,
-      disabledEffects,
       passiveEffects,
+      disabledTemporaryEffects,
+      disabledPassiveEffects,
       topStyle: this._getTopStyle(),
     };
   }

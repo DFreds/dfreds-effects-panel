@@ -117,6 +117,12 @@
   position: relative;
   width: 42px;
 }
+.effect-panel .effect-item .temporary.icon {
+  border-radius: 10%;
+}
+.effect-panel .effect-item .passive.icon {
+  border-radius: 50%;
+}
 .effect-panel .effect-item .disabled.icon {
   filter: grayscale(0.8);
 }
