@@ -3,6 +3,7 @@
  */
 export default class Constants {
   static MODULE_ID = 'dfreds-effects-panel';
+  static CE_MODULE_ID = 'dfreds-convenient-effects';
 
   static RIGHT_CLICK_BEHAVIOR = {
     DIALOG: 'dialog',

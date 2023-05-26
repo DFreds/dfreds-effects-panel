@@ -66,15 +66,7 @@ export default class EffectsPanelController {
         effectData.turns = effectData.duration.turns;
         effectData.isExpired = effectData.remainingSeconds <= 0;
         effectData.infinite = effectData.remainingSeconds === Infinity;
-
-        if (game.modules.get('dfreds-convenient-effects')?.active) {
-          const description = effect.getFlag(
-            'dfreds-convenient-effects',
-            'description'
-          );
-          effectData.description =
-            description ?? effect.flags.convenientDescription;
-        }
+        effectData.description = this._getDescription(effect);
 
         effectData.isSupp = effect.isSuppressed;
         effectData.src = src;
@@ -89,6 +81,20 @@ export default class EffectsPanelController {
       .filter((effectData) => {
         return !effectData.isSupp;
       });
+  }
+
+  _getDescription(effect) {
+    const effectDescription = effect.description;
+
+    const hasConvenientEffects = game.modules.get(
+      Constants.CE_MODULE_ID
+    )?.active;
+    const flagDescription = hasConvenientEffects
+      ? effect.getFlag(CE_MODULE_ID, 'description')
+      : '';
+    const legacyDescription = effect.flags.convenientDescription;
+
+    return effectDescription || flagDescription || legacyDescription;
   }
 
   _getSourceName(effect) {
