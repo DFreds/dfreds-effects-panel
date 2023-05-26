@@ -141,8 +141,10 @@ export default class EffectsPanelController {
             },
           },
           disable: {
-            icon: '<i class="fas fa-close"></i>',
-            label: 'Disable',
+            icon: effect.disabled
+              ? '<i class="fas fa-check"></i>'
+              : '<i class="fas fa-close"></i>',
+            label: effect.disabled ? 'Enable' : 'Disable',
             callback: async () => {
               await effect.update({ disabled: !effect.disabled });
             },
