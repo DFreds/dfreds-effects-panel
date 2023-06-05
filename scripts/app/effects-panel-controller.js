@@ -90,7 +90,7 @@ export default class EffectsPanelController {
       Constants.CE_MODULE_ID
     )?.active;
     const flagDescription = hasConvenientEffects
-      ? effect.getFlag(CE_MODULE_ID, 'description')
+      ? effect.getFlag(Constants.CE_MODULE_ID, 'description')
       : '';
     const legacyDescription = effect.flags.convenientDescription;
 
