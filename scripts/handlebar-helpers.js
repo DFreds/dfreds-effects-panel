@@ -42,42 +42,48 @@ export default class HandlebarHelpers {
       const remainingSeconds = effect.remainingSeconds;
       if (remainingSeconds == Infinity && effect.turns) {
         if (effect.turns == 1) {
-          return '1 turn';
+          return game.i18n.localize('EffectsPanel.OneTurn');
         } else {
-          return `${effect.turns} turns`;
+          return game.i18n.format('EffectsPanel.ManyTurns', {
+            turns: effect.turns,
+          });
         }
       } else if (remainingSeconds == Infinity) {
-        return 'Unlimited';
+        return game.i18n.localize('EffectsPanel.Unlimited');
       } else if (remainingSeconds >= Constants.SECONDS.IN_TWO_YEARS) {
-        return `${Math.floor(
-          remainingSeconds / Constants.SECONDS.IN_ONE_YEAR
-        )} years`;
+        return game.i18n.format('EffectsPanel.ManyYears', {
+          years: Math.floor(remainingSeconds / Constants.SECONDS.IN_ONE_YEAR),
+        });
       } else if (remainingSeconds >= Constants.SECONDS.IN_ONE_YEAR) {
-        return '1 year';
+        return game.i18n.localize('EffectsPanel.OneYear');
       } else if (remainingSeconds >= Constants.SECONDS.IN_TWO_WEEKS) {
-        return `${Math.floor(
-          remainingSeconds / Constants.SECONDS.IN_ONE_WEEK
-        )} weeks`;
+        return game.i18n.format('EffectsPanel.ManyWeeks', {
+          weeks: Math.floor(remainingSeconds / Constants.SECONDS.IN_ONE_WEEK),
+        });
       } else if (remainingSeconds > Constants.SECONDS.IN_ONE_WEEK) {
-        return '1 week';
+        return game.i18n.localize('EffectsPanel.OneWeek');
       } else if (remainingSeconds >= Constants.SECONDS.IN_TWO_DAYS) {
-        return `${Math.floor(
-          remainingSeconds / Constants.SECONDS.IN_ONE_DAY
-        )} days`;
+        return game.i18n.format('EffectsPanel.ManyDays', {
+          days: Math.floor(remainingSeconds / Constants.SECONDS.IN_ONE_DAY),
+        });
       } else if (remainingSeconds > Constants.SECONDS.IN_TWO_HOURS) {
-        return `${Math.floor(
-          remainingSeconds / Constants.SECONDS.IN_ONE_HOUR
-        )} hours`;
+        return game.i18n.format('EffectsPanel.ManyHours', {
+          hours: Math.floor(remainingSeconds / Constants.SECONDS.IN_ONE_HOUR),
+        });
       } else if (remainingSeconds > Constants.SECONDS.IN_TWO_MINUTES) {
-        return `${Math.floor(
-          remainingSeconds / Constants.SECONDS.IN_ONE_MINUTE
-        )} minutes`;
+        return game.i18n.format('EffectsPanel.ManyMinutes', {
+          minutes: Math.floor(
+            remainingSeconds / Constants.SECONDS.IN_ONE_MINUTE
+          ),
+        });
       } else if (remainingSeconds >= 2) {
-        return `${remainingSeconds} seconds`;
+        return game.i18n.format('EffectsPanel.ManySeconds', {
+          seconds: remainingSeconds,
+        });
       } else if (remainingSeconds === 1) {
-        return '1 second';
+        return game.i18n.localize('EffectsPanel.OneSecond');
       } else {
-        return 'Expired';
+        return game.i18n.localize('EffectsPanel.Expired');
       }
     });
   }

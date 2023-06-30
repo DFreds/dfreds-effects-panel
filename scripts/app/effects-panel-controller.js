@@ -128,13 +128,19 @@ export default class EffectsPanelController {
 
   async _handleEffectChange(effect, rightClickBehavior) {
     if (rightClickBehavior === Constants.RIGHT_CLICK_BEHAVIOR.DIALOG) {
+      const content = game.i18n.format(
+        'EffectsPanel.DeleteOrDisableEffectContent',
+        {
+          effect: effect.name,
+        }
+      );
       return Dialog.wait({
-        title: 'Delete or Disable Effect',
-        content: `<h4>Delete or disable ${effect.label}?</h4>`,
+        title: game.i18n.localize('EffectsPanel.DeleteOrDisableEffect'),
+        content: `<h4>${content}?</h4>`,
         buttons: {
           delete: {
             icon: '<i class="fas fa-trash"></i>',
-            label: 'Delete',
+            label: game.i18n.localize('EffectsPanel.Delete'),
             callback: async () => {
               await effect.delete();
               this._viewMvc.refresh();
@@ -144,7 +150,9 @@ export default class EffectsPanelController {
             icon: effect.disabled
               ? '<i class="fas fa-check"></i>'
               : '<i class="fas fa-close"></i>',
-            label: effect.disabled ? 'Enable' : 'Disable',
+            label: effect.disabled
+              ? game.i18n.localize('EffectsPanel.Enable')
+              : game.i18n.localize('EffectsPanel.Disable'),
             callback: async () => {
               await effect.update({ disabled: !effect.disabled });
             },

@@ -1,1 +1,47 @@
-{}
+{
+  "EffectsPanel.SettingPlayer": "Player",
+  "EffectsPanel.SettingTrustedPlayer": "Trusted Player",
+  "EffectsPanel.SettingAssistantGM": "Assistant GM",
+  "EffectsPanel.SettingGameMaster": "Game Master",
+  "EffectsPanel.SettingNone": "None",
+  "EffectsPanel.SettingDialog": "Dialog",
+  "EffectsPanel.SettingDelete": "Delete",
+  "EffectsPanel.SettingDisable": "Disable",
+
+  "EffectsPanel.SettingShowDisabledEffects": "Show Disabled Effects",
+  "EffectsPanel.SettingShowDisabledEffectsHint": "If enabled, disabled effects will be shown in the panel with a grey tint.",
+  "EffectsPanel.SettingShowPassiveEffects": "Show Passive Effects",
+  "EffectsPanel.SettingShowPassiveEffectsHint": "If enabled, passive effects will be shown in the panel.",
+  "EffectsPanel.SettingShowDurationOverlays": "Show Duration Overlays",
+  "EffectsPanel.SettingShowDurationOverlaysHint": "If enabled, an overlay icon will be shown over each effect to indicate its duration.",
+  "EffectsPanel.SettingPassiveEffectsRightClickBehavior": "Passive Effects Right-Click Behavior",
+  "EffectsPanel.SettingPassiveEffectsRightClickBehaviorHint": "This defines the behavior when right-clicking a passive effect.",
+  "EffectsPanel.SettingTemporaryEffectsRightClickBehavior": "Temporary Effects Right-Click Behavior",
+  "EffectsPanel.SettingTemporaryEffectsRightClickBehaviorHint": "This defines the behavior when right-clicking a temporary effect.",
+  "EffectsPanel.SettingViewPermission": "View Permission",
+  "EffectsPanel.SettingViewPermissionHint": "This defines the minimum permission level to see the effects panel. Setting this to None will never show the effects panel.",
+  "EffectsPanel.SettingViewDetailsPermission": "View Details Permission",
+  "EffectsPanel.SettingViewDetailsPermissionHint": "This defines the minimum permission level to see the details of the effects in the panel such as the duration and description. Setting this to None will never show any details.",
+
+  "EffectsPanel.Unlimited": "Unlimited",
+  "EffectsPanel.Expired": "Expired",
+
+  "EffectsPanel.OneYear": "1 year",
+  "EffectsPanel.OneWeek": "1 week",
+  "EffectsPanel.OneTurn": "1 turn",
+  "EffectsPanel.OneSecond": "1 second",
+
+  "EffectsPanel.ManyYears": "{years} years",
+  "EffectsPanel.ManyWeeks": "{weeks} weeks",
+  "EffectsPanel.ManyDays": "{days} days",
+  "EffectsPanel.ManyHours": "{hours} hours",
+  "EffectsPanel.ManyMinutes": "{minutes} minutes",
+  "EffectsPanel.ManyTurns": "{turns} turns",
+  "EffectsPanel.ManySeconds": "{seconds} seconds",
+
+  "EffectsPanel.DeleteOrDisableEffect": "Delete or Disable Effect",
+  "EffectsPanel.DeleteOrDisableEffectContent": "Delete or disable {effect}",
+  "EffectsPanel.Delete": "Delete",
+  "EffectsPanel.Enable": "Enable",
+  "EffectsPanel.Disable": "Disable"
+}

@@ -20,23 +20,34 @@ export default class Settings {
    */
   registerSettings() {
     const userRoles = {};
-    userRoles[CONST.USER_ROLES.PLAYER] = 'Player';
-    userRoles[CONST.USER_ROLES.TRUSTED] = 'Trusted Player';
-    userRoles[CONST.USER_ROLES.ASSISTANT] = 'Assistant GM';
-    userRoles[CONST.USER_ROLES.GAMEMASTER] = 'Game Master';
-    userRoles[5] = 'None';
+    userRoles[CONST.USER_ROLES.PLAYER] = game.i18n.localize(
+      'EffectsPanel.SettingPlayer'
+    );
+    userRoles[CONST.USER_ROLES.TRUSTED] = game.i18n.localize(
+      'EffectsPanel.SettingTrustedPlayer'
+    );
+    userRoles[CONST.USER_ROLES.ASSISTANT] = game.i18n.localize(
+      'EffectsPanel.SettingAssistantGM'
+    );
+    userRoles[CONST.USER_ROLES.GAMEMASTER] = game.i18n.localize(
+      'EffectsPanel.SettingGameMaster'
+    );
+    userRoles[5] = game.i18n.localize('EffectsPanel.SettingNone');
 
     const rightClickBehaviors = {};
-    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DIALOG] = 'Dialog';
-    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DELETE] = 'Delete';
-    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DISABLE] = 'Disable';
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DIALOG] =
+      game.i18n.localize('EffectsPanel.SettingDialog');
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DELETE] =
+      game.i18n.localize('EffectsPanel.SettingDelete');
+    rightClickBehaviors[Constants.RIGHT_CLICK_BEHAVIOR.DISABLE] =
+      game.i18n.localize('EffectsPanel.SettingDisable');
 
     game.settings.register(
       Constants.MODULE_ID,
       Settings.SHOW_DISABLED_EFFECTS,
       {
-        name: 'Show Disabled Effects',
-        hint: 'If enabled, disabled effects will be shown in the panel with a grey tint.',
+        name: 'EffectsPanel.SettingShowDisabledEffects',
+        hint: 'EffectsPanel.SettingShowDisabledEffectsHint',
         scope: 'client',
         config: true,
         default: true,
@@ -46,8 +57,8 @@ export default class Settings {
     );
 
     game.settings.register(Constants.MODULE_ID, Settings.SHOW_PASSIVE_EFFECTS, {
-      name: 'Show Passive Effects',
-      hint: 'If enabled, passive effects will be shown in the panel.',
+      name: 'EffectsPanel.SettingShowPassiveEffects',
+      hint: 'EffectsPanel.SettingShowPassiveEffectsHint',
       scope: 'client',
       config: true,
       default: false,
@@ -59,8 +70,8 @@ export default class Settings {
       Constants.MODULE_ID,
       Settings.SHOW_DURATION_OVERLAYS,
       {
-        name: 'Show Duration Overlays',
-        hint: 'If enabled, an overlay icon will be shown over each effect to indicate its duration.',
+        name: 'EffectsPanel.SettingShowDurationOverlays',
+        hint: 'EffectsPanel.SettingShowDurationOverlaysHint',
         scope: 'client',
         config: true,
         default: true,
@@ -73,8 +84,8 @@ export default class Settings {
       Constants.MODULE_ID,
       Settings.PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
       {
-        name: 'Passive Effects Right-Click Behavior',
-        hint: 'This defines the behavior when right-clicking a passive effect.',
+        name: 'EffectsPanel.SettingPassiveEffectsRightClickBehavior',
+        hint: 'EffectsPanel.SettingPassiveEffectsRightClickBehaviorHint',
         scope: 'client',
         config: true,
         default: Constants.RIGHT_CLICK_BEHAVIOR.DISABLE,
@@ -88,8 +99,8 @@ export default class Settings {
       Constants.MODULE_ID,
       Settings.TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
       {
-        name: 'Temporary Effects Right-Click Behavior',
-        hint: 'This defines the behavior when right-clicking a temporary effect.',
+        name: 'EffectsPanel.SettingTemporaryEffectsRightClickBehavior',
+        hint: 'EffectsPanel.SettingTemporaryEffectsRightClickBehaviorHint',
         scope: 'client',
         config: true,
         default: Constants.RIGHT_CLICK_BEHAVIOR.DIALOG,
@@ -100,8 +111,8 @@ export default class Settings {
     );
 
     game.settings.register(Constants.MODULE_ID, Settings.VIEW_PERMISSION, {
-      name: 'View Permission',
-      hint: 'This defines the minimum permission level to see the effects panel. Setting this to None will never show the effects panel.',
+      name: 'EffectsPanel.SettingViewPermission',
+      hint: 'EffectsPanel.SettingViewPermissionHint',
       scope: 'world',
       config: true,
       default: CONST.USER_ROLES.PLAYER,
@@ -114,8 +125,8 @@ export default class Settings {
       Constants.MODULE_ID,
       Settings.VIEW_DETAILS_PERMISSION,
       {
-        name: 'View Details Permission',
-        hint: 'This defines the minimum permission level to see the details of the effects in the panel such as the duration and description. Setting this to None will never show any details.',
+        name: 'EffectsPanel.SettingViewDetailsPermission',
+        hint: 'EffectsPanel.SettingViewDetailsPermissionHint',
         scope: 'world',
         config: true,
         default: CONST.USER_ROLES.PLAYER,
