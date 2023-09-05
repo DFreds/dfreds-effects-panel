@@ -30,8 +30,10 @@ the following:
   "Expired".
 - You can double click the icon to immediately open the configuration sheet for
   that effect.
-- You can right click the icon to immediately disable the effect.
-- You can shift + right click the icon to be prompted to delete the effect.
+- You can configure the behavior when you right click a passive or temporary effect to either
+  - Immediately disable the effect
+  - Immediately delete the effect
+  - Show a dialog to let you pick what to do
 
 ![Effects Panel](docs/effects-panel.png)
 
