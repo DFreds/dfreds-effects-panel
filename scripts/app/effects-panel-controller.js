@@ -55,7 +55,7 @@ export default class EffectsPanelController {
 
     if (!actor) return [];
 
-    return actor.effects
+    return actor.appliedEffects
       .map((effect) => {
         const src = this._getSourceName(effect);
         const effectData = effect.clone({}, { keepId: true });
