@@ -1,0 +1,47 @@
+{
+  "EffectsPanel.SettingPlayer": "Jogador",
+  "EffectsPanel.SettingTrustedPlayer": "Jogador Confiável",
+  "EffectsPanel.SettingAssistantGM": "MJ Assistente",
+  "EffectsPanel.SettingGameMaster": "Mestre de Jogo",
+  "EffectsPanel.SettingNone": "Nenhum(a)",
+  "EffectsPanel.SettingDialog": "Diálogo",
+  "EffectsPanel.SettingDelete": "Deletar",
+  "EffectsPanel.SettingDisable": "Desabilitar",
+
+  "EffectsPanel.SettingShowDisabledEffects": "Mostrar Efeitos Desabilitados",
+  "EffectsPanel.SettingShowDisabledEffectsHint": "Se habilitado, efeitos desabilitados sesão mostrados no painel com uma coloração cinza.",
+  "EffectsPanel.SettingShowPassiveEffects": "Mostrar Efeito Passivos",
+  "EffectsPanel.SettingShowPassiveEffectsHint": "Se habilitado, efeitos passivos serão mostrados no painel.",
+  "EffectsPanel.SettingShowDurationOverlays": "Mostrar Duração",
+  "EffectsPanel.SettingShowDurationOverlaysHint": "Se habilitado, uma sobreposição no ícone dos efeitos mostrará a duração de cada um deles.",
+  "EffectsPanel.SettingPassiveEffectsRightClickBehavior": "Clique-Direito em Efeitos Passivos",
+  "EffectsPanel.SettingPassiveEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito passivo.",
+  "EffectsPanel.SettingTemporaryEffectsRightClickBehavior": "Clique-Direito em Efeitos Temporários",
+  "EffectsPanel.SettingTemporaryEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito temporário.",
+  "EffectsPanel.SettingViewPermission": "Ver Permisão",
+  "EffectsPanel.SettingViewPermissionHint": "Isso define o nível mínimo de permissão para ver o painel de efeitos. Configurar para Nenhum(a) não mostrará o painel de efeitos.",
+  "EffectsPanel.SettingViewDetailsPermission": "Ver Detalhes de Permissão",
+  "EffectsPanel.SettingViewDetailsPermissionHint": "Isso define o nível mínimo de permissão para ver os detalhes dos efeitos no painel, como a duração e a descrição. Configurar para Nenhum(a) não mostrará detalhe algum.",
+
+  "EffectsPanel.Unlimited": "Ilimitado",
+  "EffectsPanel.Expired": "Expirado",
+
+  "EffectsPanel.OneYear": "1 ano",
+  "EffectsPanel.OneWeek": "1 semana",
+  "EffectsPanel.OneTurn": "1 turno",
+  "EffectsPanel.OneSecond": "1 segundo",
+
+  "EffectsPanel.ManyYears": "{years} anos",
+  "EffectsPanel.ManyWeeks": "{weeks} semanas",
+  "EffectsPanel.ManyDays": "{days} dias",
+  "EffectsPanel.ManyHours": "{hours} horas",
+  "EffectsPanel.ManyMinutes": "{minutes} minutos",
+  "EffectsPanel.ManyTurns": "{turns} turnos",
+  "EffectsPanel.ManySeconds": "{seconds} segundos",
+
+  "EffectsPanel.DeleteOrDisableEffect": "Deletar ou Desabilitar Efeito",
+  "EffectsPanel.DeleteOrDisableEffectContent": "Deletar ou desabilitar {effect}",
+  "EffectsPanel.Delete": "Deletar",
+  "EffectsPanel.Enable": "Habilitar",
+  "EffectsPanel.Disable": "Desabilitar"
+}
