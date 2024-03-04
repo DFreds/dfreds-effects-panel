@@ -109,7 +109,9 @@ export default class EffectsPanelController {
   async onIconRightClick(event) {
     const $target = $(event.currentTarget);
     const actor = this._actor;
-    const effect = actor?.effects.get($target.attr('data-effect-id') ?? '');
+    const effect =
+    	actor?.appliedEffects?.find((e) => e.id === $target.attr('data-effect-id')) ??
+    	actor?.effects.get($target.attr('data-effect-id') ?? '');
 
     if (!effect) return;
 
@@ -170,7 +172,9 @@ export default class EffectsPanelController {
   onIconDoubleClick(event) {
     const $target = $(event.currentTarget);
     const actor = this._actor;
-    const effect = actor?.effects.get($target.attr('data-effect-id') ?? '');
+    const effect =
+    	actor?.appliedEffects?.find((e) => e.id === $target.attr('data-effect-id')) ??
+    	actor?.effects.get($target.attr('data-effect-id') ?? '');
 
     if (!effect) return;
 
