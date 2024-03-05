@@ -55,7 +55,9 @@ export default class EffectsPanelController {
 
     if (!actor) return [];
 
-    return actor.appliedEffects
+    const effects = this._getActorEffects(actor);
+
+    return effects
       .map((effect) => {
         const src = this._getSourceName(effect);
         const effectData = effect.clone({}, { keepId: true });
@@ -81,6 +83,14 @@ export default class EffectsPanelController {
       .filter((effectData) => {
         return !effectData.isSupp;
       });
+  }
+
+  _getActorEffects(actor) {
+    const effects = [];
+    for (const effect of actor.allApplicableEffects()) {
+      effects.push(effect);
+    }
+    return effects;
   }
 
   _getDescription(effect) {
@@ -109,9 +119,8 @@ export default class EffectsPanelController {
   async onIconRightClick(event) {
     const $target = $(event.currentTarget);
     const actor = this._actor;
-    const effect =
-    	actor?.appliedEffects?.find((e) => e.id === $target.attr('data-effect-id')) ??
-    	actor?.effects.get($target.attr('data-effect-id') ?? '');
+    const effects = this._getActorEffects(actor);
+    const effect = effects.find((e) => e.id === $target.attr('data-effect-id'));
 
     if (!effect) return;
 
@@ -172,9 +181,8 @@ export default class EffectsPanelController {
   onIconDoubleClick(event) {
     const $target = $(event.currentTarget);
     const actor = this._actor;
-    const effect =
-    	actor?.appliedEffects?.find((e) => e.id === $target.attr('data-effect-id')) ??
-    	actor?.effects.get($target.attr('data-effect-id') ?? '');
+    const effects = this._getActorEffects(actor);
+    const effect = effects.find((e) => e.id === $target.attr('data-effect-id'));
 
     if (!effect) return;
 
