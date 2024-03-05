@@ -193,12 +193,11 @@ export default class EffectsPanelController {
     return canvas.tokens.controlled[0]?.actor ?? game.user?.character ?? null;
   }
 
-  // TODO consider handling rounds/seconds/turns based on whatever is defined for the effect rather than do conversions
   _getSecondsRemaining(duration) {
-    if (duration.seconds || duration.rounds) {
-      const seconds =
-        duration.seconds ?? duration.rounds * (CONFIG.time?.roundTime ?? 6);
-      return duration.startTime + seconds - game.time.worldTime;
+    if (duration.seconds) {
+      return duration.startTime + duration.seconds - game.time.worldTime;
+    } else if (duration.rounds) {
+      return (duration.rounds - duration.startRound) * CONFIG.time.roundTime;
     } else {
       return Infinity;
     }
