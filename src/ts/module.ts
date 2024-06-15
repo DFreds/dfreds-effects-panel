@@ -1,21 +1,9 @@
 import "../styles/style.scss"; // Keep or else vite will not include this
 import { EffectsPanelApp } from "./app/effects-panel-app.ts";
 import { HandlebarHelpers } from "./handlebar-helpers.ts";
-import { ThisModule } from "./api.ts";
 import { id as MODULE_ID } from "@static/module.json";
 import { libWrapper } from "@static/lib/shim.ts";
 import { Settings } from "./settings.ts";
-
-// Hooks.once("init", () => {
-//     new Settings().registerSettings();
-//     new HandlebarHelpers().registerHelpers();
-
-//     (game.modules.get(MODULE_ID) as ThisModule).api = {
-//         test(): void {
-//             console.log("Cool");
-//         },
-//     };
-// });
 
 /**
  * Initializes the handlebar helpers
@@ -32,16 +20,6 @@ Hooks.once("init", () => {
  */
 Hooks.once("renderSidebar", () => {
     game.dfreds.effectsPanel = new EffectsPanelApp();
-
-    // Sample TODO: remove
-    libWrapper.register(
-        MODULE_ID,
-        "Canvas.prototype._onDrop",
-        function (this: Canvas, wrapped: AnyFunction, ...args: any) {
-            console.log(this);
-            wrapped(...args);
-        },
-    );
 
     libWrapper.register(
         MODULE_ID,

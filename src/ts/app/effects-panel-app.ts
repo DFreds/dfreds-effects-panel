@@ -1,4 +1,3 @@
-import { mergeObject } from "types/foundry/common/utils/helpers.js";
 import { EffectsPanelController } from "./effects-panel-controller.ts";
 
 class EffectsPanelApp extends Application {
@@ -21,7 +20,7 @@ class EffectsPanelApp extends Application {
     }
 
     static override get defaultOptions(): ApplicationOptions {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "effects-panel",
             popOut: false,
             template:
@@ -61,6 +60,7 @@ class EffectsPanelApp extends Application {
         options?: RenderOptions | undefined,
     ): Promise<void> {
         await super._render(force, options);
+        this.element.css("right", this.#fromRightPx);
     }
 
     get #icons(): JQuery<HTMLElement> {

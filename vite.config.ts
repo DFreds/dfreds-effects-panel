@@ -49,8 +49,7 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
     }
 
     return {
-        base:
-            command === "build" ? "./" : `/modules/dfreds-effects-panel/`,
+        base: command === "build" ? "./" : `/modules/dfreds-effects-panel/`,
         publicDir: "static",
         define: {},
         esbuild: { keepNames: true },
@@ -141,10 +140,7 @@ function deleteLockFilePlugin(): Vite.Plugin {
         },
         writeBundle(outputOptions) {
             const outDir = outputOptions.dir ?? "";
-            const lockFile = path.resolve(
-                outDir,
-                "dfreds-effects-panel.lock",
-            );
+            const lockFile = path.resolve(outDir, "dfreds-effects-panel.lock");
             fs.rmSync(lockFile);
         },
     };

@@ -1,5 +1,5 @@
 import { ClientBaseActiveEffect } from "types/foundry/client/data/documents/client-base-mixes.js";
-import { fields } from "types/foundry/common/data/module.js";
+import { EffectsPanelApp } from "./app/effects-panel-app.ts";
 
 declare global {
     namespace globalThis {
@@ -28,16 +28,7 @@ declare global {
             EffectsCanvasGroup
         >;
         let canvas: Canvas;
-        let game: Game<
-            Actor<null>,
-            Actors<Actor<null>>,
-            ChatMessage,
-            Combat,
-            Item<null>,
-            Macro,
-            Scene,
-            User
-        >;
+        let game: GameDFreds;
         let ui: FoundryUI<
             ActorDirectory<Actor<null>>,
             ItemDirectory<Item<null>>,
@@ -49,6 +40,22 @@ declare global {
     }
 
     type AnyFunction = (...args: any) => any;
+
+    interface GameDFreds
+        extends Game<
+            Actor<null>,
+            Actors<Actor<null>>,
+            ChatMessage,
+            Combat,
+            Item<null>,
+            Macro,
+            Scene,
+            User
+        > {
+        dfreds: {
+            effectsPanel: EffectsPanelApp;
+        };
+    }
 
     interface Config<
         TAmbientLightDocument extends AmbientLightDocument<TScene | null>,
