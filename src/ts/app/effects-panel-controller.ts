@@ -2,11 +2,7 @@ import { id as MODULE_ID } from "@static/module.json";
 import { EffectDurationData } from "types/foundry/common/documents/active-effect.js";
 import { Settings } from "../settings.ts";
 import { EffectsPanelApp } from "./effects-panel-app.ts";
-import {
-    CE_MODULE_ID,
-    RIGHT_CLICK_BEHAVIOR,
-    USER_FLAGS,
-} from "../constants.ts";
+import { RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
 
 interface ViewData {
     temporaryEffects: EffectData[];
@@ -124,9 +120,9 @@ class EffectsPanelController {
     #getDescription(effect: ActiveEffect<SceneActor | Actor<null>>): string {
         const effectDescription = effect.description;
 
-        const hasConvenientEffects = game.modules.get(CE_MODULE_ID)?.active;
+        const hasConvenientEffects = game.modules.get(MODULE_ID)?.active;
         const flagDescription = hasConvenientEffects
-            ? (effect.getFlag(CE_MODULE_ID, "description") as string)
+            ? (effect.getFlag(MODULE_ID, "description") as string)
             : "";
         const legacyDescription = (effect.flags as any)
             .convenientDescription as string;

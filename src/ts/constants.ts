@@ -1,12 +1,10 @@
-export const CE_MODULE_ID = "dfreds-convenient-effects";
-
-export const RIGHT_CLICK_BEHAVIOR = {
+const RIGHT_CLICK_BEHAVIOR = {
     DIALOG: "dialog",
     DELETE: "delete",
     DISABLE: "disable",
 };
 
-export const SECONDS = {
+const SECONDS = {
     IN_ONE_ROUND: 6,
     IN_ONE_MINUTE: 60,
     IN_TWO_MINUTES: 120,
@@ -20,6 +18,8 @@ export const SECONDS = {
     IN_TWO_YEARS: 63_072_000,
 };
 
-export const USER_FLAGS = {
+const USER_FLAGS = {
     TOP_POSITION: "topPosition",
 };
+
+export { RIGHT_CLICK_BEHAVIOR, SECONDS, USER_FLAGS };
