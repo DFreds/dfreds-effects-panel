@@ -8,7 +8,7 @@
         "verified": "12.327",
         "maximum": 12
     },
-    "esmodules": ["vendor.mjs", "dfreds-effects-panel.mjs"],
+    "esmodules": ["dfreds-effects-panel.mjs"],
     "scripts": [],
     "styles": ["styles/dfreds-effects-panel.css"],
     "packs": [],
