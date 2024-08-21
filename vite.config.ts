@@ -2,7 +2,6 @@ import * as Vite from "vite";
 import checker from "vite-plugin-checker";
 import esbuild from "esbuild";
 import fs from "fs";
-import packageJSON from "./package.json" assert { type: "json" };
 import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { viteStaticCopy } from "vite-plugin-static-copy";
