@@ -1,0 +1,49 @@
+{
+    "EffectsPanel": {
+        "SettingPlayer": "Jucător",
+        "SettingTrustedPlayer": "Jucător de Încredere",
+        "SettingAssistantGM": "Asistent GM",
+        "SettingGameMaster": "Game Master",
+        "SettingNone": "Niciunul",
+        "SettingDialog": "Dialog",
+        "SettingDelete": "Șterge",
+        "SettingDisable": "Dezactivează",
+
+        "SettingShowDisabledEffects": "Arată efectele dezactivate",
+        "SettingShowDisabledEffectsHint": "Dacă este activ, efectele dezactivate vor fi arătate în panou cu o nuanță gri.",
+        "SettingShowPassiveEffects": "Arată Efectele Pasive",
+        "SettingShowPassiveEffectsHint": "Dacă este activ, efectele pasive vor fi arătate în panou.",
+        "SettingShowDurationOverlays": "Arată Iconiță Durată",
+        "SettingShowDurationOverlaysHint": "Dacă este activ, o iconiță de durata va fi suprapusă peste fiecare efect pentru a-i indica durata.",
+        "SettingPassiveEffectsRightClickBehavior": "Comportament Efecte Pasive Click-Dreapta",
+        "SettingPassiveEffectsRightClickBehaviorHint": "Determină comportamenul efectelor pasive când apeși click-dreapta pe ele.",
+        "SettingTemporaryEffectsRightClickBehavior": "Comportament Efecte Temporare Click-Dreapta",
+        "SettingTemporaryEffectsRightClickBehaviorHint": "Determină comportamenul efectelor temporare când apeși click-dreapta pe ele.",
+        "SettingViewPermission": "Permisiune de Vizualizare",
+        "SettingViewPermissionHint": "Determină nivelul minim de permisiune pentru a vedea panoul de efecte. Dacă setezi opțiunea la Niciunul, panoul nu va fi afișat.",
+        "SettingViewDetailsPermission": "Permisiune Vizualizare Detalii",
+        "SettingViewDetailsPermissionHint": "Determină nivelul minim de permisiune pentru a vedea detaliile efectelor în panou, precum durata si descrierea. Dacă setezi opțiunea la Niciunul, detaliile nu vor fi afișate.",
+
+        "Unlimited": "Nelimitat",
+        "Expired": "Expirat",
+
+        "OneYear": "1 an",
+        "OneWeek": "1 săptămână",
+        "OneTurn": "1 tură",
+        "OneSecond": "1 secundă",
+
+        "ManyYears": "{years} ani",
+        "ManyWeeks": "{weeks} săptămâni",
+        "ManyDays": "{days} zile",
+        "ManyHours": "{hours} ore",
+        "ManyMinutes": "{minutes} minute",
+        "ManyTurns": "{turns} ture",
+        "ManySeconds": "{seconds} secunde",
+
+        "DeleteOrDisableEffect": "Șterge sau Dezactivează Efectul",
+        "DeleteOrDisableEffectContent": "Șterge sau Dezactivează {effect}",
+        "Delete": "Șterge",
+        "Enable": "Activează",
+        "Disable": "Dezactivează"
+    }
+}
