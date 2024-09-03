@@ -1,17 +1,37 @@
-# DFreds Effects Panel
+<div align="center">
+  <img src="https://i.imgur.com/gOZy3Jf.png" width="200" height="200"/>
+</div>
+<h1 align="center">DFreds Effects Panel</h1>
 
-[![alt-text](https://img.shields.io/badge/-Patreon-%23f96854?style=for-the-badge)](https://www.patreon.com/dfreds)
-[![alt-text](https://img.shields.io/badge/-Buy%20Me%20A%20Coffee-%23ff813f?style=for-the-badge)](https://www.buymeacoffee.com/dfreds)
-[![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/Wq8AEV9bWb)
+<h4 align="center">
+  <a href="https://foundryvtt.com/packages/dfreds-effects-panel">Install</a>
+  ·
+  <a href="https://discord.gg/Wq8AEV9bWb">Discord</a>
+  ·
+  <a href="https://github.com/topics/dfreds-modules">Other Modules</a>
+</h4>
 
-![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/DFreds/dfreds-effects-panel/main/module.json&label=Foundry%20Version&query=$.compatibility.verified&colorB=ff6400&style=for-the-badge)
+<p align="center">
+    <a href="https://github.com/DFreds/dfreds-effects-panel/pulse"><img src="https://img.shields.io/github/last-commit/DFreds/dfreds-effects-panel?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/DFreds/dfreds-effects-panel/releases/latest"><img src="https://img.shields.io/github/v/release/DFreds/dfreds-effects-panel?style=for-the-badge&logo=gitbook&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/DFreds/dfreds-effects-panel/stargazers"><img src="https://img.shields.io/github/stars/DFreds/dfreds-effects-panel?style=for-the-badge&logo=apachespark&color=eed49f&logoColor=D9E0EE&labelColor=302D41"></a>
+    <br>
+    <br>
+    <img src="https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/DFreds/dfreds-effects-panel/main/static/module.json&label=Foundry%20Version&query=$.compatibility.verified&colorB=fe6a1f&style=for-the-badge&logo=foundryvirtualtabletop">
+    <a href="https://forge-vtt.com/bazaar#package=dfreds-effects-panel"><img src="https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https://forge-vtt.com/api/bazaar/package/dfreds-effects-panel&colorB=68a74f&style=for-the-badge&logo=condaforge"></a>
+    <br>
+    <img src="https://img.shields.io/github/downloads/DFreds/dfreds-effects-panel/latest/dfreds-effects-panel.zip?color=2b82fc&label=LATEST%20DOWNLOADS&style=for-the-badge">
+    <img src="https://img.shields.io/github/downloads/DFreds/dfreds-effects-panel/total?color=2b82fc&label=TOTAL%20DOWNLOADS&style=for-the-badge">
+    <br>
+    <br>
+    <a href="https://www.patreon.com/dfreds"><img src="https://img.shields.io/badge/-Patreon-%23f96854?style=for-the-badge&logo=patreon"></a>
+    <a href="https://www.buymeacoffee.com/dfreds"><img src="https://img.shields.io/badge/-Buy%20Me%20A%20Coffee-%23ff813f?style=for-the-badge&logo=buymeacoffee"></a>
+    <a href="https://discord.gg/Wq8AEV9bWb"><img src="https://img.shields.io/badge/-Discord-%235865f2?style=for-the-badge"></a>
+</p>
 
-[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https://forge-vtt.com/api/bazaar/package/dfreds-effects-panel&colorB=68a74f&style=for-the-badge)](https://forge-vtt.com/bazaar#package=dfreds-effects-panel)
-![Latest Release Download Count](https://img.shields.io/github/downloads/DFreds/dfreds-effects-panel/latest/dfreds-effects-panel.zip?color=2b82fc&label=LATEST%20DOWNLOADS&style=for-the-badge)
-![Total Download Count](https://img.shields.io/github/downloads/DFreds/dfreds-effects-panel/total?color=2b82fc&label=TOTAL%20DOWNLOADS&style=for-the-badge)
-
-**DFreds Effects Panel** is a FoundryVTT module that adds a panel of active
-effects for the selected token.
+<p align="center">
+    <b>DFreds Effects Panel</b> is a FoundryVTT module that adds a panel of active effects for the selected token.
+</p>
 
 ## Let Me Sell You This
 
