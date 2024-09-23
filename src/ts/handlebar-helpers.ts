@@ -51,8 +51,8 @@ class HandlebarHelpers {
                       default:
                         remainingSeconds = specialDuration;
                     } 
+                    return remainingSeconds; 
                 }
-                return remainingSeconds; 
             }
             if (remainingSeconds === Infinity && effect.turns) {
                 if (effect.turns === 1) {
