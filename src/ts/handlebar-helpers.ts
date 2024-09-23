@@ -34,7 +34,26 @@ class HandlebarHelpers {
 
     #registerRemainingTimeLabelHelper() {
         Handlebars.registerHelper("remainingTimeLabel", (effect, _options) => {
-            const remainingSeconds = effect.remainingSeconds;
+            let remainingSeconds = effect.remainingSeconds;
+            if (game.system.id === "demonlord") {
+                let tokenName;
+                let specialDuration = foundry.utils.getProperty(effect, 'flags.specialDuration');
+                if (specialDuration !== 'None' && specialDuration !== undefined)
+                {
+                    tokenName = fromUuidSync(effect.origin.substr(0, effect.origin.search('.Actor.')))?.name;
+                    switch (specialDuration) {
+                      case 'TurnEndSource':
+                        remainingSeconds = `TurnEnd [${tokenName}]`;
+                        break
+                      case 'TurnStartSource':
+                        remainingSeconds = `TurnStart [${tokenName}]`;
+                        break
+                      default:
+                        remainingSeconds = specialDuration;
+                    } 
+                }
+                return remainingSeconds; 
+            }
             if (remainingSeconds === Infinity && effect.turns) {
                 if (effect.turns === 1) {
                     return game.i18n.localize("EffectsPanel.OneTurn");
