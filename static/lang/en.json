@@ -44,6 +44,12 @@
         "DeleteOrDisableEffectContent": "Delete or disable {effect}",
         "Delete": "Delete",
         "Enable": "Enable",
-        "Disable": "Disable"
+        "Disable": "Disable",
+
+        "TurnEnd": "Turn End",
+        "TurnStart": "Turn Start",
+        "NextD20Roll": "Next D20 Roll",
+        "NextDamageRoll": "Next Damage Roll",
+        "RestComplete": "Rest Complete"
     }
 }
