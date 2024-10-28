@@ -44,6 +44,12 @@
         "DeleteOrDisableEffectContent": "Cancella o Disattiva {effect}",
         "Delete": "Cancella",
         "Enable": "Attiva",
-        "Disable": "Disattiva"
+        "Disable": "Disattiva",
+
+        "TurnEnd": "Fine Turno",
+        "TurnStart": "Inizio Turno",
+        "NextD20Roll": "Prossimo Tiro D20",
+        "NextDamageRoll": "Prossimo Tiro Danno",
+        "RestComplete": "Riposo Completato"
     }
 }
