@@ -1,11 +1,11 @@
-.tags {
+.panel-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 2px;
     list-style-type: none;
     margin-bottom: 2px;
 }
-.tags .tag {
+.panel-tags .panel-tag {
     text-rendering: optimizeLegibility;
     background-color: hsl(235, 28.5%, 37.8%);
     border-radius: 2px;
@@ -18,23 +18,23 @@
     padding: 3px 4px;
     text-transform: uppercase;
 }
-.tags .tag_primary.tag {
+.panel-tags .panel-tag_primary.panel-tag {
     background-color: hsl(235, 28.5%, 37.8%);
     color: #fff;
 }
-.tags .tag_secondary.tag {
+.panel-tags .panel-tag_secondary.panel-tag {
     background-color: hsl(13, 39%, 53.7%);
     color: #fff;
 }
-.tags .tag_tertiary.tag {
+.panel-tags .panel-tag_tertiary.panel-tag {
     background-color: hsl(0, 70%, 28.4%);
     color: #fff;
 }
-.tags .tag_alt.tag {
+.panel-tags .panel-tag_alt.panel-tag {
     background-color: #786452;
     color: #fff;
 }
-.tags .tag_material.tag {
+.panel-tags .panel-tag_material.panel-tag {
     background-color: #666;
     color: #fff;
 }
@@ -92,15 +92,15 @@
 .effect-panel .effect-item .effect-info a.content-link {
     color: black;
 }
-.effect-panel .effect-item .effect-info .tags {
+.effect-panel .effect-item .effect-info .panel-tags {
     justify-content: flex-end;
     margin: 8px;
 }
-.effect-panel .effect-item .effect-info .tags .tag {
+.effect-panel .effect-item .effect-info .panel-tags .panel-tag {
     margin-bottom: 0;
 }
-.effect-panel .effect-item .effect-info .tags .tag + .tag,
-.effect-panel .effect-item .effect-info .tags .tag:first-child {
+.effect-panel .effect-item .effect-info .panel-tags .panel-tag + .panel-tag,
+.effect-panel .effect-item .effect-info .panel-tags .panel-tag:first-child {
     margin-left: 3px;
     margin-right: -2px;
 }
