@@ -68,8 +68,7 @@ You can configure some stuff:
 - [libWrapper](https://foundryvtt.com/packages/lib-wrapper) by ruipin - A
   library that wraps core Foundry methods to make it easier for modules
   developers to do their thang. Note that if you for some reason don't want to
-  install this, a shim will be used instead. You'll be pestered to install it
-  though so... [just do it](https://www.youtube.com/watch?v=ZXsQAXx_ao0)
+  install this, a shim will be used instead.
 
 ## Modules That Help
 
