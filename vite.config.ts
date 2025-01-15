@@ -72,10 +72,9 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
                     chunkFileNames: "[name].mjs",
                     entryFileNames: "dfreds-effects-panel.mjs",
                     // manualChunks: {
-                    //     vendor:
-                    //         buildMode === "production"
-                    //             ? Object.keys(packageJSON.dependencies)
-                    //             : [],
+                    //     vendor: Object.keys(packageJSON.dependencies)
+                    //         ? Object.keys(packageJSON.dependencies)
+                    //         : [],
                     // },
                 },
             },
