@@ -1,3 +1,7 @@
+import moduleData from "@static/module.json" assert { type: "json" };
+
+export const MODULE_ID = moduleData.id;
+
 const RIGHT_CLICK_BEHAVIOR = {
     DIALOG: "dialog",
     DELETE: "delete",

@@ -1,5 +1,4 @@
-import { id as MODULE_ID } from "@static/module.json";
-import { RIGHT_CLICK_BEHAVIOR } from "./constants.ts";
+import { MODULE_ID, RIGHT_CLICK_BEHAVIOR } from "./constants.ts";
 
 class Settings {
     // Settings keys

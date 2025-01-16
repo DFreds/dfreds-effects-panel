@@ -1,8 +1,7 @@
-import { id as MODULE_ID } from "@static/module.json";
 import { EffectDurationData } from "types/foundry/common/documents/active-effect.js";
 import { Settings } from "../settings.ts";
 import { EffectsPanelApp } from "./effects-panel-app.ts";
-import { RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
+import { MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
 
 interface ViewData {
     temporaryEffects: EffectData[];

@@ -1,9 +1,9 @@
 import "../styles/style.scss"; // Keep or else vite will not include this
 import { EffectsPanelApp } from "./app/effects-panel-app.ts";
 import { HandlebarHelpers } from "./handlebar-helpers.ts";
-import { id as MODULE_ID } from "@static/module.json";
 import { libWrapper } from "@static/lib/shim.ts";
 import { Settings } from "./settings.ts";
+import { MODULE_ID } from "./constants.ts";
 
 /**
  * Initializes the handlebar helpers
