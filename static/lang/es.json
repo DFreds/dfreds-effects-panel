@@ -1,0 +1,55 @@
+{
+    "EffectsPanel": {
+        "SettingPlayer": "Jugador",
+        "SettingTrustedPlayer": "Jugador de confianza",
+        "SettingAssistantGM": "Asistente del GM",
+        "SettingGameMaster": "Game Master",
+        "SettingNone": "Ninguno",
+        "SettingDialog": "Diálogo",
+        "SettingDelete": "Eliminar",
+        "SettingDisable": "Deshabilitar",
+
+        "SettingShowDisabledEffects": "Mostrar efectos deshabilitados",
+        "SettingShowDisabledEffectsHint": "Si está habilitado, los efectos deshabilitados se mostrarán en el panel con un tono gris.",
+        "SettingShowPassiveEffects": "Mostrar efectos pasivos",
+        "SettingShowPassiveEffectsHint": "Si está habilitado, los efectos pasivos se mostrarán en el panel.",
+        "SettingShowDurationOverlays": "Mostrar superposiciones de duración",
+        "SettingShowDurationOverlaysHint": "Si está habilitado, se mostrará un icono superpuesto sobre cada efecto para indicar su duración.",
+        "SettingPassiveEffectsRightClickBehavior": "Comportamiento del clic derecho en efectos pasivos",
+        "SettingPassiveEffectsRightClickBehaviorHint": "Esto define el comportamiento al hacer clic derecho en un efecto pasivo.",
+        "SettingTemporaryEffectsRightClickBehavior": "Comportamiento del clic derecho en efectos temporales",
+        "SettingTemporaryEffectsRightClickBehaviorHint": "Esto define el comportamiento al hacer clic derecho en un efecto temporal.",
+        "SettingViewPermission": "Permiso de visualización",
+        "SettingViewPermissionHint": "Esto define el nivel mínimo de permiso para ver el panel de efectos. Configurarlo en 'Ninguno' evitará que el panel de efectos se muestre.",
+        "SettingViewDetailsPermission": "Permiso para ver detalles",
+        "SettingViewDetailsPermissionHint": "Esto define el nivel mínimo de permiso para ver los detalles de los efectos en el panel, como la duración y la descripción. Configurarlo en 'Ninguno' evitará que se muestren detalles.",
+
+        "Unlimited": "Ilimitado",
+        "Expired": "Expirado",
+
+        "OneYear": "1 año",
+        "OneWeek": "1 semana",
+        "OneTurn": "1 turno",
+        "OneSecond": "1 segundo",
+
+        "ManyYears": "{years} años",
+        "ManyWeeks": "{weeks} semanas",
+        "ManyDays": "{days} días",
+        "ManyHours": "{hours} horas",
+        "ManyMinutes": "{minutes} minutos",
+        "ManyTurns": "{turns} turnos",
+        "ManySeconds": "{seconds} segundos",
+
+        "DeleteOrDisableEffect": "Eliminar o deshabilitar efecto",
+        "DeleteOrDisableEffectContent": "Eliminar o deshabilitar {effect}",
+        "Delete": "Eliminar",
+        "Enable": "Habilitar",
+        "Disable": "Deshabilitar",
+
+        "TurnEnd": "Fin del turno",
+        "TurnStart": "Inicio del turno",
+        "NextD20Roll": "Siguiente tirada de d20",
+        "NextDamageRoll": "Siguiente tirada de daño",
+        "RestComplete": "Descanso completado"
+    }
+}
