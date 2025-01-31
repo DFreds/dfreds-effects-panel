@@ -38,6 +38,11 @@
             "lang": "ro",
             "name": "Română",
             "path": "lang/ro.json"
+        },
+        {
+            "lang": "es",
+            "name": "Español",
+            "path": "lang/es.json"
         }
     ],
     "authors": [
