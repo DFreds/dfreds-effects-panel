@@ -44,6 +44,12 @@
         "DeleteOrDisableEffectContent": "Deletar ou desabilitar {effect}",
         "Delete": "Deletar",
         "Enable": "Habilitar",
-        "Disable": "Desabilitar"
+        "Disable": "Desabilitar",
+
+        "TurnEnd": "Fim do Turno",
+        "TurnStart": "Início do Turno",
+        "NextD20Roll": "Próxima Rolagem de D20",
+        "NextDamageRoll": "Próxima Rolagem de Dano",
+        "RestComplete": "Descanso Terminado"
     }
 }
