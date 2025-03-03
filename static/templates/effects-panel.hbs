@@ -21,6 +21,11 @@
                                 <div class="panel-tag panel-tag_secondary">
                                     {{remainingTimeLabel effect}}
                                 </div>
+                                {{#if effect.isOverlay}}
+                                    <div class="panel-tag panel-tag_tertiary">
+                                        overlay
+                                    </div>
+                                {{/if}}
                             </div>
                         </div>
                     {{/if}}
