@@ -920,6 +920,11 @@ export class ClientBaseActiveEffect<
     /*  Properties                                  */
     /* -------------------------------------------- */
 
+    /**
+     * Is there some system logic that makes this active effect ineligible for application?
+     */
+    get isSuppressed(): boolean;
+
     /** Return a reference to the parent Collection instance which contains this Document. */
     get collection(): Collection<this>;
 

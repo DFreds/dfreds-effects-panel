@@ -1,4 +1,3 @@
-import { ClientBaseActiveEffect } from "types/foundry/client/data/documents/client-base-mixes.js";
 import { EffectsPanelApp } from "./app/effects-panel-app.ts";
 
 declare global {
@@ -54,56 +53,6 @@ declare global {
         > {
         dfreds: {
             effectsPanel: EffectsPanelApp;
-        };
-    }
-
-    interface Config<
-        TAmbientLightDocument extends AmbientLightDocument<TScene | null>,
-        TActiveEffect extends ActiveEffect<TActor | TItem | null>,
-        TActor extends Actor<TTokenDocument | null>,
-        TActorDelta extends ActorDelta<TTokenDocument | null>,
-        TChatLog extends ChatLog,
-        TChatMessage extends ChatMessage,
-        TCombat extends Combat,
-        TCombatant extends Combatant<TCombat | null, TTokenDocument | null>,
-        TCombatTracker extends CombatTracker<TCombat | null>,
-        TCompendiumDirectory extends CompendiumDirectory,
-        THotbar extends Hotbar,
-        TItem extends Item<TActor | null>,
-        TMacro extends Macro,
-        TMeasuredTemplateDocument extends
-            MeasuredTemplateDocument<TScene | null>,
-        TRegionDocument extends RegionDocument<TScene | null>,
-        TRegionBehavior extends RegionBehavior<TRegionDocument | null>,
-        TTileDocument extends TileDocument<TScene | null>,
-        TTokenDocument extends TokenDocument<TScene | null>,
-        TWallDocument extends WallDocument<TScene | null>,
-        TScene extends Scene,
-        TUser extends User<Actor<null>>,
-        TEffectsCanvasGroup extends EffectsCanvasGroup,
-    > {
-        time: {
-            turnTime: number;
-            roundTime: number;
-        };
-    }
-
-    // Add isSuppressed missing definition
-    interface ActiveEffect<TParent extends Actor | Item | null>
-        extends ClientBaseActiveEffect<TParent> {
-        isSuppressed: boolean;
-    }
-
-    interface FoundryUI<
-        TActorDirectory extends ActorDirectory<Actor<null>>,
-        TItemDirectory extends ItemDirectory<Item<null>>,
-        TChatLog extends ChatLog,
-        TCompendiumDirectory extends CompendiumDirectory,
-        TCombatTracker extends CombatTracker<Combat | null>,
-        THotbar extends Hotbar,
-    > {
-        webrtc: {
-            element: JQuery<HTMLElement>;
         };
     }
 }
