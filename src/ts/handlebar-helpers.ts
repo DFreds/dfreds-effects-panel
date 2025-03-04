@@ -7,7 +7,7 @@ class HandlebarHelpers {
     /**
      * Registers the handlebar helpers
      */
-    registerHelpers(): void {
+    register(): void {
         this.#registerCanViewEffectDetailsHelper();
         this.#registerCanViewEffectsPanelHelper();
         this.#registerShowDurationOverlaysHelper();

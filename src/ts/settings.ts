@@ -12,7 +12,7 @@ class Settings {
     #VIEW_PERMISSION = "viewPermission";
     #VIEW_DETAILS_PERMISSION = "viewDetailsPermission";
 
-    registerSettings(): void {
+    register(): void {
         const userRoles: Record<number, string> = {};
         userRoles[CONST.USER_ROLES.PLAYER] = game.i18n.localize(
             "EffectsPanel.SettingPlayer",

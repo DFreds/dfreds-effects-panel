@@ -9,8 +9,8 @@ import { MODULE_ID } from "./constants.ts";
  * Initializes the handlebar helpers
  */
 Hooks.once("init", () => {
-    new Settings().registerSettings();
-    new HandlebarHelpers().registerHelpers();
+    new Settings().register();
+    new HandlebarHelpers().register();
 
     game.dfreds = game.dfreds || {};
 });
