@@ -15,33 +15,33 @@ class Settings {
     register(): void {
         const userRoles: Record<number, string> = {};
         userRoles[CONST.USER_ROLES.PLAYER] = game.i18n.localize(
-            "EffectsPanel.SettingPlayer",
+            EN_JSON.EffectsPanel.SettingPlayer,
         );
         userRoles[CONST.USER_ROLES.TRUSTED] = game.i18n.localize(
-            "EffectsPanel.SettingTrustedPlayer",
+            EN_JSON.EffectsPanel.SettingTrustedPlayer,
         );
         userRoles[CONST.USER_ROLES.ASSISTANT] = game.i18n.localize(
-            "EffectsPanel.SettingAssistantGM",
+            EN_JSON.EffectsPanel.SettingAssistantGM,
         );
         userRoles[CONST.USER_ROLES.GAMEMASTER] = game.i18n.localize(
-            "EffectsPanel.SettingGameMaster",
+            EN_JSON.EffectsPanel.SettingGameMaster,
         );
-        userRoles[5] = game.i18n.localize("EffectsPanel.SettingNone");
+        userRoles[5] = game.i18n.localize(EN_JSON.EffectsPanel.SettingNone);
 
         const rightClickBehaviors: Record<string, string> = {};
         rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DIALOG] = game.i18n.localize(
-            "EffectsPanel.SettingDialog",
+            EN_JSON.EffectsPanel.SettingDialog,
         );
         rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DELETE] = game.i18n.localize(
-            "EffectsPanel.SettingDelete",
+            EN_JSON.EffectsPanel.SettingDelete,
         );
         rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DISABLE] = game.i18n.localize(
-            "EffectsPanel.SettingDisable",
+            EN_JSON.EffectsPanel.SettingDisable,
         );
 
         game.settings.register(MODULE_ID, this.#SHOW_DISABLED_EFFECTS, {
-            name: "EffectsPanel.SettingShowDisabledEffects",
-            hint: "EffectsPanel.SettingShowDisabledEffectsHint",
+            name: EN_JSON.EffectsPanel.SettingShowDisabledEffects,
+            hint: EN_JSON.EffectsPanel.SettingShowDisabledEffectsHint,
             scope: "client",
             config: true,
             default: true,
@@ -50,8 +50,8 @@ class Settings {
         });
 
         game.settings.register(MODULE_ID, this.#SHOW_PASSIVE_EFFECTS, {
-            name: "EffectsPanel.SettingShowPassiveEffects",
-            hint: "EffectsPanel.SettingShowPassiveEffectsHint",
+            name: EN_JSON.EffectsPanel.SettingShowPassiveEffects,
+            hint: EN_JSON.EffectsPanel.SettingShowPassiveEffectsHint,
             scope: "client",
             config: true,
             default: false,
@@ -60,8 +60,8 @@ class Settings {
         });
 
         game.settings.register(MODULE_ID, this.#SHOW_DURATION_OVERLAYS, {
-            name: "EffectsPanel.SettingShowDurationOverlays",
-            hint: "EffectsPanel.SettingShowDurationOverlaysHint",
+            name: EN_JSON.EffectsPanel.SettingShowDurationOverlays,
+            hint: EN_JSON.EffectsPanel.SettingShowDurationOverlaysHint,
             scope: "client",
             config: true,
             default: true,
@@ -73,8 +73,10 @@ class Settings {
             MODULE_ID,
             this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
             {
-                name: "EffectsPanel.SettingPassiveEffectsRightClickBehavior",
-                hint: "EffectsPanel.SettingPassiveEffectsRightClickBehaviorHint",
+                name: EN_JSON.EffectsPanel
+                    .SettingPassiveEffectsRightClickBehavior,
+                hint: EN_JSON.EffectsPanel
+                    .SettingPassiveEffectsRightClickBehaviorHint,
                 scope: "client",
                 config: true,
                 default: RIGHT_CLICK_BEHAVIOR.DISABLE,
@@ -88,8 +90,10 @@ class Settings {
             MODULE_ID,
             this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
             {
-                name: "EffectsPanel.SettingTemporaryEffectsRightClickBehavior",
-                hint: "EffectsPanel.SettingTemporaryEffectsRightClickBehaviorHint",
+                name: EN_JSON.EffectsPanel
+                    .SettingTemporaryEffectsRightClickBehavior,
+                hint: EN_JSON.EffectsPanel
+                    .SettingTemporaryEffectsRightClickBehaviorHint,
                 scope: "client",
                 config: true,
                 default: RIGHT_CLICK_BEHAVIOR.DIALOG,
@@ -100,8 +104,8 @@ class Settings {
         );
 
         game.settings.register(MODULE_ID, this.#VIEW_PERMISSION, {
-            name: "EffectsPanel.SettingViewPermission",
-            hint: "EffectsPanel.SettingViewPermissionHint",
+            name: EN_JSON.EffectsPanel.SettingViewPermission,
+            hint: EN_JSON.EffectsPanel.SettingViewPermissionHint,
             scope: "world",
             config: true,
             default: CONST.USER_ROLES.PLAYER,
@@ -111,8 +115,8 @@ class Settings {
         });
 
         game.settings.register(MODULE_ID, this.#VIEW_DETAILS_PERMISSION, {
-            name: "EffectsPanel.SettingViewDetailsPermission",
-            hint: "EffectsPanel.SettingViewDetailsPermissionHint",
+            name: EN_JSON.EffectsPanel.SettingViewDetailsPermission,
+            hint: EN_JSON.EffectsPanel.SettingViewDetailsPermissionHint,
             scope: "world",
             config: true,
             default: CONST.USER_ROLES.PLAYER,

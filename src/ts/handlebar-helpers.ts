@@ -45,37 +45,37 @@ class HandlebarHelpers {
             switch (specialDuration) {
                 case "TurnEndSource":
                     remainingSeconds =
-                        game.i18n.localize("EffectsPanel.TurnEnd") +
+                        game.i18n.localize(EN_JSON.EffectsPanel.TurnEnd) +
                         ` [${tokenName}]`;
                     break;
                 case "TurnStartSource":
                     remainingSeconds =
-                        game.i18n.localize("EffectsPanel.TurnStart") +
+                        game.i18n.localize(EN_JSON.EffectsPanel.TurnStart) +
                         ` [${tokenName}]`;
                     break;
                 case "TurnEnd":
                     remainingSeconds = game.i18n.localize(
-                        "EffectsPanel.TurnEnd",
+                        EN_JSON.EffectsPanel.TurnEnd,
                     );
                     break;
                 case "TurnStart":
                     remainingSeconds = game.i18n.localize(
-                        "EffectsPanel.TurnStart",
+                        EN_JSON.EffectsPanel.TurnStart,
                     );
                     break;
                 case "NextD20Roll":
                     remainingSeconds = game.i18n.localize(
-                        "EffectsPanel.NextD20Roll",
+                        EN_JSON.EffectsPanel.NextD20Roll,
                     );
                     break;
                 case "NextDamageRoll":
                     remainingSeconds = game.i18n.localize(
-                        "EffectsPanel.NextDamageRoll",
+                        EN_JSON.EffectsPanel.NextDamageRoll,
                     );
                     break;
                 case "RestComplete":
                     remainingSeconds = game.i18n.localize(
-                        "EffectsPanel.RestComplete",
+                        EN_JSON.EffectsPanel.RestComplete,
                     );
                     break;
                 default:
@@ -98,48 +98,48 @@ class HandlebarHelpers {
             }
             if (remainingSeconds === Infinity && effect.turns) {
                 if (effect.turns === 1) {
-                    return game.i18n.localize("EffectsPanel.OneTurn");
+                    return game.i18n.localize(EN_JSON.EffectsPanel.OneTurn);
                 } else {
-                    return game.i18n.format("EffectsPanel.ManyTurns", {
+                    return game.i18n.format(EN_JSON.EffectsPanel.ManyTurns, {
                         turns: effect.turns,
                     });
                 }
             } else if (remainingSeconds === Infinity) {
-                return game.i18n.localize("EffectsPanel.Unlimited");
+                return game.i18n.localize(EN_JSON.EffectsPanel.Unlimited);
             } else if (remainingSeconds >= SECONDS.IN_TWO_YEARS) {
-                return game.i18n.format("EffectsPanel.ManyYears", {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyYears, {
                     years: Math.floor(remainingSeconds / SECONDS.IN_ONE_YEAR),
                 });
             } else if (remainingSeconds >= SECONDS.IN_ONE_YEAR) {
-                return game.i18n.localize("EffectsPanel.OneYear");
+                return game.i18n.localize(EN_JSON.EffectsPanel.OneYear);
             } else if (remainingSeconds >= SECONDS.IN_TWO_WEEKS) {
-                return game.i18n.format("EffectsPanel.ManyWeeks", {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyWeeks, {
                     weeks: Math.floor(remainingSeconds / SECONDS.IN_ONE_WEEK),
                 });
             } else if (remainingSeconds > SECONDS.IN_ONE_WEEK) {
-                return game.i18n.localize("EffectsPanel.OneWeek");
+                return game.i18n.localize(EN_JSON.EffectsPanel.OneWeek);
             } else if (remainingSeconds >= SECONDS.IN_TWO_DAYS) {
-                return game.i18n.format("EffectsPanel.ManyDays", {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyDays, {
                     days: Math.floor(remainingSeconds / SECONDS.IN_ONE_DAY),
                 });
             } else if (remainingSeconds > SECONDS.IN_TWO_HOURS) {
-                return game.i18n.format("EffectsPanel.ManyHours", {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyHours, {
                     hours: Math.floor(remainingSeconds / SECONDS.IN_ONE_HOUR),
                 });
             } else if (remainingSeconds > SECONDS.IN_TWO_MINUTES) {
-                return game.i18n.format("EffectsPanel.ManyMinutes", {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyMinutes, {
                     minutes: Math.floor(
                         remainingSeconds / SECONDS.IN_ONE_MINUTE,
                     ),
                 });
             } else if (remainingSeconds >= 2) {
-                return game.i18n.format("EffectsPanel.ManySeconds", {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManySeconds, {
                     seconds: remainingSeconds,
                 });
             } else if (remainingSeconds === 1) {
-                return game.i18n.localize("EffectsPanel.OneSecond");
+                return game.i18n.localize(EN_JSON.EffectsPanel.OneSecond);
             } else {
-                return game.i18n.localize("EffectsPanel.Expired");
+                return game.i18n.localize(EN_JSON.EffectsPanel.Expired);
             }
         });
     }

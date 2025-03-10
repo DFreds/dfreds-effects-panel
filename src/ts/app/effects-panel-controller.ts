@@ -180,18 +180,20 @@ class EffectsPanelController {
     ): Promise<void> {
         if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DIALOG) {
             const content = game.i18n.format(
-                "EffectsPanel.DeleteOrDisableEffectContent",
+                EN_JSON.EffectsPanel.DeleteOrDisableEffectContent,
                 {
                     effect: effect.name,
                 },
             );
             await Dialog.wait({
-                title: game.i18n.localize("EffectsPanel.DeleteOrDisableEffect"),
+                title: game.i18n.localize(
+                    EN_JSON.EffectsPanel.DeleteOrDisableEffect,
+                ),
                 content: `<h4>${content}?</h4>`,
                 buttons: {
                     delete: {
                         icon: '<i class="fas fa-trash"></i>',
-                        label: game.i18n.localize("EffectsPanel.Delete"),
+                        label: game.i18n.localize(EN_JSON.EffectsPanel.Delete),
                         callback: async () => {
                             await effect.delete();
                             this.#viewMvc.refresh();
@@ -202,8 +204,8 @@ class EffectsPanelController {
                             ? '<i class="fas fa-check"></i>'
                             : '<i class="fas fa-close"></i>',
                         label: effect.disabled
-                            ? game.i18n.localize("EffectsPanel.Enable")
-                            : game.i18n.localize("EffectsPanel.Disable"),
+                            ? game.i18n.localize(EN_JSON.EffectsPanel.Enable)
+                            : game.i18n.localize(EN_JSON.EffectsPanel.Disable),
                         callback: async () => {
                             await effect.update({ disabled: !effect.disabled });
                         },
