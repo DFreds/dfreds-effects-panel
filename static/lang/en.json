@@ -29,6 +29,7 @@
 
         "OneYear": "1 year",
         "OneWeek": "1 week",
+        "OneRound": "1 round",
         "OneTurn": "1 turn",
         "OneSecond": "1 second",
 
@@ -38,6 +39,7 @@
         "ManyHours": "{hours} hours",
         "ManyMinutes": "{minutes} minutes",
         "ManyTurns": "{turns} turns",
+        "ManyRounds": "{rounds} rounds",
         "ManySeconds": "{seconds} seconds",
 
         "DeleteOrDisableEffect": "Delete or Disable Effect",

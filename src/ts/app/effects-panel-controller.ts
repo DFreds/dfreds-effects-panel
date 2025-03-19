@@ -1,7 +1,12 @@
 import { EffectDurationData } from "types/foundry/common/documents/active-effect.js";
 import { Settings } from "../settings.ts";
 import { EffectsPanelApp } from "./effects-panel-app.ts";
-import { MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
+import {
+    MODULE_ID,
+    RIGHT_CLICK_BEHAVIOR,
+    SECONDS,
+    USER_FLAGS,
+} from "../constants.ts";
 
 interface ViewData {
     temporaryEffects: EffectData[];
@@ -13,8 +18,7 @@ interface ViewData {
 
 // TODO consider cleaning this up to grab most from ActiveEffect
 interface EffectData extends ActiveEffect<SceneActor | Actor<null>> {
-    remainingSeconds: number;
-    turns: number | null;
+    timeLabel: string;
     isExpired: boolean;
     infinite: boolean;
     src: string | null;
@@ -82,12 +86,9 @@ class EffectsPanelController {
                     { keepId: true },
                 ) as EffectData;
 
-                effectData.remainingSeconds = this.#getSecondsRemaining(
-                    effectData.duration,
-                );
-                effectData.turns = effectData.duration.turns;
-                effectData.isExpired = effectData.remainingSeconds <= 0;
                 effectData.infinite = effect.type === "none";
+                effectData.timeLabel = this.#determineTimeLabel(effect);
+                effectData.isExpired = this.#determineIfIsExpired(effect);
 
                 effectData.src = src;
 
@@ -220,20 +221,180 @@ class EffectsPanelController {
         );
     }
 
-    #getSecondsRemaining(duration: EffectDurationData): number {
-        if (duration.seconds) {
-            const currentTime = game.time.worldTime;
-            const endTime = (duration.startTime || 0) + duration.seconds;
+    #determineIfIsExpired(
+        effect: ActiveEffect<SceneActor | Actor<null>>,
+    ): boolean {
+        const durationType = effect.duration.type;
 
-            return endTime - currentTime;
-        } else if (duration.rounds) {
-            const currentRound = game.combat?.round ?? 0;
-            const endingRound = (duration.startRound || 0) + duration.rounds;
-
-            return (endingRound - currentRound) * CONFIG.time.roundTime;
-        } else {
-            return Infinity;
+        if (durationType === "seconds") {
+            const remainingSeconds =
+                this.#getSecondsRemaining(effect.duration) ?? 0;
+            return remainingSeconds <= 0;
+        } else if (durationType === "turns") {
+            const remainingRounds =
+                this.#getRoundsRemaining(effect.duration) ?? 0;
+            const remainingTurns =
+                this.#getTurnsRemaining(effect.duration) ?? 0;
+            return (
+                remainingRounds < 0 ||
+                (remainingRounds === 0 && remainingTurns <= 0)
+            );
         }
+
+        return false;
+    }
+
+    #determineTimeLabel(
+        effect: ActiveEffect<SceneActor | Actor<null>>,
+    ): string {
+        const durationType = effect.duration.type;
+
+        if (game.system.id === "demonlord") {
+            const dlResult = this.#handleDemonLordRemainingTime(effect);
+            if (dlResult) return dlResult;
+        }
+
+        if (durationType === "seconds") {
+            const remainingSeconds =
+                this.#getSecondsRemaining(effect.duration) ?? 0;
+            if (remainingSeconds <= 0) {
+                return game.i18n.localize(EN_JSON.EffectsPanel.Expired);
+            } else if (remainingSeconds >= SECONDS.IN_TWO_YEARS) {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyYears, {
+                    years: Math.floor(remainingSeconds / SECONDS.IN_ONE_YEAR),
+                });
+            } else if (remainingSeconds >= SECONDS.IN_ONE_YEAR) {
+                return game.i18n.localize(EN_JSON.EffectsPanel.OneYear);
+            } else if (remainingSeconds >= SECONDS.IN_TWO_WEEKS) {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyWeeks, {
+                    weeks: Math.floor(remainingSeconds / SECONDS.IN_ONE_WEEK),
+                });
+            } else if (remainingSeconds > SECONDS.IN_ONE_WEEK) {
+                return game.i18n.localize(EN_JSON.EffectsPanel.OneWeek);
+            } else if (remainingSeconds >= SECONDS.IN_TWO_DAYS) {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyDays, {
+                    days: Math.floor(remainingSeconds / SECONDS.IN_ONE_DAY),
+                });
+            } else if (remainingSeconds > SECONDS.IN_TWO_HOURS) {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyHours, {
+                    hours: Math.floor(remainingSeconds / SECONDS.IN_ONE_HOUR),
+                });
+            } else if (remainingSeconds > SECONDS.IN_TWO_MINUTES) {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManyMinutes, {
+                    minutes: Math.floor(
+                        remainingSeconds / SECONDS.IN_ONE_MINUTE,
+                    ),
+                });
+            } else if (remainingSeconds >= 2) {
+                return game.i18n.format(EN_JSON.EffectsPanel.ManySeconds, {
+                    seconds: remainingSeconds,
+                });
+            } else if (remainingSeconds === 1) {
+                return game.i18n.localize(EN_JSON.EffectsPanel.OneSecond);
+            }
+        } else if (durationType === "turns") {
+            const remainingRounds =
+                this.#getRoundsRemaining(effect.duration) ?? 0;
+            const remainingTurns =
+                this.#getTurnsRemaining(effect.duration) ?? 0;
+
+            if (
+                remainingRounds < 0 ||
+                (remainingRounds === 0 && remainingTurns <= 0)
+            ) {
+                return game.i18n.localize(EN_JSON.EffectsPanel.Expired);
+            } else if (remainingRounds > 0) {
+                return game.i18n.format(
+                    remainingRounds === 1
+                        ? EN_JSON.EffectsPanel.OneRound
+                        : EN_JSON.EffectsPanel.ManyRounds,
+                    { rounds: remainingRounds },
+                );
+            } else if (remainingTurns > 0) {
+                return game.i18n.format(
+                    remainingTurns === 1
+                        ? EN_JSON.EffectsPanel.OneTurn
+                        : EN_JSON.EffectsPanel.ManyTurns,
+                    { turns: remainingTurns },
+                );
+            }
+        } else if (durationType === "none") {
+            return game.i18n.localize(EN_JSON.EffectsPanel.Unlimited);
+        }
+
+        return "";
+    }
+
+    #handleDemonLordRemainingTime(
+        effect: ActiveEffect<SceneActor | Actor<null>>,
+    ): string | null {
+        let tokenName;
+        const specialDuration = foundry.utils.getProperty(
+            effect,
+            "flags.specialDuration",
+        ) as string | undefined;
+        if (specialDuration !== "None" && specialDuration !== undefined) {
+            tokenName = fromUuidSync(
+                effect.origin?.substr(0, effect.origin.search(".Actor.")) ?? "",
+            )?.name;
+            switch (specialDuration) {
+                case "TurnEndSource":
+                    return (
+                        game.i18n.localize(EN_JSON.EffectsPanel.TurnEnd) +
+                        ` [${tokenName}]`
+                    );
+                case "TurnStartSource":
+                    return (
+                        game.i18n.localize(EN_JSON.EffectsPanel.TurnStart) +
+                        ` [${tokenName}]`
+                    );
+                case "TurnEnd":
+                    return game.i18n.localize(EN_JSON.EffectsPanel.TurnEnd);
+                case "TurnStart":
+                    return game.i18n.localize(EN_JSON.EffectsPanel.TurnStart);
+                case "NextD20Roll":
+                    return game.i18n.localize(EN_JSON.EffectsPanel.NextD20Roll);
+                case "NextDamageRoll":
+                    return game.i18n.localize(
+                        EN_JSON.EffectsPanel.NextDamageRoll,
+                    );
+                case "RestComplete":
+                    return game.i18n.localize(
+                        EN_JSON.EffectsPanel.RestComplete,
+                    );
+                default:
+                    return specialDuration;
+            }
+        }
+
+        return null;
+    }
+
+    #getSecondsRemaining(duration: EffectDurationData): number | null {
+        if (duration.seconds === null) return null;
+
+        const currentTime = game.time.worldTime;
+        const endTime = (duration.startTime || 0) + duration.seconds;
+
+        return endTime - currentTime;
+    }
+
+    #getRoundsRemaining(duration: EffectDurationData): number | null {
+        if (duration.rounds === null) return null;
+
+        const currentRound = game.combat?.round ?? 0;
+        const endingRound = (duration.startRound || 0) + duration.rounds;
+
+        return endingRound - currentRound;
+    }
+
+    #getTurnsRemaining(duration: EffectDurationData): number | null {
+        if (duration.turns === null) return null;
+
+        const currentTurn = game.combat?.turn ?? 0;
+        const endingTurn = (duration.startTurn || 0) + duration.turns;
+
+        return endingTurn - currentTurn;
     }
 
     onMouseDown(event: Event): void {
