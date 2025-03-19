@@ -10,6 +10,8 @@ class Settings {
     #SHOW_DISABLED_EFFECTS = "showDisabledEffects";
     #SHOW_PASSIVE_EFFECTS = "showPassiveEffects";
     #SHOW_DURATION_OVERLAYS = "showDurationOverlays";
+
+    #ALLOW_RIGHT_CLICK = "allowRightClick";
     #VIEW_PERMISSION = "viewPermission";
     #VIEW_DETAILS_PERMISSION = "viewDetailsPermission";
 
@@ -114,6 +116,17 @@ class Settings {
             },
         );
 
+        game.settings.register(MODULE_ID, this.#ALLOW_RIGHT_CLICK, {
+            name: EN_JSON.EffectsPanel.SettingAllowRightClick,
+            hint: EN_JSON.EffectsPanel.SettingAllowRightClickHint,
+            scope: "world",
+            config: true,
+            default: CONST.USER_ROLES.PLAYER,
+            choices: userRoles,
+            type: String,
+            onChange: () => game.dfreds.effectsPanel.refresh(),
+        });
+
         game.settings.register(MODULE_ID, this.#VIEW_PERMISSION, {
             name: EN_JSON.EffectsPanel.SettingViewPermission,
             hint: EN_JSON.EffectsPanel.SettingViewPermissionHint,
@@ -204,6 +217,17 @@ class Settings {
             MODULE_ID,
             this.#SHOW_DURATION_OVERLAYS,
         ) as boolean;
+    }
+
+    /**
+     * Returns the game setting for allowing right-click
+     *
+     * @returns a number representing the chosen role
+     */
+    get allowRightClick(): number {
+        return parseInt(
+            game.settings.get(MODULE_ID, this.#ALLOW_RIGHT_CLICK) as string,
+        );
     }
 
     /**

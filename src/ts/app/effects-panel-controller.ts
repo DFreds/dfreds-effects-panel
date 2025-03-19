@@ -132,6 +132,8 @@ class EffectsPanelController {
     async onIconRightClick(event: Event): Promise<void> {
         if (event.currentTarget === null) return;
 
+        if (game.user.role < this.#settings.allowRightClick) return;
+
         const $target = $(event.currentTarget);
         const actor = this.#actor;
         const effects = this.#getActorEffects(actor);
