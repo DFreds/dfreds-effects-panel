@@ -243,16 +243,15 @@ class EffectsPanelController {
 
     #getSecondsRemaining(duration: EffectDurationData): number {
         if (duration.seconds) {
-            return (
-                (duration.startTime || 0) +
-                duration.seconds -
-                game.time.worldTime
-            );
+            const currentTime = game.time.worldTime;
+            const endTime = (duration.startTime || 0) + duration.seconds;
+
+            return endTime - currentTime;
         } else if (duration.rounds) {
-            return (
-                (duration.rounds - (duration.startRound || 0)) *
-                CONFIG.time.roundTime
-            );
+            const currentRound = game.combat?.round ?? 0;
+            const endingRound = (duration.startRound || 0) + duration.rounds;
+
+            return (endingRound - currentRound) * CONFIG.time.roundTime;
         } else {
             return Infinity;
         }
