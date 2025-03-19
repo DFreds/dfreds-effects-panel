@@ -87,7 +87,6 @@ class EffectsPanelController {
                 );
                 effectData.turns = effectData.duration.turns;
                 effectData.isExpired = effectData.remainingSeconds <= 0;
-                effectData.description = this.#getDescription(effect);
                 effectData.infinite = effect.type === "none";
 
                 effectData.src = src;
@@ -112,19 +111,6 @@ class EffectsPanelController {
             effects.push(effect);
         }
         return effects;
-    }
-
-    #getDescription(effect: ActiveEffect<SceneActor | Actor<null>>): string {
-        const effectDescription = effect.description;
-
-        const hasConvenientEffects = game.modules.get(MODULE_ID)?.active;
-        const flagDescription = hasConvenientEffects
-            ? (effect.getFlag(MODULE_ID, "description") as string)
-            : "";
-        const legacyDescription = (effect.flags as any)
-            .convenientDescription as string;
-
-        return effectDescription || flagDescription || legacyDescription;
     }
 
     #getSourceName(
