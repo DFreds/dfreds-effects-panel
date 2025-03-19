@@ -2,7 +2,7 @@
     {{#if (canViewEffectsPanel)}}
         <div id="effects-panel-drag-handler" />
         {{#each temporaryEffects as |effect|}}
-            <div class="effect-item">
+            <div class="effect-item" style="height: {{itemSize}}px;">
                 <div class="effect-info">
                     <h1>
                         {{effect.name}}
@@ -33,7 +33,7 @@
                 <div
                     class="temporary icon"
                     data-effect-id="{{effect._id}}"
-                    style="background-image: url('{{effect.img}}')"
+                    style="background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;"
                 >
                     {{#if (showDurationOverlays)}}
                         {{#if effect.isExpired}}
@@ -49,11 +49,11 @@
         {{/each}}
 
         {{#if (and temporaryEffects.length passiveEffects.length)}}
-            <hr />
+            <hr style="width: {{iconSize}}px;" />
         {{/if}}
 
         {{#each passiveEffects as |effect|}}
-            <div class="effect-item">
+            <div class="effect-item" style="height: {{itemSize}}px;">
                 <div class="effect-info">
                     <h1>
                         {{effect.name}}
@@ -79,7 +79,7 @@
                 <div
                     class="passive icon"
                     data-effect-id="{{effect._id}}"
-                    style="background-image: url('{{effect.img}}')"
+                    style="background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;"
                 >
                     {{#if (showDurationOverlays)}}
                         <i class="unlimited badge fas fa-infinity"></i>
@@ -97,11 +97,11 @@
                 (or temporaryEffects.length passiveEffects.length)
             )
         }}
-            <hr />
+            <hr style="width: {{iconSize}}px;" />
         {{/if}}
 
         {{#each disabledTemporaryEffects as |effect|}}
-            <div class="effect-item">
+            <div class="effect-item" style="height: {{itemSize}}px;">
                 <div class="effect-info">
                     <h1>
                         {{effect.name}}
@@ -130,7 +130,7 @@
                 <div
                     class="disabled temporary icon"
                     data-effect-id="{{effect._id}}"
-                    style="background-image: url('{{effect.img}}');"
+                    style="background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;"
                 >
                     {{#if (showDurationOverlays)}}
                         {{#if effect.isExpired}}
@@ -146,7 +146,7 @@
         {{/each}}
 
         {{#each disabledPassiveEffects as |effect|}}
-            <div class="effect-item">
+            <div class="effect-item" style="height: {{itemSize}}px;">
                 <div class="effect-info">
                     <h1>
                         {{effect.name}}
@@ -175,7 +175,7 @@
                 <div
                     class="disabled passive icon"
                     data-effect-id="{{effect._id}}"
-                    style="background-image: url('{{effect.img}}');"
+                    style="background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;"
                 >
                     {{#if (showDurationOverlays)}}
                         {{#if effect.isExpired}}

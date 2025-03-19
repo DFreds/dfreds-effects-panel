@@ -6,6 +6,7 @@ class Settings {
     #TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR =
         "temporaryEffectsRightClickBehavior";
 
+    #ICON_SIZE = "iconSize";
     #SHOW_DISABLED_EFFECTS = "showDisabledEffects";
     #SHOW_PASSIVE_EFFECTS = "showPassiveEffects";
     #SHOW_DURATION_OVERLAYS = "showDurationOverlays";
@@ -69,6 +70,16 @@ class Settings {
             onChange: () => game.dfreds.effectsPanel.refresh(),
         });
 
+        game.settings.register(MODULE_ID, this.#ICON_SIZE, {
+            name: EN_JSON.EffectsPanel.SettingIconSize,
+            hint: EN_JSON.EffectsPanel.SettingIconSizeHint,
+            scope: "client",
+            config: true,
+            default: 42,
+            type: Number,
+            onChange: () => game.dfreds.effectsPanel.refresh(),
+        });
+
         game.settings.register(
             MODULE_ID,
             this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
@@ -124,6 +135,15 @@ class Settings {
             type: String,
             onChange: () => game.dfreds.effectsPanel.refresh(),
         });
+    }
+
+    /**
+     * Returns the game setting for the icon size
+     *
+     * @returns a number representing the icon size
+     */
+    get iconSize(): number {
+        return game.settings.get(MODULE_ID, this.#ICON_SIZE) as number;
     }
 
     /**

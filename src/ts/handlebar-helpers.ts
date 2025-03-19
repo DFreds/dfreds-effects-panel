@@ -10,6 +10,8 @@ class HandlebarHelpers {
         this.#registerCanViewEffectDetailsHelper();
         this.#registerCanViewEffectsPanelHelper();
         this.#registerShowDurationOverlaysHelper();
+        this.#registerIconSizeHelper();
+        this.#registerItemSizeHelper();
     }
 
     #registerCanViewEffectDetailsHelper() {
@@ -27,6 +29,18 @@ class HandlebarHelpers {
     #registerShowDurationOverlaysHelper() {
         Handlebars.registerHelper("showDurationOverlays", () => {
             return this.#settings.showDurationOverlays;
+        });
+    }
+
+    #registerIconSizeHelper() {
+        Handlebars.registerHelper("iconSize", () => {
+            return this.#settings.iconSize;
+        });
+    }
+
+    #registerItemSizeHelper() {
+        Handlebars.registerHelper("itemSize", () => {
+            return this.#settings.iconSize + 8;
         });
     }
 }
