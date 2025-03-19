@@ -129,7 +129,7 @@ class EffectsPanelController {
         }
     }
 
-    async onIconRightClick(event: Event): Promise<void> {
+    async onIconRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
         if (event.currentTarget === null) return;
 
         if (game.user.role < this.#settings.allowRightClick) return;
@@ -145,11 +145,15 @@ class EffectsPanelController {
 
         if (effect.isTemporary) {
             await this.#handleEffectChange(
+                event.clientX,
+                event.clientY,
                 effect,
                 this.#settings.temporaryEffectsRightClickBehavior,
             );
         } else {
             await this.#handleEffectChange(
+                event.clientX,
+                event.clientY,
                 effect,
                 this.#settings.passiveEffectsRightClickBehavior,
             );
@@ -157,6 +161,8 @@ class EffectsPanelController {
     }
 
     async #handleEffectChange(
+        eventX: number,
+        eventY: number,
         effect: ActiveEffect<SceneActor | Actor<null>>,
         rightClickBehavior: string,
     ): Promise<void> {
@@ -167,33 +173,48 @@ class EffectsPanelController {
                     effect: effect.name,
                 },
             );
-            await Dialog.wait({
-                title: game.i18n.localize(
-                    EN_JSON.EffectsPanel.DeleteOrDisableEffect,
-                ),
-                content: `<h4>${content}?</h4>`,
-                buttons: {
-                    delete: {
-                        icon: '<i class="fas fa-trash"></i>',
-                        label: game.i18n.localize(EN_JSON.EffectsPanel.Delete),
-                        callback: async () => {
-                            await effect.delete();
-                            this.#viewMvc.refresh();
+            await Dialog.wait(
+                {
+                    title: game.i18n.localize(
+                        EN_JSON.EffectsPanel.DeleteOrDisableEffect,
+                    ),
+                    content: `<h4>${content}?</h4>`,
+                    buttons: {
+                        delete: {
+                            icon: '<i class="fas fa-trash"></i>',
+                            label: game.i18n.localize(
+                                EN_JSON.EffectsPanel.Delete,
+                            ),
+                            callback: async () => {
+                                await effect.delete();
+                                this.#viewMvc.refresh();
+                            },
                         },
-                    },
-                    disable: {
-                        icon: effect.disabled
-                            ? '<i class="fas fa-check"></i>'
-                            : '<i class="fas fa-close"></i>',
-                        label: effect.disabled
-                            ? game.i18n.localize(EN_JSON.EffectsPanel.Enable)
-                            : game.i18n.localize(EN_JSON.EffectsPanel.Disable),
-                        callback: async () => {
-                            await effect.update({ disabled: !effect.disabled });
+                        disable: {
+                            icon: effect.disabled
+                                ? '<i class="fas fa-check"></i>'
+                                : '<i class="fas fa-close"></i>',
+                            label: effect.disabled
+                                ? game.i18n.localize(
+                                      EN_JSON.EffectsPanel.Enable,
+                                  )
+                                : game.i18n.localize(
+                                      EN_JSON.EffectsPanel.Disable,
+                                  ),
+                            callback: async () => {
+                                await effect.update({
+                                    disabled: !effect.disabled,
+                                });
+                            },
                         },
                     },
                 },
-            });
+                {
+                    width: 300,
+                    top: eventY,
+                    left: eventX - 300 - 18,
+                },
+            );
         } else if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DELETE) {
             await effect.delete();
             this.#viewMvc.refresh();
