@@ -17,7 +17,6 @@ interface EffectData extends ActiveEffect<SceneActor | Actor<null>> {
     turns: number | null;
     isExpired: boolean;
     infinite: boolean;
-    isSupp: boolean;
     src: string | null;
 }
 
@@ -91,7 +90,6 @@ class EffectsPanelController {
                 effectData.infinite = effectData.remainingSeconds === Infinity;
                 effectData.description = this.#getDescription(effect);
 
-                effectData.isSupp = effect.isSuppressed;
                 effectData.src = src;
 
                 return effectData;
@@ -102,7 +100,7 @@ class EffectsPanelController {
                 return 0;
             })
             .filter((effectData) => {
-                return !effectData.isSupp;
+                return !effectData.isSuppressed;
             });
     }
 
