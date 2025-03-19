@@ -87,8 +87,8 @@ class EffectsPanelController {
                 );
                 effectData.turns = effectData.duration.turns;
                 effectData.isExpired = effectData.remainingSeconds <= 0;
-                effectData.infinite = effectData.remainingSeconds === Infinity;
                 effectData.description = this.#getDescription(effect);
+                effectData.infinite = effect.type === "none";
 
                 effectData.src = src;
 
