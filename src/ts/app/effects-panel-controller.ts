@@ -19,7 +19,6 @@ interface EffectData extends ActiveEffect<SceneActor | Actor<null>> {
     infinite: boolean;
     isSupp: boolean;
     src: string | null;
-    isOverlay: boolean;
 }
 
 class EffectsPanelController {
@@ -94,10 +93,6 @@ class EffectsPanelController {
 
                 effectData.isSupp = effect.isSuppressed;
                 effectData.src = src;
-                effectData.isOverlay =
-                    (effect.getFlag("core", "overlay") as
-                        | boolean
-                        | undefined) ?? false;
 
                 return effectData;
             })
