@@ -1,5 +1,5 @@
 import { EffectsPanelApp } from "./app/effects-panel-app.ts";
-import EnJSON from "@static/lang/en.json" with { type: "json" };
+
 declare global {
     namespace globalThis {
         let CONFIG: Config<
@@ -57,5 +57,4 @@ declare global {
     }
 
     const BUILD_MODE: "development" | "stage" | "production";
-    const EN_JSON: typeof EnJSON;
 }

@@ -168,7 +168,7 @@ class EffectsPanelController {
     ): Promise<void> {
         if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DIALOG) {
             const content = game.i18n.format(
-                EN_JSON.EffectsPanel.DeleteOrDisableEffectContent,
+                "EffectsPanel.DeleteOrDisableEffectContent",
                 {
                     effect: effect.name,
                 },
@@ -176,15 +176,13 @@ class EffectsPanelController {
             await Dialog.wait(
                 {
                     title: game.i18n.localize(
-                        EN_JSON.EffectsPanel.DeleteOrDisableEffect,
+                        "EffectsPanel.DeleteOrDisableEffect",
                     ),
                     content: `<h4>${content}?</h4>`,
                     buttons: {
                         delete: {
                             icon: '<i class="fas fa-trash"></i>',
-                            label: game.i18n.localize(
-                                EN_JSON.EffectsPanel.Delete,
-                            ),
+                            label: game.i18n.localize("EffectsPanel.Delete"),
                             callback: async () => {
                                 await effect.delete();
                                 this.#viewMvc.refresh();
@@ -195,12 +193,8 @@ class EffectsPanelController {
                                 ? '<i class="fas fa-check"></i>'
                                 : '<i class="fas fa-close"></i>',
                             label: effect.disabled
-                                ? game.i18n.localize(
-                                      EN_JSON.EffectsPanel.Enable,
-                                  )
-                                : game.i18n.localize(
-                                      EN_JSON.EffectsPanel.Disable,
-                                  ),
+                                ? game.i18n.localize("EffectsPanel.Enable")
+                                : game.i18n.localize("EffectsPanel.Disable"),
                             callback: async () => {
                                 await effect.update({
                                     disabled: !effect.disabled,
@@ -281,39 +275,39 @@ class EffectsPanelController {
             const remainingSeconds =
                 this.#getSecondsRemaining(effect.duration) ?? 0;
             if (remainingSeconds <= 0) {
-                return game.i18n.localize(EN_JSON.EffectsPanel.Expired);
+                return game.i18n.localize("EffectsPanel.Expired");
             } else if (remainingSeconds >= SECONDS.IN_TWO_YEARS) {
-                return game.i18n.format(EN_JSON.EffectsPanel.ManyYears, {
+                return game.i18n.format("EffectsPanel.ManyYears", {
                     years: Math.floor(remainingSeconds / SECONDS.IN_ONE_YEAR),
                 });
             } else if (remainingSeconds >= SECONDS.IN_ONE_YEAR) {
-                return game.i18n.localize(EN_JSON.EffectsPanel.OneYear);
+                return game.i18n.localize("EffectsPanel.OneYear");
             } else if (remainingSeconds >= SECONDS.IN_TWO_WEEKS) {
-                return game.i18n.format(EN_JSON.EffectsPanel.ManyWeeks, {
+                return game.i18n.format("EffectsPanel.ManyWeeks", {
                     weeks: Math.floor(remainingSeconds / SECONDS.IN_ONE_WEEK),
                 });
             } else if (remainingSeconds > SECONDS.IN_ONE_WEEK) {
-                return game.i18n.localize(EN_JSON.EffectsPanel.OneWeek);
+                return game.i18n.localize("EffectsPanel.OneWeek");
             } else if (remainingSeconds >= SECONDS.IN_TWO_DAYS) {
-                return game.i18n.format(EN_JSON.EffectsPanel.ManyDays, {
+                return game.i18n.format("EffectsPanel.ManyDays", {
                     days: Math.floor(remainingSeconds / SECONDS.IN_ONE_DAY),
                 });
             } else if (remainingSeconds > SECONDS.IN_TWO_HOURS) {
-                return game.i18n.format(EN_JSON.EffectsPanel.ManyHours, {
+                return game.i18n.format("EffectsPanel.ManyHours", {
                     hours: Math.floor(remainingSeconds / SECONDS.IN_ONE_HOUR),
                 });
             } else if (remainingSeconds > SECONDS.IN_TWO_MINUTES) {
-                return game.i18n.format(EN_JSON.EffectsPanel.ManyMinutes, {
+                return game.i18n.format("EffectsPanel.ManyMinutes", {
                     minutes: Math.floor(
                         remainingSeconds / SECONDS.IN_ONE_MINUTE,
                     ),
                 });
             } else if (remainingSeconds >= 2) {
-                return game.i18n.format(EN_JSON.EffectsPanel.ManySeconds, {
+                return game.i18n.format("EffectsPanel.ManySeconds", {
                     seconds: remainingSeconds,
                 });
             } else if (remainingSeconds === 1) {
-                return game.i18n.localize(EN_JSON.EffectsPanel.OneSecond);
+                return game.i18n.localize("EffectsPanel.OneSecond");
             }
         } else if (durationType === "turns") {
             const remainingRounds =
@@ -325,24 +319,24 @@ class EffectsPanelController {
                 remainingRounds < 0 ||
                 (remainingRounds === 0 && remainingTurns <= 0)
             ) {
-                return game.i18n.localize(EN_JSON.EffectsPanel.Expired);
+                return game.i18n.localize("EffectsPanel.Expired");
             } else if (remainingRounds > 0) {
                 return game.i18n.format(
                     remainingRounds === 1
-                        ? EN_JSON.EffectsPanel.OneRound
-                        : EN_JSON.EffectsPanel.ManyRounds,
+                        ? "EffectsPanel.OneRound"
+                        : "EffectsPanel.ManyRounds",
                     { rounds: remainingRounds },
                 );
             } else if (remainingTurns > 0) {
                 return game.i18n.format(
                     remainingTurns === 1
-                        ? EN_JSON.EffectsPanel.OneTurn
-                        : EN_JSON.EffectsPanel.ManyTurns,
+                        ? "EffectsPanel.OneTurn"
+                        : "EffectsPanel.ManyTurns",
                     { turns: remainingTurns },
                 );
             }
         } else if (durationType === "none") {
-            return game.i18n.localize(EN_JSON.EffectsPanel.Unlimited);
+            return game.i18n.localize("EffectsPanel.Unlimited");
         }
 
         return "";
@@ -363,28 +357,24 @@ class EffectsPanelController {
             switch (specialDuration) {
                 case "TurnEndSource":
                     return (
-                        game.i18n.localize(EN_JSON.EffectsPanel.TurnEnd) +
+                        game.i18n.localize("EffectsPanel.TurnEnd") +
                         ` [${tokenName}]`
                     );
                 case "TurnStartSource":
                     return (
-                        game.i18n.localize(EN_JSON.EffectsPanel.TurnStart) +
+                        game.i18n.localize("EffectsPanel.TurnStart") +
                         ` [${tokenName}]`
                     );
                 case "TurnEnd":
-                    return game.i18n.localize(EN_JSON.EffectsPanel.TurnEnd);
+                    return game.i18n.localize("EffectsPanel.TurnEnd");
                 case "TurnStart":
-                    return game.i18n.localize(EN_JSON.EffectsPanel.TurnStart);
+                    return game.i18n.localize("EffectsPanel.TurnStart");
                 case "NextD20Roll":
-                    return game.i18n.localize(EN_JSON.EffectsPanel.NextD20Roll);
+                    return game.i18n.localize("EffectsPanel.NextD20Roll");
                 case "NextDamageRoll":
-                    return game.i18n.localize(
-                        EN_JSON.EffectsPanel.NextDamageRoll,
-                    );
+                    return game.i18n.localize("EffectsPanel.NextDamageRoll");
                 case "RestComplete":
-                    return game.i18n.localize(
-                        EN_JSON.EffectsPanel.RestComplete,
-                    );
+                    return game.i18n.localize("EffectsPanel.RestComplete");
                 default:
                     return specialDuration;
             }
