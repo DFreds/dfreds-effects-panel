@@ -15,10 +15,14 @@
         "SettingShowPassiveEffectsHint": "Se abilitato, gli effetti passivi verranno visualizzati nel pannello.",
         "SettingShowDurationOverlays": "Mostra Overlays Durata",
         "SettingShowDurationOverlaysHint": "Se abilitato, verrà mostrata un'icona sovrapposta su ciascun effetto per indicarne la durata.",
+        "SettingIconSize": "Dimensione icona",
+        "SettingIconSizeHint": "Definisce la dimensione delle icone nel pannello degli effetti.",
         "SettingPassiveEffectsRightClickBehavior": "Effetti passivi Comportamento del tasto destro",
         "SettingPassiveEffectsRightClickBehaviorHint": "Definisce il comportamento quando si fa clic con il pulsante destro del mouse su un effetto passivo.",
         "SettingTemporaryEffectsRightClickBehavior": "Effetti temporanei Comportamento del tasto destro",
         "SettingTemporaryEffectsRightClickBehaviorHint": "Definisce il comportamento quando si fa clic con il pulsante destro del mouse su un effetto temporaneo.",
+        "SettingAllowRightClick": "Consenti clic destro",
+        "SettingAllowRightClickHint": "Definisce il livello minimo di autorizzazione per eseguire il comportamento del clic destro su un effetto. Impostandolo su Nessuno non sarà mai consentito il clic destro su un effetto.",
         "SettingViewPermission": "Permessi Visualizzazione",
         "SettingViewPermissionHint": "Definisce il livello minimo di autorizzazione per vedere il pannello degli effetti. Impostandolo su Nessuno non verrà mai mostrato il pannello degli effetti.",
         "SettingViewDetailsPermission": "Permessi Vedi Dettagli",
@@ -29,6 +33,7 @@
 
         "OneYear": "1 anno",
         "OneWeek": "1 settimana",
+        "OneRound": "1 round",
         "OneTurn": "1 turno",
         "OneSecond": "1 secondo",
 
@@ -38,6 +43,7 @@
         "ManyHours": "{hours} ore",
         "ManyMinutes": "{minutes} minuti",
         "ManyTurns": "{turns} turni",
+        "ManyRounds": "{rounds} rounds",
         "ManySeconds": "{seconds} secondi",
 
         "DeleteOrDisableEffect": "Cancella o Disattiva Effetto",
