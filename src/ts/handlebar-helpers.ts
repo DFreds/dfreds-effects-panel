@@ -33,13 +33,13 @@ class HandlebarHelpers {
     }
 
     #registerIconSizeHelper() {
-        Handlebars.registerHelper("iconSize", () => {
+        Handlebars.registerHelper("effectsPanelIconSize", () => {
             return this.#settings.iconSize;
         });
     }
 
     #registerItemSizeHelper() {
-        Handlebars.registerHelper("itemSize", () => {
+        Handlebars.registerHelper("effectsPanelItemSize", () => {
             return this.#settings.iconSize + 8;
         });
     }
