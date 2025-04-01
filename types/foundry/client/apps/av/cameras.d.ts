@@ -1,7 +1,10 @@
+import ApplicationV2 from "../../../client-esm/applications/api/application.js";
+import HandlebarsApplicationMixin from "../../../client-esm/applications/api/handlebars-application.ts";
+
 /**
  * The Camera UI View that displays all the camera feeds as individual video elements.
  */
-declare class CameraViews extends Application {
+declare class CameraViews extends HandlebarsApplicationMixin(ApplicationV2) {
     /**
      * A reference to the master AV orchestrator instance
      */

@@ -1,3 +1,5 @@
+import { CameraViews } from "../apps/av/cameras.js";
+import { Sidebar } from "../apps/sidebar/sidebar.js";
 import "./context.d.ts";
 import "./dialog.d.ts";
 import "./dragdrop.d.ts";

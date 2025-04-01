@@ -1,5 +1,8 @@
+import ApplicationV2 from "../../../client-esm/applications/api/application.js";
+import HandlebarsApplicationMixin from "../../../client-esm/applications/api/handlebars-application.ts";
+
 /** Render the Sidebar container, and after rendering insert Sidebar tabs */
-declare class Sidebar extends Application {
+declare class Sidebar extends HandlebarsApplicationMixin(ApplicationV2) {
     /** Singleton application instances for each sidebar tab */
     tabs: Tabs;
 
