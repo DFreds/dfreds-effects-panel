@@ -3,12 +3,49 @@ $black: black;
 $transparent: transparent;
 $lightblue: lightblue;
 $orange: orange;
-$default-panel-tag-background: hsl(235, 28.5%, 37.8%);
-$secondary-panel-tag-background: hsl(13, 39%, 53.7%);
-$tertiary-panel-tag-background: hsl(0, 70%, 28.4%);
-$alt-panel-tag-background: #786452;
-$material-panel-tag-background: #666;
+$silver: silver;
+$gray: gray;
 $black-75percent: rgba(0, 0, 0, 0.75);
+
+$panel-tag-colors: (
+    "primary": hsl(235, 28.5%, 37.8%),
+    "secondary": hsl(13, 39%, 53.7%),
+    "tertiary": hsl(0, 70%, 28.4%),
+    "alt": #786452,
+    "material": #666,
+);
+
+@mixin panel-tag-base {
+    text-rendering: optimizeLegibility;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+    color: $white;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding: 3px 4px;
+    text-transform: uppercase;
+}
+
+@mixin icon-base {
+    aspect-ratio: 1;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow:
+        0 0 0 1px $silver,
+        0 0 0 2px $gray,
+        inset 0 0 4px rgba(0, 0, 0, 0.5);
+    color: $transparent;
+    display: flex;
+    justify-content: center;
+    margin: 2px 0;
+    position: relative;
+    height: 42px;
+    width: 42px;
+}
 
 .panel-tags {
     display: flex;
@@ -18,37 +55,14 @@ $black-75percent: rgba(0, 0, 0, 0.75);
     margin-bottom: 2px;
 
     .panel-tag {
-        text-rendering: optimizeLegibility;
-        background-color: $default-panel-tag-background;
-        border-radius: 2px;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-        color: $white;
-        font-size: 12px;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        line-height: 1;
-        padding: 3px 4px;
-        text-transform: uppercase;
-    }
-    .panel-tag_primary.panel-tag {
-        background-color: $default-panel-tag-background;
-        color: $white;
-    }
-    .panel-tag_secondary.panel-tag {
-        background-color: $secondary-panel-tag-background;
-        color: $white;
-    }
-    .panel-tag_tertiary.panel-tag {
-        background-color: $tertiary-panel-tag-background;
-        color: $white;
-    }
-    .panel-tag_alt.panel-tag {
-        background-color: $alt-panel-tag-background;
-        color: $white;
-    }
-    .panel-tag_material.panel-tag {
-        background-color: $material-panel-tag-background;
-        color: $white;
+        @include panel-tag-base;
+        background-color: map-get($panel-tag-colors, "primary");
+
+        @each $type, $color in $panel-tag-colors {
+            &_#{$type} {
+                background-color: $color;
+            }
+        }
     }
 }
 
@@ -56,121 +70,95 @@ $black-75percent: rgba(0, 0, 0, 0.75);
     position: fixed;
     z-index: 50;
 
-    hr {
-        margin-right: 0;
-        width: 42px;
-    }
-
-    .effect-item {
+    .effects-panel-container {
         display: flex;
-        justify-content: flex-end;
-        height: 46px;
-        margin-bottom: 4px;
+        flex-direction: column;
 
-        &:hover {
-            .effect-info {
+        hr {
+            align-self: end;
+            width: 42px;
+        }
+
+        .effect-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 46px;
+
+            &:hover .effect-info {
                 display: block;
             }
-        }
 
-        .effect-info {
-            background-color: $black-75percent;
-            display: none;
-            border-radius: 5px;
-            height: 100%;
-            margin-right: 0.5em;
-            margin-left: 0.5em;
-            padding-right: 0.25em;
-            padding-left: 0.25em;
-            padding-bottom: 0.1em;
-            padding-top: 0.1em;
-            height: max-content;
-            min-height: 100%;
-            max-width: 300px;
+            .effect-info {
+                background-color: $black-75percent;
+                display: none;
+                border-radius: 5px;
+                margin: 0 0.5em;
+                padding: 0.1em 0.25em;
+                height: max-content;
+                min-height: 100%;
+                max-width: 300px;
 
-            h1 {
-                border: none;
-                color: $white;
-                font-size: 16px;
-                font-weight: bold;
-                margin: 8px;
-                padding: 0;
-                text-align: left;
-            }
-
-            h2 {
-                border: none;
-                color: $white;
-                font-size: 14px;
-                margin: 8px;
-                padding: 0;
-                text-align: left;
-            }
-
-            a.content-link {
-                color: $black;
-            }
-
-            .panel-tags {
-                justify-content: flex-end;
-                margin: 8px;
-
-                .panel-tag {
-                    margin-bottom: 0;
-                    margin-left: 3px;
-                    margin-right: -2px;
-                }
-            }
-        }
-
-        .icon {
-            aspect-ratio: 1;
-            align-items: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            border: 1px solid rgba(0, 0, 0, 0.5);
-            box-shadow:
-                0 0 0 1px silver,
-                0 0 0 2px gray;
-            box-shadow:
-                0 0 0 1px silver,
-                0 0 0 2px gray,
-                inset 0 0 4px rgba(0, 0, 0, 0.5);
-            color: $transparent;
-            display: flex;
-            justify-content: center;
-            margin: 2px 0;
-            position: relative;
-            height: 42px;
-            width: 42px;
-
-            .badge {
-                bottom: 1px;
-                color: $white;
-                display: inline-block;
-                left: 1px;
-                position: absolute;
-                text-shadow: 0px 0px 2px black;
-
-                &.unlimited {
-                    color: $lightblue;
+                h1,
+                h2 {
+                    border: none;
+                    color: $white;
+                    margin: 8px;
+                    padding: 0;
+                    text-align: left;
                 }
 
-                &.expired {
-                    color: $orange;
+                h1 {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                h2 {
+                    font-size: 14px;
+                }
+
+                a.content-link {
+                    color: $black;
+                }
+
+                .panel-tags {
+                    justify-content: flex-end;
+                    margin: 8px;
+
+                    .panel-tag {
+                        margin: 0 3px 0 -2px;
+                    }
                 }
             }
 
-            &.temporary {
-                border-radius: 10%;
-            }
+            .icon {
+                @include icon-base;
 
-            &.passive {
-                border-radius: 50%;
-            }
+                .badge {
+                    bottom: 1px;
+                    left: 1px;
+                    position: absolute;
+                    color: $white;
+                    display: inline-block;
+                    text-shadow: 0px 0px 2px $black;
 
-            &.disabled {
-                filter: grayscale(0.8);
+                    &.unlimited {
+                        color: $lightblue;
+                    }
+                    &.expired {
+                        color: $orange;
+                    }
+                }
+
+                &.temporary {
+                    border-radius: 10%;
+                }
+                &.passive {
+                    border-radius: 50%;
+                }
+                &.effect-disabled {
+                    filter: grayscale(0.8);
+                }
             }
         }
     }
