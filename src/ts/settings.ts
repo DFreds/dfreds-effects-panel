@@ -77,8 +77,12 @@ class Settings {
             hint: "EffectsPanel.SettingIconSizeHint",
             scope: "client",
             config: true,
-            default: 42,
-            type: Number,
+            type: new foundry.data.fields.NumberField({
+                min: 16,
+                max: 100,
+                step: 1,
+                initial: 42,
+            }),
             onChange: () => game.dfreds.effectsPanel.refresh(),
         });
 

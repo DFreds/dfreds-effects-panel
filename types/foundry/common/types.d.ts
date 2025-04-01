@@ -1,4 +1,5 @@
 import type { DataModel, Document } from "./abstract/module.d.ts";
+import { DataField } from "./data/fields.js";
 
 declare global {
     interface DocumentConstructionContext<TParent extends Document | null>
@@ -52,6 +53,7 @@ declare global {
             | BooleanConstructor
             | ObjectConstructor
             | ArrayConstructor
+            | DataField
             | ConstructorOf<DataModel>
             | ((data: unknown) => unknown);
         /** For string Types, defines the allowable values */
@@ -61,7 +63,7 @@ declare global {
             ? { min: number; max: number; step: number }
             : never;
         /** The default value */
-        default:
+        default?:
             | number
             | string
             | boolean
