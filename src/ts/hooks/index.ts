@@ -9,6 +9,7 @@ import {
     UpdateActiveEffect,
     UpdateWorldTime,
 } from "./refreshEffectsPanel.ts";
+import { Setup } from "./setup.ts";
 
 interface Listener {
     listen(): void;
@@ -18,6 +19,7 @@ const HooksEffectsPanel: Listener = {
     listen(): void {
         const listeners: Listener[] = [
             Init,
+            Setup,
             CanvasReady,
             CollapseSidebar,
             RtcSettingsChanged,
