@@ -56,10 +56,10 @@ class EffectsPanelApp extends Application {
         options?: RenderOptions | undefined,
     ): Promise<void> {
         await super._render(force, options);
-        this.setFromRightPx(false);
+        this.setFromRightPx({ animate: false });
     }
 
-    setFromRightPx(animate: boolean): void {
+    setFromRightPx({ animate }: { animate?: boolean }): void {
         const isSidebarExpanded = document
             .getElementById("sidebar-content")
             ?.classList.contains("expanded");
