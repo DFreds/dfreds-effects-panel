@@ -2,11 +2,11 @@
 {{#*inline "effect-item"}}
     <div class="effect-item" style="height: {{effectsPanelItemSize}}px;">
         <div class="effect-info">
-            <h1>{{effect.name}}</h1>
+            <div class="effect-name">{{effect.name}}</div>
             {{#if (canViewEffectDetails)}}
                 <div class="effect-info-details">
                     {{#if effect.description}}
-                        <h2>{{{effect.description}}}</h2>
+                        <div class="effect-description">{{{effect.description}}}</div>
                     {{/if}}
                     <div class="panel-tags">
                         <div class="panel-tag panel-tag_primary">{{type}}</div>
