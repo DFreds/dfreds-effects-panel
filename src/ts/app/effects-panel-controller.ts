@@ -482,7 +482,7 @@ class EffectsPanelController {
     #getTopStyle(): string {
         let topPosition = game.user.getFlag(MODULE_ID, USER_FLAGS.TOP_POSITION);
         if (topPosition === undefined) {
-            topPosition = 5;
+            topPosition = 12;
             game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, topPosition);
         }
 
