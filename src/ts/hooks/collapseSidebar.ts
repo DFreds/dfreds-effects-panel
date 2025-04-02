@@ -2,8 +2,8 @@ import { Listener } from "./index.ts";
 
 const CollapseSidebar: Listener = {
     listen: () => {
-        Hooks.on("collapseSidebar", () => {
-            game.dfreds.effectsPanel.updateFromRightPx();
+        Hooks.on("collapseSidebar", (_sidebar: any, _collapse: any) => {
+            game.dfreds.effectsPanel.setFromRightPx(true);
         });
     },
 };

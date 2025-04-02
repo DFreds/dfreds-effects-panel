@@ -3,7 +3,7 @@ import { Listener } from "./index.ts";
 const RtcSettingsChanged: Listener = {
     listen: () => {
         Hooks.on("rtcSettingsChanged", () => {
-            game.dfreds.effectsPanel.updateFromRightPx();
+            game.dfreds.effectsPanel.setFromRightPx(true);
         });
     },
 };

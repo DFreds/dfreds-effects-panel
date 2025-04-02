@@ -51,16 +51,40 @@ class EffectsPanelApp extends Application {
         );
     }
 
-    updateFromRightPx(): void {
-        this.element.animate({ right: this.#fromRightPx });
-    }
-
     protected override async _render(
         force?: boolean | undefined,
         options?: RenderOptions | undefined,
     ): Promise<void> {
         await super._render(force, options);
-        this.element.css("right", this.#fromRightPx);
+        this.setFromRightPx(false);
+    }
+
+    setFromRightPx(animate: boolean): void {
+        const isSidebarExpanded = document
+            .getElementById("sidebar-content")
+            ?.classList.contains("expanded");
+        const isWebrtcRight =
+            ui.webrtc?.element?.classList.contains("right") ?? false;
+
+        const padding = 18;
+        const sidebarWidth = isSidebarExpanded ? 348 : 48;
+        const webrtcWidth = isWebrtcRight ? 300 : 0;
+
+        if (animate) {
+            this.element.animate(
+                {
+                    right: padding + sidebarWidth + webrtcWidth,
+                },
+                {
+                    duration: 200,
+                },
+            );
+        } else {
+            this.element.css(
+                "right",
+                `${padding + sidebarWidth + webrtcWidth}px`,
+            );
+        }
     }
 
     get #icons(): JQuery<HTMLElement> {
@@ -69,19 +93,6 @@ class EffectsPanelApp extends Application {
 
     get #dragHandler(): JQuery<HTMLElement> {
         return this.#rootView.find("#effects-panel-drag-handler");
-    }
-
-    get #fromRightPx(): string {
-        const sidebarOuterWidth = ui.sidebar.element.outerWidth() || 0;
-
-        if (ui.webrtc.element.hasClass("camera-position-right")) {
-            const webrtcOuterWidth = ui.webrtc.element.outerWidth() || 0;
-            const locationInPx = sidebarOuterWidth + webrtcOuterWidth + 18;
-
-            return `${locationInPx}px`;
-        } else {
-            return sidebarOuterWidth + 18 + "px";
-        }
     }
 }
 
