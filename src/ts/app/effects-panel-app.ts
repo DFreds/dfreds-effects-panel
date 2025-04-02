@@ -69,11 +69,14 @@ class EffectsPanelApp extends Application {
         const padding = 18;
         const sidebarWidth = isSidebarExpanded ? 348 : 48;
         const webrtcWidth = isWebrtcRight ? 300 : 0;
+        const { uiScale } = game.settings.get("core", "uiConfig") as {
+            uiScale: number;
+        };
 
         if (animate) {
             this.element.animate(
                 {
-                    right: padding + sidebarWidth + webrtcWidth,
+                    right: (padding + sidebarWidth + webrtcWidth) * uiScale,
                 },
                 {
                     duration: 200,
@@ -82,7 +85,7 @@ class EffectsPanelApp extends Application {
         } else {
             this.element.css(
                 "right",
-                `${padding + sidebarWidth + webrtcWidth}px`,
+                `${(padding + sidebarWidth + webrtcWidth) * uiScale}px`,
             );
         }
     }
