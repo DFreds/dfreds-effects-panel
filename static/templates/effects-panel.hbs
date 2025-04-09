@@ -1,9 +1,9 @@
 {{!-- Helper partial for effect items --}}
 {{#*inline "effect-item"}}
-    <div class="effect-item" style="height: {{effectsPanelItemSize}}px;">
+    <div class="effect-item" style="height: {{itemSize}}px;">
         <div class="effect-info">
             <div class="effect-name">{{effect.name}}</div>
-            {{#if (canViewEffectDetails)}}
+            {{#if canViewEffectDetails}}
                 <div class="effect-info-details">
                     {{#if effect.description}}
                         <div class="effect-description">{{{effect.description}}}</div>
@@ -24,8 +24,8 @@
         <div class="effect-icon-container {{#if disabled}}effect-disabled{{/if}}">
             <div class="{{type}} icon"
                  data-effect-id="{{effect._id}}"
-                 style="background-image: url('{{effect.img}}'); height: {{effectsPanelIconSize}}px; width: {{effectsPanelIconSize}}px;">
-                {{#if (showDurationOverlays)}}
+                 style="background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;">
+                {{#if showDurationOverlays}}
                     {{#if effect.isExpired}}
                         <i class="expired badge fas fa-clock"></i>
                     {{else if effect.isTemporary}}
@@ -40,12 +40,19 @@
 {{/inline}}
 
 <section id="effects-panel" class="effect-panel" style="{{topStyle}}">
-    {{#if (canViewEffectsPanel)}}
+    {{#if canViewEffectsPanel}}
         <div id="effects-panel-drag-handler">
             <div class="effects-panel-container">
                 {{!-- Temporary Effects --}}
                 {{#each temporaryEffects as |effect|}}
-                    {{> effect-item effect=effect type="temporary"}}
+                    {{> effect-item
+                        effect=effect
+                        canViewEffectDetails=@root.canViewEffectDetails
+                        showDurationOverlays=@root.showDurationOverlays
+                        iconSize=@root.iconSize
+                        itemSize=@root.itemSize
+                        type="temporary"
+                    }}
                 {{/each}}
 
                 {{#if (and temporaryEffects.length passiveEffects.length)}}
@@ -54,7 +61,14 @@
 
                 {{!-- Passive Effects --}}
                 {{#each passiveEffects as |effect|}}
-                    {{> effect-item effect=effect type="passive"}}
+                    {{> effect-item
+                        effect=effect
+                        canViewEffectDetails=@root.canViewEffectDetails
+                        showDurationOverlays=@root.showDurationOverlays
+                        iconSize=@root.iconSize
+                        itemSize=@root.itemSize
+                        type="passive"
+                    }}
                 {{/each}}
 
                 {{#if (and (or disabledTemporaryEffects.length disabledPassiveEffects.length) (or temporaryEffects.length passiveEffects.length))}}
@@ -63,12 +77,28 @@
 
                 {{!-- Disabled Temporary Effects --}}
                 {{#each disabledTemporaryEffects as |effect|}}
-                    {{> effect-item effect=effect type="temporary" disabled=true}}
+                    {{> effect-item
+                        effect=effect
+                        canViewEffectDetails=@root.canViewEffectDetails
+                        showDurationOverlays=@root.showDurationOverlays
+                        iconSize=@root.iconSize
+                        itemSize=@root.itemSize
+                        type="temporary"
+                        disabled=true
+                    }}
                 {{/each}}
 
                 {{!-- Disabled Passive Effects --}}
                 {{#each disabledPassiveEffects as |effect|}}
-                    {{> effect-item effect=effect type="passive" disabled=true}}
+                    {{> effect-item
+                        effect=effect
+                        canViewEffectDetails=@root.canViewEffectDetails
+                        showDurationOverlays=@root.showDurationOverlays
+                        iconSize=@root.iconSize
+                        itemSize=@root.itemSize
+                        type="passive"
+                        disabled=true
+                    }}
                 {{/each}}
             </div>
         </div>

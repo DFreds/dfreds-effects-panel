@@ -14,6 +14,11 @@ interface ViewData {
     disabledTemporaryEffects: EffectData[];
     disabledPassiveEffects: EffectData[];
     topStyle: string;
+    canViewEffectsPanel: boolean;
+    canViewEffectDetails: boolean;
+    showDurationOverlays: boolean;
+    iconSize: number;
+    itemSize: number;
 }
 
 // TODO consider cleaning this up to grab most from ActiveEffect
@@ -68,6 +73,13 @@ class EffectsPanelController {
             disabledTemporaryEffects,
             disabledPassiveEffects,
             topStyle: this.#getTopStyle(),
+            canViewEffectsPanel:
+                game.user.role >= this.#settings.viewPermission,
+            canViewEffectDetails:
+                game.user.role >= this.#settings.viewDetailsPermission,
+            showDurationOverlays: this.#settings.showDurationOverlays,
+            iconSize: this.#settings.iconSize,
+            itemSize: this.#settings.iconSize + 8,
         };
     }
 
