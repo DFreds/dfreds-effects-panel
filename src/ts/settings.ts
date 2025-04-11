@@ -49,7 +49,7 @@ class Settings {
             config: true,
             default: true,
             type: Boolean,
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
 
         game.settings.register(MODULE_ID, this.#SHOW_PASSIVE_EFFECTS, {
@@ -59,7 +59,7 @@ class Settings {
             config: true,
             default: false,
             type: Boolean,
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
 
         game.settings.register(MODULE_ID, this.#SHOW_DURATION_OVERLAYS, {
@@ -69,7 +69,7 @@ class Settings {
             config: true,
             default: true,
             type: Boolean,
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
 
         game.settings.register(MODULE_ID, this.#ICON_SIZE, {
@@ -83,7 +83,7 @@ class Settings {
                 step: 1,
                 initial: 42,
             }),
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
 
         game.settings.register(
@@ -97,7 +97,7 @@ class Settings {
                 default: RIGHT_CLICK_BEHAVIOR.DISABLE,
                 choices: rightClickBehaviors,
                 type: String,
-                onChange: () => game.dfreds.effectsPanel.refresh(),
+                onChange: () => game.dfreds.effectsPanel?.refresh(),
             },
         );
 
@@ -112,7 +112,7 @@ class Settings {
                 default: RIGHT_CLICK_BEHAVIOR.DIALOG,
                 choices: rightClickBehaviors,
                 type: String,
-                onChange: () => game.dfreds.effectsPanel.refresh(),
+                onChange: () => game.dfreds.effectsPanel?.refresh(),
             },
         );
 
@@ -124,7 +124,7 @@ class Settings {
             default: CONST.USER_ROLES.PLAYER,
             choices: userRoles,
             type: String,
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
 
         game.settings.register(MODULE_ID, this.#VIEW_PERMISSION, {
@@ -135,7 +135,7 @@ class Settings {
             default: CONST.USER_ROLES.PLAYER,
             choices: userRoles,
             type: String,
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
 
         game.settings.register(MODULE_ID, this.#VIEW_DETAILS_PERMISSION, {
@@ -146,7 +146,7 @@ class Settings {
             default: CONST.USER_ROLES.PLAYER,
             choices: userRoles,
             type: String,
-            onChange: () => game.dfreds.effectsPanel.refresh(),
+            onChange: () => game.dfreds.effectsPanel?.refresh(),
         });
     }
 

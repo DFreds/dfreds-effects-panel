@@ -52,7 +52,7 @@ declare global {
             User
         > {
         dfreds: {
-            effectsPanel: EffectsPanelApp;
+            effectsPanel?: EffectsPanelApp;
         };
     }
 

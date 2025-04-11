@@ -3,7 +3,7 @@ import { Listener } from "./index.ts";
 const RefreshToken: Listener = {
     listen: () => {
         Hooks.on("refreshToken", () => {
-            game.dfreds.effectsPanel.refresh();
+            game.dfreds.effectsPanel?.refresh();
         });
     },
 };
