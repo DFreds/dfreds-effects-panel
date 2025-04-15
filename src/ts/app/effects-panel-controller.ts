@@ -21,7 +21,6 @@ interface ViewData {
     itemSize: number;
 }
 
-// TODO consider cleaning this up to grab most from ActiveEffect
 interface EffectData extends ActiveEffect<SceneActor | Actor<null>> {
     timeLabel: string;
     isExpired: boolean;
@@ -435,13 +434,11 @@ class EffectsPanelController {
 
         if (isRightMB) return;
 
-        // TODO extract view logic
         const effectsPanel = document.getElementById("effects-panel");
         if (effectsPanel !== null) {
             dragElement(effectsPanel);
         }
 
-        // TODO put in private functions?
         function dragElement(element: HTMLElement) {
             let newYPosition = 0,
                 mouseYPosition = 0;
