@@ -27,7 +27,16 @@ declare global {
             EffectsCanvasGroup
         >;
         let canvas: Canvas;
-        let game: GameDFreds;
+        let game: Game<
+            Actor<null>,
+            Actors<Actor<null>>,
+            ChatMessage,
+            Combat,
+            Item<null>,
+            Macro,
+            Scene,
+            User
+        >;
         let ui: FoundryUI<
             ActorDirectory<Actor<null>>,
             ItemDirectory<Item<null>>,
@@ -40,20 +49,8 @@ declare global {
 
     type AnyFunction = (...args: any) => any;
 
-    interface GameDFreds
-        extends Game<
-            Actor<null>,
-            Actors<Actor<null>>,
-            ChatMessage,
-            Combat,
-            Item<null>,
-            Macro,
-            Scene,
-            User
-        > {
-        dfreds: {
-            effectsPanel?: EffectsPanelApp;
-        };
+    interface EffectsPanelModule extends Module {
+        effectsPanel: EffectsPanelApp;
     }
 
     const BUILD_MODE: "development" | "stage" | "production";

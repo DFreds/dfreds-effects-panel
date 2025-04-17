@@ -5,8 +5,6 @@ const Init: Listener = {
     listen: () => {
         Hooks.once("init", () => {
             new Settings().register();
-
-            game.dfreds = game.dfreds || {};
         });
     },
 };
