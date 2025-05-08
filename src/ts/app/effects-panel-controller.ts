@@ -8,6 +8,8 @@ import {
     USER_FLAGS,
 } from "../constants.ts";
 
+const { DialogV2 } = foundry.applications.api;
+
 interface ViewData {
     temporaryEffects: EffectData[];
     passiveEffects: EffectData[];
@@ -184,42 +186,44 @@ class EffectsPanelController {
                     effect: effect.name,
                 },
             );
-            await Dialog.wait(
-                {
+
+            await DialogV2.wait({
+                window: {
                     title: game.i18n.localize(
                         "EffectsPanel.DeleteOrDisableEffect",
                     ),
-                    content: `<h4>${content}?</h4>`,
-                    buttons: {
-                        delete: {
-                            icon: '<i class="fas fa-trash"></i>',
-                            label: game.i18n.localize("EffectsPanel.Delete"),
-                            callback: async () => {
-                                await effect.delete();
-                                this.#viewMvc.refresh();
-                            },
-                        },
-                        disable: {
-                            icon: effect.disabled
-                                ? '<i class="fas fa-check"></i>'
-                                : '<i class="fas fa-close"></i>',
-                            label: effect.disabled
-                                ? game.i18n.localize("EffectsPanel.Enable")
-                                : game.i18n.localize("EffectsPanel.Disable"),
-                            callback: async () => {
-                                await effect.update({
-                                    disabled: !effect.disabled,
-                                });
-                            },
-                        },
-                    },
+                    controls: [],
                 },
-                {
+                position: {
                     width: 300,
                     top: eventY,
                     left: eventX - 300 - 18,
                 },
-            );
+                content: `<p>${content}?</p>`,
+                buttons: [
+                    {
+                        action: "delete",
+                        label: game.i18n.localize("EffectsPanel.Delete"),
+                        icon: "fa-solid fa-trash",
+                        callback: async () => {
+                            await effect.delete();
+                            this.#viewMvc.refresh();
+                        },
+                    },
+                    {
+                        action: "disable",
+                        label: effect.disabled
+                            ? game.i18n.localize("EffectsPanel.Enable")
+                            : game.i18n.localize("EffectsPanel.Disable"),
+                        icon: effect.disabled ? "fas fa-check" : "fas fa-close",
+                        callback: async () => {
+                            await effect.update({
+                                disabled: !effect.disabled,
+                            });
+                        },
+                    },
+                ],
+            });
         } else if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DELETE) {
             await effect.delete();
             this.#viewMvc.refresh();

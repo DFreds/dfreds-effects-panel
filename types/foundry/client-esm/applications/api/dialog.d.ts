@@ -92,9 +92,9 @@ export default abstract class DialogV2<
         render,
         ...options
     }: {
-        rejectClose: boolean;
-        close: DialogV2CloseCallback;
-        render: DialogV2RenderCallback;
+        rejectClose?: boolean;
+        close?: DialogV2CloseCallback;
+        render?: DialogV2RenderCallback;
     } & Partial<DialogV2Configuration>): Promise<unknown>;
 }
 

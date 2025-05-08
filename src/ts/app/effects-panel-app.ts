@@ -1,6 +1,5 @@
 import { EffectsPanelController } from "./effects-panel-controller.ts";
 
-// TODO convert to v2
 class EffectsPanelApp extends Application {
     #controller: EffectsPanelController;
     #rootView: JQuery<HTMLElement>;
