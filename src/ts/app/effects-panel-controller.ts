@@ -10,6 +10,9 @@ import {
 
 const { DialogV2 } = foundry.applications.api;
 
+// @ts-expect-error not typed yet
+const { TextEditor } = foundry.applications.ux;
+
 interface ViewData {
     temporaryEffects: EffectData[];
     passiveEffects: EffectData[];
