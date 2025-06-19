@@ -136,33 +136,36 @@ $panel-tag-colors: (
                 }
             }
 
-            .icon {
-                @include icon-base;
-
-                .badge {
-                    bottom: 1px;
-                    left: 1px;
-                    position: absolute;
-                    color: $white;
-                    display: inline-block;
-                    text-shadow: 0px 0px 2px $black;
-
-                    &.unlimited {
-                        color: $lightblue;
-                    }
-                    &.expired {
-                        color: $orange;
-                    }
-                }
-
-                &.temporary {
-                    border-radius: 10%;
-                }
-                &.passive {
-                    border-radius: 50%;
-                }
+            .effect-icon-container {
                 &.effect-disabled {
                     filter: grayscale(0.8);
+                }
+
+                .icon {
+                    @include icon-base;
+
+                    .badge {
+                        bottom: 1px;
+                        left: 1px;
+                        position: absolute;
+                        color: $white;
+                        display: inline-block;
+                        text-shadow: 0px 0px 2px $black;
+
+                        &.unlimited {
+                            color: $lightblue;
+                        }
+                        &.expired {
+                            color: $orange;
+                        }
+                    }
+
+                    &.temporary {
+                        border-radius: 10%;
+                    }
+                    &.passive {
+                        border-radius: 50%;
+                    }
                 }
             }
         }
