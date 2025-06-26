@@ -21,20 +21,20 @@
                 </div>
             {{/if}}
         </div>
-        <div class="effect-icon-container {{#if disabled}}effect-disabled{{/if}}">
-            <div class="{{type}} icon"
+        <div class="effect-icon-container {{type}} {{#if disabled}}effect-disabled{{/if}}">
+            <div class="icon"
                  data-effect-id="{{effect._id}}"
-                 style="background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;">
-                {{#if showDurationOverlays}}
-                    {{#if effect.isExpired}}
-                        <i class="expired badge fas fa-clock"></i>
-                    {{else if effect.isTemporary}}
-                        <i class="badge fas fa-clock"></i>
-                    {{else}}
-                        <i class="unlimited badge fas fa-infinity"></i>
-                    {{/if}}
-                {{/if}}
+                 style="background-color: {{effect.tint.css}}; mask-image: url('{{effect.img}}'); background-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;">
             </div>
+            {{#if showDurationOverlays}}
+                {{#if effect.isExpired}}
+                    <i class="expired badge fas fa-clock"></i>
+                {{else if effect.isTemporary}}
+                    <i class="badge fas fa-clock"></i>
+                {{else}}
+                    <i class="unlimited badge fas fa-infinity"></i>
+                {{/if}}
+            {{/if}}
         </div>
     </div>
 {{/inline}}

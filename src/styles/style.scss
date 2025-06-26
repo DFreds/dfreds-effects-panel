@@ -137,34 +137,41 @@ $panel-tag-colors: (
             }
 
             .effect-icon-container {
+                @include icon-base;
+
                 &.effect-disabled {
                     filter: grayscale(0.8);
                 }
 
+                &.temporary {
+                    border-radius: 10%;
+                }
+                &.passive {
+                    border-radius: 50%;
+                }
+
                 .icon {
-                    @include icon-base;
+                    height: inherit;
+                    width: inherit;
+                    background-size: inherit;
+                    background-blend-mode: multiply;
+                    mask-size: contain;
+                    border-radius: inherit;
+                }
 
-                    .badge {
-                        bottom: 1px;
-                        left: 1px;
-                        position: absolute;
-                        color: $white;
-                        display: inline-block;
-                        text-shadow: 0px 0px 2px $black;
+                .badge {
+                    bottom: 1px;
+                    left: 1px;
+                    position: absolute;
+                    color: $white;
+                    display: inline-block;
+                    text-shadow: 0px 0px 2px $black;
 
-                        &.unlimited {
-                            color: $lightblue;
-                        }
-                        &.expired {
-                            color: $orange;
-                        }
+                    &.unlimited {
+                        color: $lightblue;
                     }
-
-                    &.temporary {
-                        border-radius: 10%;
-                    }
-                    &.passive {
-                        border-radius: 50%;
+                    &.expired {
+                        color: $orange;
                     }
                 }
             }
