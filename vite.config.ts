@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+// import packageJSON from "./package.json" with { type: "json" };
 
 const PACKAGE_ID = "modules/dfreds-effects-panel";
 
@@ -78,18 +79,21 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
                 fileName: "module",
             },
             rollupOptions: {
+                external: [
+                    // Foundry VTT internal modules
+                    /^@client\//,
+                    /^@common\//,
+                ],
                 output: {
-                    assetFileNames: ({ name }): string =>
-                        name === "style.css"
-                            ? "styles/dfreds-effects-panel.css"
-                            : name ?? "",
+                    assetFileNames: "styles/dfreds-effects-panel.css",
                     chunkFileNames: "[name].mjs",
                     entryFileNames: "dfreds-effects-panel.mjs",
-                    // manualChunks: {
-                    //     vendor: Object.keys(packageJSON.dependencies)
-                    //         ? Object.keys(packageJSON.dependencies)
-                    //         : [],
-                    // },
+                    manualChunks: {
+                        // vendor:
+                        //     buildMode === "production"
+                        //         ? Object.keys(packageJSON.dependencies)
+                        //         : [],
+                    },
                 },
             },
             target: "es2022",
@@ -110,8 +114,7 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
             port: 30001,
             open: false,
             proxy: {
-                "^(?!/modules/dfreds-effects-panel/)":
-                    "http://localhost:30000/",
+                "^(?!/modules/dfreds-effects-panel/)": "http://localhost:30000/",
                 "/socket.io": {
                     target: "ws://localhost:30000",
                     ws: true,
