@@ -20,7 +20,6 @@ interface ViewData {
     passiveEffects: EffectData[];
     disabledTemporaryEffects: EffectData[];
     disabledPassiveEffects: EffectData[];
-    topStyle: string;
     canViewEffectsPanel: boolean;
     canViewEffectDetails: boolean;
     showDurationOverlays: boolean;
@@ -54,14 +53,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration> = {
         id: "effects-panel",
         window: {
-            contentClasses: ["effect-panel"],
             frame: false,
             minimizable: false,
             resizable: false,
             positioned: true,
-        },
-        position: {
-            zIndex: 1000,
         },
     };
 
@@ -72,26 +67,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 "modules/dfreds-effects-panel/templates/effects-panel.hbs",
         },
     };
-
-    protected override _initializeApplicationOptions(
-        options: DeepPartial<ApplicationConfiguration>,
-    ): ApplicationConfiguration {
-        const topPosition = game.user.getFlag(
-            MODULE_ID,
-            USER_FLAGS.TOP_POSITION,
-        ) as number | undefined;
-
-        const newOptions = super._initializeApplicationOptions({
-            ...options,
-            position: {
-                ...options.position,
-                top: topPosition ?? 12,
-                left: this.#getLeftPosition(),
-            },
-        });
-
-        return newOptions;
-    }
 
     protected override async _prepareContext(
         _options: ApplicationRenderOptions,
