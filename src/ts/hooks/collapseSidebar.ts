@@ -4,7 +4,7 @@ import { getEffectsPanel } from "../utils/gets.ts";
 const CollapseSidebar: Listener = {
     listen: () => {
         Hooks.on("collapseSidebar", (_sidebar: any, _collapse: any) => {
-            getEffectsPanel()?.setFromRightPx({ animate: true });
+            getEffectsPanel()?.setFromLeftPx({ animate: true });
         });
     },
 };
