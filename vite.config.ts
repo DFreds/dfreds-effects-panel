@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-// import packageJSON from "./package.json" with { type: "json" };
+import packageJSON from "./package.json" with { type: "json" };
 
 const PACKAGE_ID = "modules/dfreds-effects-panel";
 
@@ -57,7 +57,7 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
             "./dfreds-effects-panel.mjs",
             `/** ${message} */\n\nwindow.global = window;\nimport "./src/ts/module.ts";\n`,
         );
-        // fs.writeFileSync("./vendor.mjs", `/** ${message} */\n`);
+        fs.writeFileSync("./vendor.mjs", `/** ${message} */\n`);
     }
 
     return {
@@ -89,10 +89,9 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
                     chunkFileNames: "[name].mjs",
                     entryFileNames: "dfreds-effects-panel.mjs",
                     manualChunks: {
-                        // vendor:
-                        //     buildMode === "production"
-                        //         ? Object.keys(packageJSON.dependencies)
-                        //         : [],
+                        vendor: Object.keys(packageJSON.dependencies)
+                            ? Object.keys(packageJSON.dependencies)
+                            : [],
                     },
                 },
             },

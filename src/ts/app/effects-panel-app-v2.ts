@@ -1,4 +1,8 @@
+// @ts-expect-error Has no types
+import Draggable from "draggable";
+
 import {
+    ApplicationClosingOptions,
     ApplicationConfiguration,
     ApplicationRenderOptions,
 } from "@client/applications/_types.mjs";
@@ -41,6 +45,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #settings: Settings;
     #rootView: JQuery<HTMLElement>;
+    #draggable: Draggable;
 
     constructor(options?: DeepPartial<ApplicationConfiguration>) {
         super(options);
@@ -114,31 +119,63 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         } as ViewData;
     }
 
+    protected override _onFirstRender(
+        _context: object,
+        _options: ApplicationRenderOptions,
+    ): void {
+        this.#rootView = $(this.element);
+    }
+
     protected override async _onRender(
         context: object,
         options: ApplicationRenderOptions,
     ): Promise<void> {
         await super._onRender(context, options);
-        this.#rootView = $(this.element);
 
         this.#initClickListeners();
-        this.setFromLeftPx({ animate: false });
-        this.#setFromTopPx();
+
+        const leftPosition = this.#getLeftPosition();
+        this.#draggable = new Draggable(this.element, {
+            handle: "#effects-panel-drag-handler",
+            limit: {
+                x: [leftPosition, leftPosition],
+                y: [0, window.outerHeight - 42],
+            },
+            onDragEnd: (
+                _element: HTMLElement,
+                _x: number,
+                y: number,
+                _event: MouseEvent,
+            ) => {
+                game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, y);
+            },
+        });
+
+        this.#draggable.set({
+            left: leftPosition,
+            top: this.#getTopPosition(),
+        });
+
+        this.setPosition({
+            left: leftPosition,
+            top: this.#getTopPosition(),
+        });
+    }
+
+    protected override _preClose(
+        _options: ApplicationClosingOptions,
+    ): Promise<void> {
+        this.#draggable.destroy();
+        return Promise.resolve();
     }
 
     setFromLeftPx({ animate }: { animate?: boolean }): void {
         const leftPosition = this.#getLeftPosition();
 
         if (animate) {
-            this.#contentSection.animate(
-                { left: leftPosition },
-                { duration: 200 },
-            );
+            this.#rootView.animate({ left: leftPosition }, { duration: 200 });
         } else {
-            this.#contentSection.css(
-                "left",
-                `${leftPosition}px`,
-            );
+            this.#rootView.css("left", `${leftPosition}px`);
         }
     }
 
@@ -149,7 +186,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const isWebrtcRight =
             ui.webrtc?.element?.classList.contains("right") ?? false;
 
-        const padding = 26;
+        const padding = 18;
         const sidebarWidth = isSidebarExpanded ? 348 : 48;
         const webrtcWidth = isWebrtcRight ? 300 : 0;
         const { uiScale } = game.settings.get(
@@ -167,7 +204,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return leftPosition;
     }
 
-    #setFromTopPx(): void {
+    #getTopPosition(): number {
         const topPosition = game.user.getFlag(
             MODULE_ID,
             USER_FLAGS.TOP_POSITION,
@@ -176,13 +213,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, 12);
         }
 
-        this.#contentSection.css("top", `${topPosition ?? 12}px`);
+        return topPosition ?? 12;
     }
 
     #initClickListeners(): void {
-        this.#icons.on("contextmenu", this.#onIconRightClick.bind(this));
-        this.#icons.on("dblclick", this.#onIconDoubleClick.bind(this));
-        this.#dragHandler.on("mousedown", this.#onMouseDown.bind(this));
+        const icons = this.#rootView.find("div[data-effect-id]");
+        icons.on("contextmenu", this.#onIconRightClick.bind(this));
+        icons.on("dblclick", this.#onIconDoubleClick.bind(this));
     }
 
     async #onIconRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
@@ -288,73 +325,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         if (!effect) return;
 
         effect.sheet?.render(true);
-    }
-
-    #onMouseDown(event: Event): void {
-        event.preventDefault();
-        let isRightMB = false;
-        if ("which" in event) {
-            // Gecko (Firefox), Webkit(Safari/Chrome) & Opera
-            isRightMB = event.which === 3;
-        } else if ("button" in event) {
-            // IE, Opera
-            isRightMB = event.button === 2;
-        }
-
-        if (isRightMB) return;
-
-        const effectsPanel = document.getElementById("effects-panel");
-        if (effectsPanel !== null) {
-            dragElement(effectsPanel);
-        }
-
-        function dragElement(element: HTMLElement) {
-            let newYPosition = 0,
-                mouseYPosition = 0;
-            let timer: NodeJS.Timeout;
-
-            element.onmousedown = dragMouseDown;
-
-            function dragMouseDown(event: MouseEvent) {
-                event = event || window.event;
-                event.preventDefault();
-                // get the mouse cursor position at startup
-                mouseYPosition = event.clientY;
-
-                document.onmouseup = closeDragElement;
-
-                // call a function whenever the cursor moves
-                timer = setTimeout(() => {
-                    document.onmousemove = elementDrag;
-                }, 200);
-            }
-
-            function elementDrag(event: MouseEvent) {
-                event.preventDefault();
-                // calculate the new cursor position:
-                newYPosition = mouseYPosition - event.clientY;
-                mouseYPosition = event.clientY;
-                // set the element's new position:
-                element.style.top = element.offsetTop - newYPosition + "px";
-            }
-
-            function closeDragElement() {
-                // stop moving when mouse button is released:
-                element.onmousedown = null;
-                document.onmouseup = null;
-                document.onmousemove = null;
-                clearTimeout(timer);
-
-                const topPosition = element.offsetTop - newYPosition;
-                element.style.top = topPosition + "px";
-
-                game.user.setFlag(
-                    MODULE_ID,
-                    USER_FLAGS.TOP_POSITION,
-                    topPosition,
-                );
-            }
-        }
     }
 
     get #actorEffects(): EffectData[] {
@@ -590,18 +560,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const endingTurn = (duration.startTurn || 0) + duration.turns;
 
         return endingTurn - currentTurn;
-    }
-
-    get #contentSection(): JQuery<HTMLElement> {
-        return this.#rootView.find("#effects-panel-content");
-    }
-
-    get #icons(): JQuery<HTMLElement> {
-        return this.#rootView.find("div[data-effect-id]");
-    }
-
-    get #dragHandler(): JQuery<HTMLElement> {
-        return this.#rootView.find("#effects-panel-drag-handler");
     }
 }
 

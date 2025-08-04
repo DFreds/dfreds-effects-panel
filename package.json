@@ -91,5 +91,7 @@
         "vite-tsconfig-paths": "^5.1.4",
         "yargs": "^17.7.2"
     },
-    "dependencies": {}
+    "dependencies": {
+        "draggable": "^4.2.0"
+    }
 }

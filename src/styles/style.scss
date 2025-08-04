@@ -68,9 +68,14 @@ $panel-tag-colors: (
     }
 }
 
-.effect-panel {
-    position: fixed;
+#effects-panel {
+    position: absolute;
     z-index: 1000;
+}
+
+#effects-panel-content {
+    // position: fixed;
+    // z-index: 1000;
 
     .effects-panel-container {
         display: flex;
