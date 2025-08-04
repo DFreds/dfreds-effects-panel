@@ -218,8 +218,24 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #initClickListeners(): void {
         const icons = this.#rootView.find("div[data-effect-id]");
+        icons.on("click", this.#onIconClick.bind(this));
         icons.on("contextmenu", this.#onIconRightClick.bind(this));
         icons.on("dblclick", this.#onIconDoubleClick.bind(this));
+    }
+
+    #onIconClick(event: Event): void {
+        if (event.currentTarget === null) return;
+
+        const $target = $(event.currentTarget);
+        const $effectItem = $target.closest('.effect-item');
+        const $effectInfo = $effectItem.find('.effect-info');
+
+        if ($effectInfo.is(':visible')) {
+            $effectInfo.hide();
+        } else {
+            this.#rootView.find('.effect-info').hide();
+            $effectInfo.show();
+        }
     }
 
     async #onIconRightClick(event: JQuery.ContextMenuEvent): Promise<void> {

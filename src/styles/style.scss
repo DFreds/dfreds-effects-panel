@@ -74,9 +74,6 @@ $panel-tag-colors: (
 }
 
 #effects-panel-content {
-    // position: fixed;
-    // z-index: 1000;
-
     .effects-panel-container {
         display: flex;
         flex-direction: column;
@@ -92,10 +89,8 @@ $panel-tag-colors: (
             justify-content: flex-end;
             height: 46px;
             position: relative;
-
-            &:hover .effect-info {
-                display: block;
-            }
+            border-radius: 4px;
+            padding: 2px;
 
             .effect-info {
                 background-color: $black-75percent;
@@ -141,6 +136,17 @@ $panel-tag-colors: (
 
             .effect-icon-container {
                 @include icon-base;
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow:
+                        0 0 0 1px $silver,
+                        0 0 0 2px $gray,
+                        0 0 8px rgba(255, 255, 255, 0.4),
+                        inset 0 0 4px rgba(0, 0, 0, 0.5);
+                }
 
                 &.effect-disabled {
                     filter: grayscale(0.8);
