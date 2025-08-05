@@ -169,14 +169,9 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return Promise.resolve();
     }
 
-    setFromLeftPx({ animate }: { animate?: boolean }): void {
+    animateFromLeftPx(): void {
         const leftPosition = this.#getLeftPosition();
-
-        if (animate) {
-            this.#rootView.animate({ left: leftPosition }, { duration: 200 });
-        } else {
-            this.#rootView.css("left", `${leftPosition}px`);
-        }
+        this.#rootView.animate({ left: leftPosition }, { duration: 200 });
     }
 
     #getLeftPosition(): number {
@@ -227,13 +222,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         if (event.currentTarget === null) return;
 
         const $target = $(event.currentTarget);
-        const $effectItem = $target.closest('.effect-item');
-        const $effectInfo = $effectItem.find('.effect-info');
+        const $effectItem = $target.closest(".effect-item");
+        const $effectInfo = $effectItem.find(".effect-info");
 
-        if ($effectInfo.is(':visible')) {
+        if ($effectInfo.is(":visible")) {
             $effectInfo.hide();
         } else {
-            this.#rootView.find('.effect-info').hide();
+            this.#rootView.find(".effect-info").hide();
             $effectInfo.show();
         }
     }

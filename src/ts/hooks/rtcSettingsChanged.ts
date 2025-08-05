@@ -4,7 +4,7 @@ import { getEffectsPanel } from "../utils/gets.ts";
 const RtcSettingsChanged: Listener = {
     listen: () => {
         Hooks.on("rtcSettingsChanged", () => {
-            getEffectsPanel()?.setFromLeftPx({ animate: true });
+            getEffectsPanel()?.animateFromLeftPx();
         });
     },
 };
