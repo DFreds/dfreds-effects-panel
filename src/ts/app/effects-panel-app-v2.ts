@@ -194,7 +194,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const rightPosition = (padding + sidebarWidth + webrtcWidth) * uiScale;
 
         const panelWidth = 42;
-        const leftPosition = window.outerWidth - rightPosition - panelWidth;
+        const leftPosition = window.innerWidth - rightPosition - panelWidth;
 
         return leftPosition;
     }
