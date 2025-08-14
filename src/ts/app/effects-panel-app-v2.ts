@@ -84,9 +84,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const effects = this.#actorEffects;
 
         for (const effect of effects) {
-            effect.description = await TextEditor.enrichHTML(
-                effect.description,
-            );
+            effect.description = await TextEditor.enrichHTML(effect.description, { relativeTo: effect });
             if (effect.disabled && this.#settings.showDisabledEffects) {
                 if (effect.isTemporary) {
                     disabledTemporaryEffects.push(effect);
