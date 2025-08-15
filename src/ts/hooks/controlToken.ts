@@ -1,12 +1,12 @@
 import { getEffectsPanel } from "../utils/gets.ts";
 import { Listener } from "./index.ts";
 
-const RefreshToken: Listener = {
+const ControlToken: Listener = {
     listen: () => {
-        Hooks.on("refreshToken", () => {
+        Hooks.on("controlToken", () => {
             getEffectsPanel()?.refresh();
         });
     },
 };
 
-export { RefreshToken };
+export { ControlToken };

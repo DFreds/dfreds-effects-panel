@@ -3,7 +3,7 @@ import { Init } from "./init.ts";
 import { RtcSettingsChanged } from "./rtcSettingsChanged.ts";
 import { CollapseSidebar } from "./collapseSidebar.ts";
 import { Setup } from "./setup.ts";
-import { RefreshToken } from "./refreshToken.ts";
+import { ControlToken } from "./controlToken.ts";
 
 interface Listener {
     listen(): void;
@@ -17,7 +17,7 @@ const HooksEffectsPanel: Listener = {
             CanvasReady,
             CollapseSidebar,
             RtcSettingsChanged,
-            RefreshToken,
+            ControlToken,
         ];
 
         for (const listener of listeners) {
