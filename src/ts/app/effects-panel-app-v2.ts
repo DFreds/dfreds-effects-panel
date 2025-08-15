@@ -137,7 +137,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const leftPosition = this.#getLeftPosition();
         this.#draggable = new Draggable(this.element, {
-            handle: "#effects-panel-drag-handler",
             limit: {
                 x: [leftPosition, leftPosition],
                 y: [0, window.outerHeight - 42],

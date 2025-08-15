@@ -41,66 +41,64 @@
 
 <section id="effects-panel" class="effect-panel">
     {{#if canViewEffectsPanel}}
-        <div id="effects-panel-drag-handler">
-            <div class="effects-panel-container">
-                {{!-- Temporary Effects --}}
-                {{#each temporaryEffects as |effect|}}
-                    {{> effect-item
-                        effect=effect
-                        canViewEffectDetails=@root.canViewEffectDetails
-                        showDurationOverlays=@root.showDurationOverlays
-                        iconSize=@root.iconSize
-                        itemSize=@root.itemSize
-                        type="temporary"
-                    }}
-                {{/each}}
+        <div class="effects-panel-container">
+            {{!-- Temporary Effects --}}
+            {{#each temporaryEffects as |effect|}}
+                {{> effect-item
+                    effect=effect
+                    canViewEffectDetails=@root.canViewEffectDetails
+                    showDurationOverlays=@root.showDurationOverlays
+                    iconSize=@root.iconSize
+                    itemSize=@root.itemSize
+                    type="temporary"
+                }}
+            {{/each}}
 
-                {{#if (and temporaryEffects.length passiveEffects.length)}}
-                    <hr style="width: {{effectsPanelIconSize}}px;" />
-                {{/if}}
+            {{#if (and temporaryEffects.length passiveEffects.length)}}
+                <hr style="width: {{effectsPanelIconSize}}px;" />
+            {{/if}}
 
-                {{!-- Passive Effects --}}
-                {{#each passiveEffects as |effect|}}
-                    {{> effect-item
-                        effect=effect
-                        canViewEffectDetails=@root.canViewEffectDetails
-                        showDurationOverlays=@root.showDurationOverlays
-                        iconSize=@root.iconSize
-                        itemSize=@root.itemSize
-                        type="passive"
-                    }}
-                {{/each}}
+            {{!-- Passive Effects --}}
+            {{#each passiveEffects as |effect|}}
+                {{> effect-item
+                    effect=effect
+                    canViewEffectDetails=@root.canViewEffectDetails
+                    showDurationOverlays=@root.showDurationOverlays
+                    iconSize=@root.iconSize
+                    itemSize=@root.itemSize
+                    type="passive"
+                }}
+            {{/each}}
 
-                {{#if (and (or disabledTemporaryEffects.length disabledPassiveEffects.length) (or temporaryEffects.length passiveEffects.length))}}
-                    <hr style="width: {{effectsPanelIconSize}}px;" />
-                {{/if}}
+            {{#if (and (or disabledTemporaryEffects.length disabledPassiveEffects.length) (or temporaryEffects.length passiveEffects.length))}}
+                <hr style="width: {{effectsPanelIconSize}}px;" />
+            {{/if}}
 
-                {{!-- Disabled Temporary Effects --}}
-                {{#each disabledTemporaryEffects as |effect|}}
-                    {{> effect-item
-                        effect=effect
-                        canViewEffectDetails=@root.canViewEffectDetails
-                        showDurationOverlays=@root.showDurationOverlays
-                        iconSize=@root.iconSize
-                        itemSize=@root.itemSize
-                        type="temporary"
-                        disabled=true
-                    }}
-                {{/each}}
+            {{!-- Disabled Temporary Effects --}}
+            {{#each disabledTemporaryEffects as |effect|}}
+                {{> effect-item
+                    effect=effect
+                    canViewEffectDetails=@root.canViewEffectDetails
+                    showDurationOverlays=@root.showDurationOverlays
+                    iconSize=@root.iconSize
+                    itemSize=@root.itemSize
+                    type="temporary"
+                    disabled=true
+                }}
+            {{/each}}
 
-                {{!-- Disabled Passive Effects --}}
-                {{#each disabledPassiveEffects as |effect|}}
-                    {{> effect-item
-                        effect=effect
-                        canViewEffectDetails=@root.canViewEffectDetails
-                        showDurationOverlays=@root.showDurationOverlays
-                        iconSize=@root.iconSize
-                        itemSize=@root.itemSize
-                        type="passive"
-                        disabled=true
-                    }}
-                {{/each}}
-            </div>
+            {{!-- Disabled Passive Effects --}}
+            {{#each disabledPassiveEffects as |effect|}}
+                {{> effect-item
+                    effect=effect
+                    canViewEffectDetails=@root.canViewEffectDetails
+                    showDurationOverlays=@root.showDurationOverlays
+                    iconSize=@root.iconSize
+                    itemSize=@root.itemSize
+                    type="passive"
+                    disabled=true
+                }}
+            {{/each}}
         </div>
     {{/if}}
 </section>
