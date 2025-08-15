@@ -3,7 +3,9 @@ import { Listener } from "./index.ts";
 const Setup: Listener = {
     listen: () => {
         Hooks.on("setup", () => {
-            CONFIG.debug.hooks = BUILD_MODE === "development";
+            if (BUILD_MODE === "development") {
+                CONFIG.debug.hooks = true;
+            }
         });
     },
 };
