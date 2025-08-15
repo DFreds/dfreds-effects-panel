@@ -148,6 +148,9 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 y: number,
                 _event: MouseEvent,
             ) => {
+                setTimeout(() => {
+                    this.#resetZIndex();
+                }, 100);
                 game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, y);
             },
         });
@@ -212,6 +215,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return topPosition ?? 12;
     }
 
+    #resetZIndex(): void {
+        this.element.style.zIndex = "30";
+    }
+
     #initClickListeners(): void {
         const icons = this.#rootView.find("div[data-effect-id]");
         icons.on("click", this.#onIconClick.bind(this));
@@ -221,6 +228,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #onIconClick(event: Event): void {
         if (event.currentTarget === null) return;
+
+        this.#resetZIndex();
 
         const $target = $(event.currentTarget);
         const $effectItem = $target.closest(".effect-item");
@@ -236,6 +245,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     async #onIconRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
         if (event.currentTarget === null) return;
+
+        this.#resetZIndex();
 
         if (game.user.role < this.#settings.allowRightClick) return;
 
