@@ -141,6 +141,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 x: [leftPosition, leftPosition],
                 y: [0, window.outerHeight - 42],
             },
+            threshold: 10,
             onDragEnd: (
                 _element: HTMLElement,
                 _x: number,
