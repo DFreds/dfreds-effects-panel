@@ -185,8 +185,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const isWebrtcRight =
             ui.webrtc?.element?.classList.contains("right") ?? false;
 
-        const padding = 18;
-        const sidebarWidth = isSidebarExpanded ? 348 : 48;
         const webrtcWidth = isWebrtcRight ? 300 : 0;
         const { uiScale } = game.settings.get(
             "core",
@@ -195,12 +193,82 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             uiScale: number;
         };
 
-        const rightPosition = (padding + sidebarWidth + webrtcWidth) * uiScale;
+        const panelWidth = $("#effects-panel").width() ?? 42;
+        const padding = 18;
 
-        const panelWidth = 42;
-        const leftPosition = window.innerWidth - rightPosition - panelWidth;
+        const rightPosition = isSidebarExpanded
+            ? this.#getExpandedRightPosition({
+                  padding,
+                  webrtcWidth,
+                  panelWidth,
+                  uiScale,
+              })
+            : this.#getCollapsedRightPosition({
+                  padding,
+                  webrtcWidth,
+                  panelWidth,
+                  uiScale,
+              });
+        const leftPosition = window.innerWidth - rightPosition;
 
         return leftPosition;
+    }
+
+    #getCollapsedRightPosition({
+        padding,
+        webrtcWidth,
+        panelWidth,
+        uiScale,
+    }: {
+        padding: number;
+        webrtcWidth: number;
+        panelWidth: number;
+        uiScale: number;
+    }): number {
+        const sidebarWidth = 48;
+        return (padding + sidebarWidth + webrtcWidth + panelWidth) * uiScale;
+    }
+
+    #getExpandedRightPosition({
+        padding,
+        webrtcWidth,
+        panelWidth,
+        uiScale,
+    }: {
+        padding: number;
+        webrtcWidth: number;
+        panelWidth: number;
+        uiScale: number;
+    }): number {
+        const expandedSidebarWidthPx =
+            window
+                .getComputedStyle(
+                    document.getElementById("sidebar") as HTMLElement,
+                )
+                .getPropertyValue("--sidebar-width") ?? "348px";
+        const expandedSidebarWidth = parseInt(
+            expandedSidebarWidthPx.replace("px", ""),
+        );
+        const sidebarScrollGutterPx =
+            window
+                .getComputedStyle(
+                    document.getElementById("sidebar") as HTMLElement,
+                )
+                .getPropertyValue("--sidebar-scroll-gutter") ?? "12px";
+        const sidebarScrollGutter = parseInt(
+            sidebarScrollGutterPx.replace("px", ""),
+        );
+        const sidebarTabsWidth = $("#sidebar-tabs").width() ?? 32;
+
+        return (
+            (padding +
+                expandedSidebarWidth +
+                webrtcWidth +
+                sidebarTabsWidth +
+                sidebarScrollGutter +
+                panelWidth) *
+            uiScale
+        );
     }
 
     #getTopPosition(): number {
