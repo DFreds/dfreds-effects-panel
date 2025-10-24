@@ -120,10 +120,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         } as ViewData;
     }
 
-    protected override _onFirstRender(
+    protected override async _onFirstRender(
         _context: object,
         _options: ApplicationRenderOptions,
-    ): void {
+    ): Promise<void> {
         this.#rootView = $(this.element);
     }
 
