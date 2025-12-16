@@ -162,10 +162,18 @@ $panel-tag-colors: (
                 .icon {
                     height: inherit;
                     width: inherit;
-                    background-size: inherit;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
                     background-blend-mode: multiply;
+                    mask-repeat: no-repeat;
+                    mask-position: center;
                     mask-size: contain;
+                    -webkit-mask-repeat: no-repeat;
+                    -webkit-mask-position: center;
+                    -webkit-mask-size: contain;
                     border-radius: inherit;
+                    align-self: center;
                 }
 
                 .badge {

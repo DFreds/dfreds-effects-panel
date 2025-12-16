@@ -29,6 +29,7 @@ interface ViewData {
     showDurationOverlays: boolean;
     iconSize: number;
     itemSize: number;
+    badgeSize: number;
 }
 
 type SceneActor = Actor<TokenDocument<Scene> | null> | null;
@@ -105,6 +106,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             }
         }
 
+        const iconSize = this.#settings.iconSize;
+        const itemSize = iconSize + 8;
+        const badgeSize = Math.max(8, Math.round(iconSize * (15 / 42)));
+
         return {
             temporaryEffects,
             passiveEffects,
@@ -115,8 +120,9 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             canViewEffectDetails:
                 game.user.role >= this.#settings.viewDetailsPermission,
             showDurationOverlays: this.#settings.showDurationOverlays,
-            iconSize: this.#settings.iconSize,
-            itemSize: this.#settings.iconSize + 8,
+            iconSize,
+            itemSize,
+            badgeSize,
         } as ViewData;
     }
 
