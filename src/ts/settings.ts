@@ -122,13 +122,13 @@ class Settings {
 
         game.settings.register(
             MODULE_ID,
-            this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
+            this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
             {
-                name: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehavior",
-                hint: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehaviorHint",
+                name: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehavior",
+                hint: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehaviorHint",
                 scope: "client",
                 config: true,
-                default: RIGHT_CLICK_BEHAVIOR.DELETE,
+                default: RIGHT_CLICK_BEHAVIOR.DISABLE,
                 choices: rightClickBehaviors,
                 type: String,
                 onChange: () => getEffectsPanel()?.refresh(),
@@ -137,13 +137,13 @@ class Settings {
 
         game.settings.register(
             MODULE_ID,
-            this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
+            this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
             {
-                name: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehavior",
-                hint: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehaviorHint",
+                name: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehavior",
+                hint: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehaviorHint",
                 scope: "client",
                 config: true,
-                default: RIGHT_CLICK_BEHAVIOR.DISABLE,
+                default: RIGHT_CLICK_BEHAVIOR.DELETE,
                 choices: rightClickBehaviors,
                 type: String,
                 onChange: () => getEffectsPanel()?.refresh(),
