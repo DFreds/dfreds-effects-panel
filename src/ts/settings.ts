@@ -190,7 +190,7 @@ class Settings {
      * @returns a number representing the icon size
      */
     get iconSize(): number {
-        return game.settings.get(MODULE_ID, this.#ICON_SIZE) as number;
+        return game.settings.get(MODULE_ID, this.#ICON_SIZE) as unknown as number;
     }
 
     /**
@@ -202,7 +202,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
-        ) as string;
+        ) as unknown as string;
     }
 
     /**
@@ -214,7 +214,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
-        ) as string;
+        ) as unknown as string;
     }
 
 
@@ -227,7 +227,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
-        ) as string;
+        ) as unknown as string;
     }
 
     /**
@@ -239,7 +239,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
-        ) as string;
+        ) as unknown as string;
     }
 
     /**
@@ -251,7 +251,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#SHOW_DISABLED_EFFECTS,
-        ) as boolean;
+        ) as unknown as boolean;
     }
 
     /**
@@ -263,7 +263,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#SHOW_PASSIVE_EFFECTS,
-        ) as boolean;
+        ) as unknown as boolean;
     }
 
     /**
@@ -275,7 +275,7 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#SHOW_DURATION_OVERLAYS,
-        ) as boolean;
+        ) as unknown as boolean;
     }
 
     /**
@@ -285,7 +285,7 @@ class Settings {
      */
     get allowRightClick(): number {
         return parseInt(
-            game.settings.get(MODULE_ID, this.#ALLOW_RIGHT_CLICK) as string,
+            game.settings.get(MODULE_ID, this.#ALLOW_RIGHT_CLICK) as unknown as string,
         );
     }
 
@@ -296,7 +296,7 @@ class Settings {
      */
     get viewPermission(): number {
         return parseInt(
-            game.settings.get(MODULE_ID, this.#VIEW_PERMISSION) as string,
+            game.settings.get(MODULE_ID, this.#VIEW_PERMISSION) as unknown as string,
         );
     }
 
@@ -310,7 +310,7 @@ class Settings {
             game.settings.get(
                 MODULE_ID,
                 this.#VIEW_DETAILS_PERMISSION,
-            ) as string,
+            ) as unknown as string,
         );
     }
 }
