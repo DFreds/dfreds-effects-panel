@@ -21,9 +21,12 @@
                 </div>
             {{/if}}
         </div>
-        <div class="effect-icon-container {{type}} {{#if disabled}}effect-disabled{{/if}}" style="height: {{iconSize}}px; width: {{iconSize}}px;">
+        <div
+            class="effect-icon-container {{type}} {{#if disabled}}effect-disabled{{/if}}"
+            data-effect-id="{{effect._id}}"
+            style="height: {{iconSize}}px; width: {{iconSize}}px;"
+        >
             <div class="icon"
-                 data-effect-id="{{effect._id}}"
                  style="background-color: {{effect.tint.css}}; background-image: url('{{effect.img}}'); mask-image: url('{{effect.img}}'); -webkit-mask-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;">
             </div>
             {{#if showDurationOverlays}}
