@@ -6,6 +6,9 @@ class Settings {
     #PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR = "passiveEffectsRightClickBehavior";
     #TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR =
         "temporaryEffectsRightClickBehavior";
+    #PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR = "passiveEffectsShiftRightClickBehavior";
+    #TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR =
+        "temporaryEffectsShiftRightClickBehavior";
 
     #ICON_SIZE = "iconSize";
     #SHOW_DISABLED_EFFECTS = "showDisabledEffects";
@@ -117,6 +120,36 @@ class Settings {
             },
         );
 
+        game.settings.register(
+            MODULE_ID,
+            this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
+            {
+                name: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehavior",
+                hint: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehaviorHint",
+                scope: "client",
+                config: true,
+                default: RIGHT_CLICK_BEHAVIOR.DELETE,
+                choices: rightClickBehaviors,
+                type: String,
+                onChange: () => getEffectsPanel()?.refresh(),
+            },
+        );
+
+        game.settings.register(
+            MODULE_ID,
+            this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
+            {
+                name: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehavior",
+                hint: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehaviorHint",
+                scope: "client",
+                config: true,
+                default: RIGHT_CLICK_BEHAVIOR.DISABLE,
+                choices: rightClickBehaviors,
+                type: String,
+                onChange: () => getEffectsPanel()?.refresh(),
+            },
+        );
+
         game.settings.register(MODULE_ID, this.#ALLOW_RIGHT_CLICK, {
             name: "EffectsPanel.SettingAllowRightClick",
             hint: "EffectsPanel.SettingAllowRightClickHint",
@@ -181,6 +214,31 @@ class Settings {
         return game.settings.get(
             MODULE_ID,
             this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
+        ) as string;
+    }
+
+
+    /**
+     * Returns the game setting for the passive shift right-click behavior
+     *
+     * @returns the string representing the behavior
+     */
+    get passiveEffectsShiftRightClickBehavior(): string {
+        return game.settings.get(
+            MODULE_ID,
+            this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
+        ) as string;
+    }
+
+    /**
+     * Returns the game setting for the temporary shift right-click behavior
+     *
+     * @returns the string representing the behavior
+     */
+    get temporaryEffectsShiftRightClickBehavior(): string {
+        return game.settings.get(
+            MODULE_ID,
+            this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
         ) as string;
     }
 

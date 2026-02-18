@@ -17,10 +17,17 @@
         "SettingShowDurationOverlaysHint": "If enabled, an overlay icon will be shown over each effect to indicate its duration.",
         "SettingIconSize": "Icon Size",
         "SettingIconSizeHint": "This defines the size of the icons in the effects panel.",
+
         "SettingPassiveEffectsRightClickBehavior": "Passive Effects Right-Click Behavior",
         "SettingPassiveEffectsRightClickBehaviorHint": "This defines the behavior when right-clicking a passive effect.",
         "SettingTemporaryEffectsRightClickBehavior": "Temporary Effects Right-Click Behavior",
         "SettingTemporaryEffectsRightClickBehaviorHint": "This defines the behavior when right-clicking a temporary effect.",
+
+        "SettingPassiveEffectsShiftRightClickBehavior": "Passive Effects Shift Right-Click Behavior",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "This defines the behavior when shift right-clicking a passive effect.",
+        "SettingTemporaryEffectsShiftRightClickBehavior": "Temporary Effects Shift Right-Click Behavior",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "This defines the behavior when shift right-clicking a temporary effect.",
+
         "SettingAllowRightClick": "Allow Right-Click",
         "SettingAllowRightClickHint": "This defines the minimum permission level to execute the right-click behavior on an effect. Setting this to None will never allow right-clicking an effect.",
         "SettingViewPermission": "View Permission",

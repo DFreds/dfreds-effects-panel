@@ -204,17 +204,17 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const rightPosition = isSidebarExpanded
             ? this.#getExpandedRightPosition({
-                  padding,
-                  webrtcWidth,
-                  panelWidth,
-                  uiScale,
-              })
+                padding,
+                webrtcWidth,
+                panelWidth,
+                uiScale,
+            })
             : this.#getCollapsedRightPosition({
-                  padding,
-                  webrtcWidth,
-                  panelWidth,
-                  uiScale,
-              });
+                padding,
+                webrtcWidth,
+                panelWidth,
+                uiScale,
+            });
         const leftPosition = window.innerWidth - rightPosition;
 
         return leftPosition;
@@ -333,29 +333,39 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (!effect) return;
 
-        if (effect.isTemporary) {
-            await this.#handleEffectChange(
-                event.clientX,
-                event.clientY,
-                effect,
-                this.#settings.temporaryEffectsRightClickBehavior,
-            );
+        const rightClickBehavior = this.#getRightClickBehavior({ isTemporary: effect.isTemporary, isShift: event.shiftKey });
+
+        await this.#handleEffectChange({
+            eventX: event.clientX,
+            eventY: event.clientY,
+            effect,
+            rightClickBehavior,
+        });
+    }
+
+    #getRightClickBehavior({ isTemporary, isShift }: { isTemporary: boolean, isShift: boolean }): string {
+        if (isTemporary && isShift) {
+            return this.#settings.temporaryEffectsShiftRightClickBehavior;
+        } else if (!isTemporary && isShift) {
+            return this.#settings.passiveEffectsShiftRightClickBehavior;
+        } else if (isTemporary) {
+            return this.#settings.temporaryEffectsRightClickBehavior;
         } else {
-            await this.#handleEffectChange(
-                event.clientX,
-                event.clientY,
-                effect,
-                this.#settings.passiveEffectsRightClickBehavior,
-            );
+            return this.#settings.passiveEffectsRightClickBehavior;
         }
     }
 
-    async #handleEffectChange(
-        eventX: number,
-        eventY: number,
-        effect: ActiveEffect<SceneActor | Actor<null>>,
-        rightClickBehavior: string,
-    ): Promise<void> {
+    async #handleEffectChange({
+        eventX,
+        eventY,
+        effect,
+        rightClickBehavior,
+    }: {
+        eventX: number;
+        eventY: number;
+        effect: ActiveEffect<SceneActor | Actor<null>>;
+        rightClickBehavior: string;
+    }): Promise<void> {
         if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DIALOG) {
             const content = game.i18n.format(
                 "EffectsPanel.DeleteOrDisableEffectContent",

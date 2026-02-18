@@ -17,10 +17,17 @@
         "SettingShowDurationOverlaysHint": "Se abilitato, verrà mostrata un'icona sovrapposta su ciascun effetto per indicarne la durata.",
         "SettingIconSize": "Dimensione icona",
         "SettingIconSizeHint": "Definisce la dimensione delle icone nel pannello degli effetti.",
+
         "SettingPassiveEffectsRightClickBehavior": "Effetti passivi Comportamento del tasto destro",
         "SettingPassiveEffectsRightClickBehaviorHint": "Definisce il comportamento quando si fa clic con il pulsante destro del mouse su un effetto passivo.",
         "SettingTemporaryEffectsRightClickBehavior": "Effetti temporanei Comportamento del tasto destro",
         "SettingTemporaryEffectsRightClickBehaviorHint": "Definisce il comportamento quando si fa clic con il pulsante destro del mouse su un effetto temporaneo.",
+
+        "SettingPassiveEffectsShiftRightClickBehavior": "Effetti passivi Comportamento del tasto destro con Shift",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Definisce il comportamento quando si fa clic con il pulsante destro del mouse su un effetto passivo con la tecla Shift.",
+        "SettingTemporaryEffectsShiftRightClickBehavior": "Effetti temporanei Comportamento del tasto destro con Shift",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Definisce il comportamento quando si fa clic con il pulsante destro del mouse su un effetto temporaneo con la tecla Shift.",
+
         "SettingAllowRightClick": "Consenti clic destro",
         "SettingAllowRightClickHint": "Definisce il livello minimo di autorizzazione per eseguire il comportamento del clic destro su un effetto. Impostandolo su Nessuno non sarà mai consentito il clic destro su un effetto.",
         "SettingViewPermission": "Permessi Visualizzazione",

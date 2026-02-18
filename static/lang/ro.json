@@ -15,10 +15,17 @@
         "SettingShowPassiveEffectsHint": "Dacă este activ, efectele pasive vor fi arătate în panou.",
         "SettingShowDurationOverlays": "Arată Iconiță Durată",
         "SettingShowDurationOverlaysHint": "Dacă este activ, o iconiță de durata va fi suprapusă peste fiecare efect pentru a-i indica durata.",
+
         "SettingPassiveEffectsRightClickBehavior": "Comportament Efecte Pasive Click-Dreapta",
         "SettingPassiveEffectsRightClickBehaviorHint": "Determină comportamenul efectelor pasive când apeși click-dreapta pe ele.",
         "SettingTemporaryEffectsRightClickBehavior": "Comportament Efecte Temporare Click-Dreapta",
         "SettingTemporaryEffectsRightClickBehaviorHint": "Determină comportamenul efectelor temporare când apeși click-dreapta pe ele.",
+
+        "SettingPassiveEffectsShiftRightClickBehavior": "Comportament Efecte Pasive Click-Dreapta cu Shift",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Determină comportamenul efectelor pasive când apeși click-dreapta cu Shift pe ele.",
+        "SettingTemporaryEffectsShiftRightClickBehavior": "Comportament Efecte Temporare Click-Dreapta cu Shift",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Determină comportamenul efectelor temporare când apeși click-dreapta cu Shift pe ele.",
+
         "SettingViewPermission": "Permisiune de Vizualizare",
         "SettingViewPermissionHint": "Determină nivelul minim de permisiune pentru a vedea panoul de efecte. Dacă setezi opțiunea la Niciunul, panoul nu va fi afișat.",
         "SettingViewDetailsPermission": "Permisiune Vizualizare Detalii",

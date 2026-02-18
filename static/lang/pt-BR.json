@@ -15,10 +15,17 @@
         "SettingShowPassiveEffectsHint": "Se habilitado, efeitos passivos serão mostrados no painel.",
         "SettingShowDurationOverlays": "Mostrar Duração",
         "SettingShowDurationOverlaysHint": "Se habilitado, uma sobreposição no ícone dos efeitos mostrará a duração de cada um deles.",
+
         "SettingPassiveEffectsRightClickBehavior": "Clique-Direito em Efeitos Passivos",
         "SettingPassiveEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito passivo.",
         "SettingTemporaryEffectsRightClickBehavior": "Clique-Direito em Efeitos Temporários",
         "SettingTemporaryEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito temporário.",
+
+        "SettingPassiveEffectsShiftRightClickBehavior": "Clique-Direito em Efeitos Passivos com Shift",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique-direito com Shift em um efeito passivo.",
+        "SettingTemporaryEffectsShiftRightClickBehavior": "Clique-Direito em Efeitos Temporários com Shift",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique-direito com Shift em um efeito temporário.",
+
         "SettingViewPermission": "Ver Permisão",
         "SettingViewPermissionHint": "Isso define o nível mínimo de permissão para ver o painel de efeitos. Configurar para Nenhum(a) não mostrará o painel de efeitos.",
         "SettingViewDetailsPermission": "Ver Detalhes de Permissão",
