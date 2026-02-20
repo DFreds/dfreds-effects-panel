@@ -59,8 +59,11 @@
         "Enable": "Enable",
         "Disable": "Disable",
 
+        "EndOfTheRound": "End Of The Round",
         "TurnEnd": "Turn End",
         "TurnStart": "Turn Start",
+        "NextAttackRoll" : "Next Attack Roll",
+        "NextChallengeRoll" : "Next Challenge Roll",
         "NextD20Roll": "Next D20 Roll",
         "NextDamageRoll": "Next Damage Roll",
         "RestComplete": "Rest Complete"

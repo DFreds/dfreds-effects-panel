@@ -607,13 +607,25 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         let tokenName;
         const specialDuration = foundry.utils.getProperty(
             effect,
-            "flags.specialDuration",
+            "flags.demonlord.specialDuration",
         ) as string | undefined;
         if (specialDuration !== "None" && specialDuration !== undefined) {
             tokenName = fromUuidSync(
                 effect.origin?.substr(0, effect.origin.search(".Actor.")) ?? "",
             )?.name;
             switch (specialDuration) {
+                case "EndOfTheRound":
+                    return (
+                        game.i18n.localize("EffectsPanel.EndOfTheRound")
+                    );
+                case "NextAttackRoll":
+                    return (
+                        game.i18n.localize("EffectsPanel.NextAttackRoll")
+                    );
+                case "NextChallengeRoll":
+                    return (
+                        game.i18n.localize("EffectsPanel.NextChallengeRoll")
+                    );
                 case "TurnEndSource":
                     return (
                         game.i18n.localize("EffectsPanel.TurnEnd") +
