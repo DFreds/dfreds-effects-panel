@@ -15,6 +15,8 @@
         "SettingShowPassiveEffectsHint": "Se habilitado, efeitos passivos serão mostrados no painel.",
         "SettingShowDurationOverlays": "Mostrar Duração",
         "SettingShowDurationOverlaysHint": "Se habilitado, uma sobreposição no ícone dos efeitos mostrará a duração de cada um deles.",
+        "SettingIconSize": "Tamanho do Ícone",
+        "SettingIconSizeHint": "Isso define o tamanho dos ícones no painel de efeitos.",
 
         "SettingPassiveEffectsRightClickBehavior": "Clique-Direito em Efeitos Passivos",
         "SettingPassiveEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito passivo.",
@@ -26,6 +28,8 @@
         "SettingTemporaryEffectsShiftRightClickBehavior": "Clique-Direito em Efeitos Temporários com Shift",
         "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique-direito com Shift em um efeito temporário.",
 
+        "SettingAllowRightClick": "Permitir Clique-Direito",
+        "SettingAllowRightClickHint": "Isso define o nível mínimo de permissão para executar o comportamento do clique-direito em um efeito. Configurar para Nenhum(a) não permitirá o clique-direito em um efeito.",
         "SettingViewPermission": "Ver Permisão",
         "SettingViewPermissionHint": "Isso define o nível mínimo de permissão para ver o painel de efeitos. Configurar para Nenhum(a) não mostrará o painel de efeitos.",
         "SettingViewDetailsPermission": "Ver Detalhes de Permissão",
@@ -36,6 +40,7 @@
 
         "OneYear": "1 ano",
         "OneWeek": "1 semana",
+        "OneRound": "1 rodada",
         "OneTurn": "1 turno",
         "OneSecond": "1 segundo",
 
@@ -45,6 +50,7 @@
         "ManyHours": "{hours} horas",
         "ManyMinutes": "{minutes} minutos",
         "ManyTurns": "{turns} turnos",
+        "ManyRounds": "{rounds} rodadas",
         "ManySeconds": "{seconds} segundos",
 
         "DeleteOrDisableEffect": "Deletar ou Desabilitar Efeito",
@@ -53,8 +59,11 @@
         "Enable": "Habilitar",
         "Disable": "Desabilitar",
 
+        "EndOfTheRound": "Fim da Rodada",
         "TurnEnd": "Fim do Turno",
         "TurnStart": "Início do Turno",
+        "NextAttackRoll": "Próxima Rolagem de Ataque",
+        "NextChallengeRoll": "Próxima Rolagem de Desafio",
         "NextD20Roll": "Próxima Rolagem de D20",
         "NextDamageRoll": "Próxima Rolagem de Dano",
         "RestComplete": "Descanso Terminado"

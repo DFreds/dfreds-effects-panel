@@ -59,8 +59,11 @@
         "Enable": "Attiva",
         "Disable": "Disattiva",
 
+        "EndOfTheRound": "Fine del Round",
         "TurnEnd": "Fine Turno",
         "TurnStart": "Inizio Turno",
+        "NextAttackRoll": "Prossimo Tiro Attacco",
+        "NextChallengeRoll": "Prossimo Tiro sfida",
         "NextD20Roll": "Prossimo Tiro D20",
         "NextDamageRoll": "Prossimo Tiro Danno",
         "RestComplete": "Riposo Completato"

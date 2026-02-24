@@ -15,6 +15,8 @@
         "SettingShowPassiveEffectsHint": "Dacă este activ, efectele pasive vor fi arătate în panou.",
         "SettingShowDurationOverlays": "Arată Iconiță Durată",
         "SettingShowDurationOverlaysHint": "Dacă este activ, o iconiță de durata va fi suprapusă peste fiecare efect pentru a-i indica durata.",
+        "SettingIconSize": "Dimensiune Iconiță",
+        "SettingIconSizeHint": "Determină dimensiunea iconițelor în panoul de efecte.",
 
         "SettingPassiveEffectsRightClickBehavior": "Comportament Efecte Pasive Click-Dreapta",
         "SettingPassiveEffectsRightClickBehaviorHint": "Determină comportamenul efectelor pasive când apeși click-dreapta pe ele.",
@@ -26,6 +28,8 @@
         "SettingTemporaryEffectsShiftRightClickBehavior": "Comportament Efecte Temporare Click-Dreapta cu Shift",
         "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Determină comportamenul efectelor temporare când apeși click-dreapta cu Shift pe ele.",
 
+        "SettingAllowRightClick": "Permite Click-Dreapta",
+        "SettingAllowRightClickHint": "Determină nivelul minim de permisiune pentru a executa comportamentul click-dreapta pe un efect. Dacă setezi opțiunea la Niciunul, click-dreapta nu va fi permis pe un efect.",
         "SettingViewPermission": "Permisiune de Vizualizare",
         "SettingViewPermissionHint": "Determină nivelul minim de permisiune pentru a vedea panoul de efecte. Dacă setezi opțiunea la Niciunul, panoul nu va fi afișat.",
         "SettingViewDetailsPermission": "Permisiune Vizualizare Detalii",
@@ -36,6 +40,7 @@
 
         "OneYear": "1 an",
         "OneWeek": "1 săptămână",
+        "OneRound": "1 rundă",
         "OneTurn": "1 tură",
         "OneSecond": "1 secundă",
 
@@ -44,6 +49,7 @@
         "ManyDays": "{days} zile",
         "ManyHours": "{hours} ore",
         "ManyMinutes": "{minutes} minute",
+        "ManyRounds": "{rounds} runde",
         "ManyTurns": "{turns} ture",
         "ManySeconds": "{seconds} secunde",
 
@@ -51,6 +57,15 @@
         "DeleteOrDisableEffectContent": "Șterge sau Dezactivează {effect}",
         "Delete": "Șterge",
         "Enable": "Activează",
-        "Disable": "Dezactivează"
+        "Disable": "Dezactivează",
+
+        "EndOfTheRound": "Sfârșitul Rundei",
+        "TurnEnd": "Sfârșitul Turului",
+        "TurnStart": "Începutul Turului",
+        "NextAttackRoll": "Proximul Tiro de Ataque",
+        "NextChallengeRoll": "Proximul Tiro de Desafio",
+        "NextD20Roll": "Proximul Tiro D20",
+        "NextDamageRoll": "Proximul Tiro de Dărnat",
+        "RestComplete": "Rest Complet"
     }
 }
