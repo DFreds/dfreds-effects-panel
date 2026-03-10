@@ -35,10 +35,11 @@
         "SettingViewDetailsPermission": "Permessi Vedi Dettagli",
         "SettingViewDetailsPermissionHint": "Definisce il livello minimo di autorizzazione per vedere i dettagli degli effetti nel pannello come la durata e la descrizione. Impostandolo su Nessuno non verrà mai mostrato alcun dettaglio.",
 
+        "FromParent": "Da {parent}",
+        "FromParentItem": "Da elemento padre",
+
         "Overlay": "Overlay",
         "Disabled": "Disabilitato",
-        "ParentDescription": "Descrizione del padre",
-        "HasParent": "Ha padre",
 
         "Unlimited": "Illimitato",
         "Expired": "Esaurito",

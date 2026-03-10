@@ -35,10 +35,11 @@
         "SettingViewDetailsPermission": "Permisiune Vizualizare Detalii",
         "SettingViewDetailsPermissionHint": "Determină nivelul minim de permisiune pentru a vedea detaliile efectelor în panou, precum durata si descrierea. Dacă setezi opțiunea la Niciunul, detaliile nu vor fi afișate.",
 
+        "FromParent": "De {parent}",
+        "FromParentItem": "De element părinte",
+
         "Overlay": "Suprapunere",
         "Disabled": "Dezactivat",
-        "ParentDescription": "Descriere Părinte",
-        "HasParent": "Are Părinte",
 
         "Unlimited": "Nelimitat",
         "Expired": "Expirat",
