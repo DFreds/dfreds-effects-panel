@@ -89,6 +89,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 game.i18n.localize(effect.description),
                 { relativeTo: effect },
             );
+
             if (effect.disabled && this.#settings.showDisabledEffects) {
                 if (effect.isTemporary) {
                     disabledTemporaryEffects.push(effect);
@@ -294,7 +295,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #initClickListeners(): void {
-        const icons = this.#rootView.find("div[data-effect-id]");
+        const icons = this.#rootView.find("div.effect-icon-container");
         icons.on("click", this.#onIconClick.bind(this));
         icons.on("contextmenu", this.#onIconRightClick.bind(this));
         icons.on("dblclick", this.#onIconDoubleClick.bind(this));
@@ -325,11 +326,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         if (game.user.role < this.#settings.allowRightClick) return;
 
         const $target = $(event.currentTarget);
+        const $effectItem = $target.closest(".effect-item");
+
         const actor = this.#actor;
         const effects = this.#getActorEffects(actor);
-        const effect = effects.find(
-            (e) => e.id === $target.attr("data-effect-id"),
-        );
+        const effectId = $effectItem.attr("data-effect-id");
+
+        const effect = effects.find((e) => e.id === effectId);
 
         if (!effect) return;
 
@@ -423,11 +426,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         if (event.currentTarget === null) return;
 
         const $target = $(event.currentTarget);
+        const $effectItem = $target.closest(".effect-item");
+
         const actor = this.#actor;
         const effects = this.#getActorEffects(actor);
-        const effect = effects.find(
-            (effect) => effect.id === $target.attr("data-effect-id"),
-        );
+        const effectId = $effectItem.attr("data-effect-id");
+
+        const effect = effects.find((effect) => effect.id === effectId);
 
         if (!effect) return;
 

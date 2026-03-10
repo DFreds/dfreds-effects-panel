@@ -1,6 +1,6 @@
 {{!-- Helper partial for effect items --}}
 {{#*inline "effect-item"}}
-    <div class="effect-item" style="height: {{itemSize}}px;">
+    <div class="effect-item" data-effect-id="{{effect._id}}" style="height: {{itemSize}}px;">
         <div class="effect-info">
             <div class="effect-name">{{effect.name}}</div>
             {{#if canViewEffectDetails}}
@@ -23,7 +23,6 @@
         </div>
         <div
             class="effect-icon-container {{type}} {{#if disabled}}effect-disabled{{/if}}"
-            data-effect-id="{{effect._id}}"
             style="height: {{iconSize}}px; width: {{iconSize}}px;"
         >
             <div class="icon"
