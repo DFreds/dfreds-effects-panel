@@ -5,6 +5,7 @@ import { CollapseSidebar } from "./collapseSidebar.ts";
 import { Setup } from "./setup.ts";
 import { ControlToken } from "./controlToken.ts";
 import { CrudActiveEffects } from "./crudActiveEffects.ts";
+import { RefreshToken } from "./refreshToken.ts";
 
 interface Listener {
     listen(): void;
@@ -19,6 +20,7 @@ const HooksEffectsPanel: Listener = {
             CollapseSidebar,
             RtcSettingsChanged,
             ControlToken,
+            RefreshToken,
             CrudActiveEffects,
         ];
 
