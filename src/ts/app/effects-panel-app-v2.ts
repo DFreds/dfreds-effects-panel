@@ -34,11 +34,12 @@ interface ViewData {
 
 type SceneActor = Actor<TokenDocument<Scene> | null> | null;
 
-interface EffectData extends ActiveEffect<SceneActor | Actor<null>> {
+interface EffectData extends ActiveEffect<SceneActor | Actor<null> | Item<null>> {
     timeLabel: string;
     isExpired: boolean;
     infinite: boolean;
     src: string | null;
+    parentDescription: string | null;
 }
 
 class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -95,6 +96,14 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 game.i18n.localize(effect.description),
                 { relativeTo: effect },
             );
+
+            if (effect.parent && effect.parent instanceof Item) {
+                effect.parentDescription = await TextEditor.enrichHTML(
+                    // @ts-expect-error Item does not have a description property
+                    game.i18n.localize(effect.parent.system.description.value),
+                    { relativeTo: effect.parent },
+                );
+            }
 
             if (effect.disabled && this.#settings.showDisabledEffects) {
                 if (effect.isTemporary) {
