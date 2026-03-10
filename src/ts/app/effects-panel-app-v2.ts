@@ -48,6 +48,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     #rootView: JQuery<HTMLElement>;
     #draggable: Draggable;
 
+    #currentShownEffectInfoId: string | null = null;
+
     constructor(options?: DeepPartial<ApplicationConfiguration>) {
         super(options);
         this.refresh = foundry.utils.debounce(this.render.bind(this), 100);
@@ -73,6 +75,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 "modules/dfreds-effects-panel/templates/effects-panel.hbs",
         },
     };
+
+    resetCurrentShownEffectInfoId(): void {
+        this.#currentShownEffectInfoId = null;
+    }
 
     protected override async _prepareContext(
         _options: ApplicationRenderOptions,
@@ -171,6 +177,11 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             left: leftPosition,
             top: this.#getTopPosition(),
         });
+
+        if (this.#currentShownEffectInfoId) {
+            const $effectItem = this.#rootView.find(`[data-effect-id="${this.#currentShownEffectInfoId}"]`);
+            $effectItem.find(".effect-info").show();
+        }
     }
 
     protected override _preClose(
@@ -310,11 +321,15 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const $effectItem = $target.closest(".effect-item");
         const $effectInfo = $effectItem.find(".effect-info");
 
+        const effectId = $effectItem.attr("data-effect-id");
+
         if ($effectInfo.is(":visible")) {
             $effectInfo.hide();
+            this.#currentShownEffectInfoId = null;
         } else {
             this.#rootView.find(".effect-info").hide();
             $effectInfo.show();
+            this.#currentShownEffectInfoId = effectId ?? null;
         }
     }
 

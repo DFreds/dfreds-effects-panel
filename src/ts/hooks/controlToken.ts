@@ -4,9 +4,9 @@ import { Listener } from "./index.ts";
 const ControlToken: Listener = {
     listen: () => {
         Hooks.on("controlToken", () => {
-            getEffectsPanel()?.refresh();
+            getEffectsPanel()?.resetCurrentShownEffectInfoId();
         });
-    },
+    }
 };
 
 export { ControlToken };
