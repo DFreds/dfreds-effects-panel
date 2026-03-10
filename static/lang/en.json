@@ -35,6 +35,11 @@
         "SettingViewDetailsPermission": "View Details Permission",
         "SettingViewDetailsPermissionHint": "This defines the minimum permission level to see the details of the effects in the panel such as the duration and description. Setting this to None will never show any details.",
 
+        "Overlay": "Overlay",
+        "Disabled": "Disabled",
+        "ParentDescription": "Parent Description",
+        "HasParent": "Has Parent",
+
         "Unlimited": "Unlimited",
         "Expired": "Expired",
 

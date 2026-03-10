@@ -35,6 +35,11 @@
         "SettingViewDetailsPermission": "Ver Detalhes de Permissão",
         "SettingViewDetailsPermissionHint": "Isso define o nível mínimo de permissão para ver os detalhes dos efeitos no painel, como a duração e a descrição. Configurar para Nenhum(a) não mostrará detalhe algum.",
 
+        "Overlay": "Sobreposição",
+        "Disabled": "Desabilitado",
+        "ParentDescription": "Descrição do pai",
+        "HasParent": "Tem pai",
+
         "Unlimited": "Ilimitado",
         "Expired": "Expirado",
 
