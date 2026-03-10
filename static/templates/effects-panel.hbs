@@ -2,22 +2,29 @@
 {{#*inline "effect-item"}}
     <div class="effect-item" data-effect-id="{{effect._id}}" style="height: {{itemSize}}px;">
         <div class="effect-info">
-            <div class="effect-name">{{effect.name}}</div>
+            <h1 class="effect-name">{{effect.name}}</h1>
             {{#if canViewEffectDetails}}
-                <div class="effect-info-details">
-                    {{#if effect.description}}
-                        <div class="effect-description">{{{effect.description}}}</div>
+                {{#if effect.description}}
+                    <div class="effect-description">{{{effect.description}}}</div>
+                {{/if}}
+
+                {{#if effect.parentDescription}}
+                    <h2 class="effect-description-header">{{localize "EffectsPanel.ParentDescription"}}</h2>
+                    <div class="effect-description">{{{effect.parentDescription}}}</div>
+                {{/if}}
+
+                <div class="panel-tags">
+                    <div class="panel-tag panel-tag_primary">{{type}}</div>
+                    <div class="panel-tag panel-tag_secondary">{{effect.timeLabel}}</div>
+                    {{#if effect.flags.core.overlay}}
+                        <div class="panel-tag panel-tag_tertiary">{{localize "EffectsPanel.Overlay"}}</div>
                     {{/if}}
-                    <div class="panel-tags">
-                        <div class="panel-tag panel-tag_primary">{{type}}</div>
-                        <div class="panel-tag panel-tag_secondary">{{effect.timeLabel}}</div>
-                        {{#if effect.flags.core.overlay}}
-                            <div class="panel-tag panel-tag_tertiary">overlay</div>
-                        {{/if}}
-                        {{#if disabled}}
-                            <div class="panel-tag panel-tag_tertiary">disabled</div>
-                        {{/if}}
-                    </div>
+                    {{#if disabled}}
+                        <div class="panel-tag panel-tag_tertiary">{{localize "EffectsPanel.Disabled"}}</div>
+                    {{/if}}
+                    {{#if effect.parentDescription}}
+                        <div class="panel-tag panel-tag_alt">{{localize "EffectsPanel.HasParent"}}</div>
+                    {{/if}}
                 </div>
             {{/if}}
         </div>
