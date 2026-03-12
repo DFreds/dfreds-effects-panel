@@ -11,10 +11,17 @@
 
         "SettingShowDisabledEffects": "Show Disabled Effects",
         "SettingShowDisabledEffectsHint": "If enabled, disabled effects will be shown in the panel with a grey tint.",
+
         "SettingShowPassiveEffects": "Show Passive Effects",
         "SettingShowPassiveEffectsHint": "If enabled, passive effects will be shown in the panel.",
+
         "SettingShowDurationOverlays": "Show Duration Overlays",
         "SettingShowDurationOverlaysHint": "If enabled, an overlay icon will be shown over each effect to indicate its duration.",
+
+        "SettingAllowRightClickingItemEffects": "Allow Right-Clicking on Item Effects",
+        "SettingAllowRightClickingItemEffectsHint": "If enabled, the user will be able to execute the right-click behavior on effects provided by items.",
+        "DisablingOrDeletingItemEffectsNotAllowed": "Disabling or deleting effects provided by items is not enabled.",
+
         "SettingIconSize": "Icon Size",
         "SettingIconSizeHint": "This defines the size of the icons in the effects panel.",
 

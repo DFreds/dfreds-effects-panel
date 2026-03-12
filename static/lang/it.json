@@ -11,10 +11,17 @@
 
         "SettingShowDisabledEffects": "Mostra Effetti Disattivati",
         "SettingShowDisabledEffectsHint": "Se abilitati, gli effetti disabilitati verranno visualizzati nel pannello con una sfumatura grigia.",
+
         "SettingShowPassiveEffects": "Mostra Effetti Passivi",
         "SettingShowPassiveEffectsHint": "Se abilitato, gli effetti passivi verranno visualizzati nel pannello.",
+
         "SettingShowDurationOverlays": "Mostra Overlays Durata",
         "SettingShowDurationOverlaysHint": "Se abilitato, verrà mostrata un'icona sovrapposta su ciascun effetto per indicarne la durata.",
+
+        "SettingAllowRightClickingItemEffects": "Consenti clic destro sugli effetti degli oggetti",
+        "SettingAllowRightClickingItemEffectsHint": "Se abilitato, l'utente potrà eseguire il comportamento del clic destro sugli effetti forniti dagli oggetti.",
+        "DisablingOrDeletingItemEffectsNotAllowed": "Disabilitare o eliminare effetti forniti dagli oggetti non è abilitato.",
+
         "SettingIconSize": "Dimensione icona",
         "SettingIconSizeHint": "Definisce la dimensione delle icone nel pannello degli effetti.",
 

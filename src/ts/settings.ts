@@ -10,6 +10,8 @@ class Settings {
     #TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR =
         "temporaryEffectsShiftRightClickBehavior";
 
+    #ALLOW_RIGHT_CLICKING_ITEM_EFFECTS = "allowRightClickingItemEffects";
+
     #ICON_SIZE = "iconSize";
     #SHOW_DISABLED_EFFECTS = "showDisabledEffects";
     #SHOW_PASSIVE_EFFECTS = "showPassiveEffects";
@@ -74,6 +76,15 @@ class Settings {
             default: true,
             type: Boolean,
             onChange: () => getEffectsPanel()?.refresh(),
+        });
+
+        game.settings.register(MODULE_ID, this.#ALLOW_RIGHT_CLICKING_ITEM_EFFECTS, {
+            name: "EffectsPanel.SettingAllowRightClickingItemEffects",
+            hint: "EffectsPanel.SettingAllowRightClickingItemEffectsHint",
+            scope: "client",
+            config: true,
+            default: false,
+            type: Boolean,
         });
 
         game.settings.register(MODULE_ID, this.#ICON_SIZE, {
@@ -276,6 +287,15 @@ class Settings {
             MODULE_ID,
             this.#SHOW_DURATION_OVERLAYS,
         ) as unknown as boolean;
+    }
+
+    /**
+     * Returns the game setting for allowing deleting item effects
+     *
+     * @returns true if deleting item effects should be allowed
+     */
+    get allowRightClickingItemEffects(): boolean {
+        return game.settings.get(MODULE_ID, this.#ALLOW_RIGHT_CLICKING_ITEM_EFFECTS) as unknown as boolean;
     }
 
     /**

@@ -100,7 +100,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             if (effect.parent && effect.parent instanceof Item) {
                 effect.parentDescription = await TextEditor.enrichHTML(
                     // @ts-expect-error Item does not have a description property
-                    game.i18n.localize(effect.parent.system.description.value),
+                    game.i18n.localize(effect.parent.system?.description?.value ?? ""),
                     { relativeTo: effect.parent },
                 );
             }
@@ -393,6 +393,11 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         effect: ActiveEffect<SceneActor | Actor<null>>;
         rightClickBehavior: string;
     }): Promise<void> {
+        if (effect.parent && effect.parent instanceof Item && !this.#settings.allowRightClickingItemEffects) {
+            ui.notifications.warn(game.i18n.localize("EffectsPanel.DisablingOrDeletingItemEffectsNotAllowed"));
+            return;
+        }
+
         if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DIALOG) {
             const content = game.i18n.format(
                 "EffectsPanel.DeleteOrDisableEffectContent",

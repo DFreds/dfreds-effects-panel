@@ -11,10 +11,17 @@
 
         "SettingShowDisabledEffects": "Mostrar efectos deshabilitados",
         "SettingShowDisabledEffectsHint": "Si está habilitado, los efectos deshabilitados se mostrarán en el panel con un tono gris.",
+
         "SettingShowPassiveEffects": "Mostrar efectos pasivos",
         "SettingShowPassiveEffectsHint": "Si está habilitado, los efectos pasivos se mostrarán en el panel.",
+
         "SettingShowDurationOverlays": "Mostrar superposiciones de duración",
         "SettingShowDurationOverlaysHint": "Si está habilitado, se mostrará un icono superpuesto sobre cada efecto para indicar su duración.",
+
+        "SettingAllowRightClickingItemEffects": "Permitir clic derecho en efectos de elementos",
+        "SettingAllowRightClickingItemEffectsHint": "Si está habilitado, el usuario podrá ejecutar el comportamiento del clic derecho en efectos proporcionados por elementos.",
+        "DisablingOrDeletingItemEffectsNotAllowed": "Deshabilitar o eliminar efectos proporcionados por elementos no está habilitado.",
+
         "SettingIconSize": "Tamaño de icono",
         "SettingIconSizeHint": "Esto define el tamaño de los iconos en el panel de efectos.",
 

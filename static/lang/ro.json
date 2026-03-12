@@ -11,10 +11,17 @@
 
         "SettingShowDisabledEffects": "Arată efectele dezactivate",
         "SettingShowDisabledEffectsHint": "Dacă este activ, efectele dezactivate vor fi arătate în panou cu o nuanță gri.",
+
         "SettingShowPassiveEffects": "Arată Efectele Pasive",
         "SettingShowPassiveEffectsHint": "Dacă este activ, efectele pasive vor fi arătate în panou.",
+
         "SettingShowDurationOverlays": "Arată Iconiță Durată",
         "SettingShowDurationOverlaysHint": "Dacă este activ, o iconiță de durata va fi suprapusă peste fiecare efect pentru a-i indica durata.",
+
+        "SettingAllowRightClickingItemEffects": "Permite click-dreapta pe efecte de obiecte",
+        "SettingAllowRightClickingItemEffectsHint": "Dacă este activ, utilizatorul va putea executa comportamentul click-dreapta pe efecte furnizate de obiecte.",
+        "DisablingOrDeletingItemEffectsNotAllowed": "Dezactivarea sau ștergerea efectelor furnizate de obiecte nu este activată.",
+
         "SettingIconSize": "Dimensiune Iconiță",
         "SettingIconSizeHint": "Determină dimensiunea iconițelor în panoul de efecte.",
 
