@@ -2,11 +2,11 @@
     "EffectsPanel": {
         "SettingPlayer": "Jogador",
         "SettingTrustedPlayer": "Jogador Confiável",
-        "SettingAssistantGM": "MJ Assistente",
+        "SettingAssistantGM": "Mestre Assistente",
         "SettingGameMaster": "Mestre de Jogo",
         "SettingNone": "Nenhum(a)",
         "SettingDialog": "Diálogo",
-        "SettingDelete": "Deletar",
+        "SettingDelete": "Excluir",
         "SettingDisable": "Desabilitar",
 
         "SettingShowDisabledEffects": "Mostrar Efeitos Desabilitados",
@@ -18,32 +18,32 @@
         "SettingShowDurationOverlays": "Mostrar Duração",
         "SettingShowDurationOverlaysHint": "Se habilitado, uma sobreposição no ícone dos efeitos mostrará a duração de cada um deles.",
 
-        "SettingAllowRightClickingItemEffects": "Permitir clique-direito em efeitos de itens",
-        "SettingAllowRightClickingItemEffectsHint": "Se habilitado, o usuário poderá executar o comportamento do clique-direito em efeitos fornecidos por itens.",
-        "DisablingOrDeletingItemEffectsNotAllowed": "Desabilitar ou deletar efeitos fornecidos por itens não está habilitado.",
+        "SettingAllowRightClickingItemEffects": "Permitir Clique Direito em Efeitos de Itens",
+        "SettingAllowRightClickingItemEffectsHint": "Se habilitado, o usuário poderá executar o comportamento do clique direito em efeitos fornecidos por itens.",
+        "DisablingOrDeletingItemEffectsNotAllowed": "Desabilitar ou excluir efeitos fornecidos por itens não está habilitado.",
 
         "SettingIconSize": "Tamanho do Ícone",
         "SettingIconSizeHint": "Isso define o tamanho dos ícones no painel de efeitos.",
 
-        "SettingPassiveEffectsRightClickBehavior": "Clique-Direito em Efeitos Passivos",
-        "SettingPassiveEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito passivo.",
-        "SettingTemporaryEffectsRightClickBehavior": "Clique-Direito em Efeitos Temporários",
-        "SettingTemporaryEffectsRightClickBehaviorHint": "Isso define o comportamento do clique-direito em um efeito temporário.",
+        "SettingPassiveEffectsRightClickBehavior": "Clique Direito em Efeitos Passivos",
+        "SettingPassiveEffectsRightClickBehaviorHint": "Isso define o comportamento do clique direito em um efeito passivo.",
+        "SettingTemporaryEffectsRightClickBehavior": "Clique Direito em Efeitos Temporários",
+        "SettingTemporaryEffectsRightClickBehaviorHint": "Isso define o comportamento do clique direito em um efeito temporário.",
 
-        "SettingPassiveEffectsShiftRightClickBehavior": "Clique-Direito em Efeitos Passivos com Shift",
-        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique-direito com Shift em um efeito passivo.",
-        "SettingTemporaryEffectsShiftRightClickBehavior": "Clique-Direito em Efeitos Temporários com Shift",
-        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique-direito com Shift em um efeito temporário.",
+        "SettingPassiveEffectsShiftRightClickBehavior": "Clique Direito com Shift em Efeitos Passivos",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique direito com Shift em um efeito passivo.",
+        "SettingTemporaryEffectsShiftRightClickBehavior": "Clique Direito com Shift em Efeitos Temporários",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique direito com Shift em um efeito temporário.",
 
-        "SettingAllowRightClick": "Permitir Clique-Direito",
-        "SettingAllowRightClickHint": "Isso define o nível mínimo de permissão para executar o comportamento do clique-direito em um efeito. Configurar para Nenhum(a) não permitirá o clique-direito em um efeito.",
+        "SettingAllowRightClick": "Permitir Clique Direito",
+        "SettingAllowRightClickHint": "Isso define o nível mínimo de permissão para executar o comportamento do clique direito em um efeito. Configurar para Nenhum(a) não permitirá o clique direito em um efeito.",
         "SettingViewPermission": "Ver Permisão",
         "SettingViewPermissionHint": "Isso define o nível mínimo de permissão para ver o painel de efeitos. Configurar para Nenhum(a) não mostrará o painel de efeitos.",
         "SettingViewDetailsPermission": "Ver Detalhes de Permissão",
         "SettingViewDetailsPermissionHint": "Isso define o nível mínimo de permissão para ver os detalhes dos efeitos no painel, como a duração e a descrição. Configurar para Nenhum(a) não mostrará detalhe algum.",
 
         "FromParent": "De {parent}",
-        "FromParentItem": "De elemento pai",
+        "FromParentItem": "De Item Pai",
 
         "Overlay": "Sobreposição",
         "Disabled": "Desabilitado",
@@ -66,9 +66,9 @@
         "ManyRounds": "{rounds} rodadas",
         "ManySeconds": "{seconds} segundos",
 
-        "DeleteOrDisableEffect": "Deletar ou Desabilitar Efeito",
-        "DeleteOrDisableEffectContent": "Deletar ou desabilitar {effect}",
-        "Delete": "Deletar",
+        "DeleteOrDisableEffect": "Excluir ou Desabilitar Efeito",
+        "DeleteOrDisableEffectContent": "Excluir ou desabilitar {effect}",
+        "Delete": "Excluir",
         "Enable": "Habilitar",
         "Disable": "Desabilitar",
 
