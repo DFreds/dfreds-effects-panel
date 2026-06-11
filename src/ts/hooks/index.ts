@@ -1,11 +1,11 @@
 import { CanvasReady } from "./canvasReady.ts";
-import { Init } from "./init.ts";
-import { RtcSettingsChanged } from "./rtcSettingsChanged.ts";
-import { CollapseSidebar } from "./collapseSidebar.ts";
-import { Setup } from "./setup.ts";
 import { ControlToken } from "./controlToken.ts";
 import { CrudActiveEffects } from "./crudActiveEffects.ts";
+import { Init } from "./init.ts";
+import { Ready } from "./ready.ts";
 import { RefreshToken } from "./refreshToken.ts";
+import { RtcSettingsChanged } from "./rtcSettingsChanged.ts";
+import { Setup } from "./setup.ts";
 import { UpdateWorldTime } from "./updateWorldTime.ts";
 
 interface Listener {
@@ -16,9 +16,9 @@ const HooksEffectsPanel: Listener = {
     listen(): void {
         const listeners: Listener[] = [
             Init,
+            Ready,
             Setup,
             CanvasReady,
-            CollapseSidebar,
             RtcSettingsChanged,
             ControlToken,
             RefreshToken,
@@ -34,3 +34,4 @@ const HooksEffectsPanel: Listener = {
 
 export { HooksEffectsPanel };
 export type { Listener };
+

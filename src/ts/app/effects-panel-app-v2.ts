@@ -204,19 +204,22 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return Promise.resolve();
     }
 
-    animateFromLeftPx(): void {
+    updateLeftPosition(): void {
+        if (!this.#draggable) return;
+        if (!this.element?.isConnected) return;
+
         const leftPosition = this.#getLeftPosition();
-        this.#rootView.animate({ left: leftPosition }, { duration: 200 });
+        this.element.style.left = `${leftPosition}px`;
+
+        // Keep the draggable's horizontal lock in sync with the new position so
+        // a subsequent drag does not snap the panel back to its old location.
+        this.#draggable.setLimit({
+            x: [leftPosition, leftPosition],
+            y: [0, window.outerHeight - 42],
+        });
     }
 
     #getLeftPosition(): number {
-        const isSidebarExpanded = document
-            .getElementById("sidebar-content")
-            ?.classList.contains("expanded");
-        const isWebrtcRight =
-            ui.webrtc?.element?.classList.contains("right") ?? false;
-
-        const webrtcWidth = isWebrtcRight ? 300 : 0;
         const { uiScale } = game.settings.get(
             "core",
             "uiConfig",
@@ -225,81 +228,29 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         };
 
         const panelWidth = $("#effects-panel").width() ?? 42;
-        const padding = 18;
+        const padding = 18 * uiScale;
+        const rightUiLeftEdge = this.#getRightUiLeftEdge();
 
-        const rightPosition = isSidebarExpanded
-            ? this.#getExpandedRightPosition({
-                padding,
-                webrtcWidth,
-                panelWidth,
-                uiScale,
-            })
-            : this.#getCollapsedRightPosition({
-                padding,
-                webrtcWidth,
-                panelWidth,
-                uiScale,
-            });
-        const leftPosition = window.innerWidth - rightPosition;
-
-        return leftPosition;
+        return rightUiLeftEdge - padding - panelWidth;
     }
 
-    #getCollapsedRightPosition({
-        padding,
-        webrtcWidth,
-        panelWidth,
-        uiScale,
-    }: {
-        padding: number;
-        webrtcWidth: number;
-        panelWidth: number;
-        uiScale: number;
-    }): number {
-        const sidebarWidth = 48;
-        return (padding + sidebarWidth + webrtcWidth + panelWidth) * uiScale;
-    }
+    #getRightUiLeftEdge(): number {
+        const edges: number[] = [];
 
-    #getExpandedRightPosition({
-        padding,
-        webrtcWidth,
-        panelWidth,
-        uiScale,
-    }: {
-        padding: number;
-        webrtcWidth: number;
-        panelWidth: number;
-        uiScale: number;
-    }): number {
-        const expandedSidebarWidthPx =
-            window
-                .getComputedStyle(
-                    document.getElementById("sidebar") as HTMLElement,
-                )
-                .getPropertyValue("--sidebar-width") ?? "348px";
-        const expandedSidebarWidth = parseInt(
-            expandedSidebarWidthPx.replace("px", ""),
-        );
-        const sidebarScrollGutterPx =
-            window
-                .getComputedStyle(
-                    document.getElementById("sidebar") as HTMLElement,
-                )
-                .getPropertyValue("--sidebar-scroll-gutter") ?? "12px";
-        const sidebarScrollGutter = parseInt(
-            sidebarScrollGutterPx.replace("px", ""),
-        );
-        const sidebarTabsWidth = $("#sidebar-tabs").width() ?? 32;
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar) {
+            edges.push(sidebar.getBoundingClientRect().left);
+        }
 
-        return (
-            (padding +
-                expandedSidebarWidth +
-                webrtcWidth +
-                sidebarTabsWidth +
-                sidebarScrollGutter +
-                panelWidth) *
-            uiScale
-        );
+        const isWebrtcRight =
+            ui.webrtc?.element?.classList.contains("right") ?? false;
+        if (isWebrtcRight && ui.webrtc?.element) {
+            edges.push(ui.webrtc.element.getBoundingClientRect().left);
+        }
+
+        if (edges.length === 0) return window.innerWidth;
+
+        return Math.min(...edges);
     }
 
     #getTopPosition(): number {
