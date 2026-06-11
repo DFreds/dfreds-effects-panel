@@ -87,17 +87,24 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const disabledPassiveEffects = [];
 
         const effects = this.#actorEffects;
+        const token = this.#token;
 
         for (const effect of effects) {
             effect.description = await TextEditor.enrichHTML(
-                game.i18n.localize(effect.description),
+                this.#replaceTokenVariables(
+                    game.i18n.localize(effect.description),
+                    token,
+                ),
                 { relativeTo: effect },
             );
 
             if (effect.parent && effect.parent instanceof Item) {
                 effect.parentDescription = await TextEditor.enrichHTML(
-                    // @ts-expect-error Item does not have a description property
-                    game.i18n.localize(effect.parent.system?.description?.value ?? ""),
+                    this.#replaceTokenVariables(
+                        // @ts-expect-error Item does not have a description property
+                        game.i18n.localize(effect.parent.system?.description?.value ?? ""),
+                        token,
+                    ),
                     { relativeTo: effect.parent },
                 );
             }
@@ -499,6 +506,37 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     get #actor(): SceneActor | Actor<null> | null {
         const userActor = game.user?.character as Actor<null> | null;
         return canvas.tokens.controlled[0]?.actor ?? userActor ?? null;
+    }
+
+    get #token(): TokenDocument | foundry.data.PrototypeToken<Actor> | null {
+        const controlledToken = canvas.tokens.controlled[0]?.document;
+        if (controlledToken) return controlledToken;
+
+        const actor = this.#actor;
+        return actor?.token ?? actor?.prototypeToken ?? null;
+    }
+
+    /**
+     * Replaces `{{token.<path>}}` placeholders in the given text with the
+     * matching property on the base token (e.g. `{{token.name}}`). Any path
+     * available on the token document is supported. Unknown paths are left
+     * untouched.
+     */
+    #replaceTokenVariables(
+        text: string,
+        token: TokenDocument | foundry.data.PrototypeToken<Actor> | null,
+    ): string {
+        if (!token || !text) return text;
+
+        return text.replace(
+            /\{\{\s*token\.([\w.-]+)\s*\}\}/g,
+            (match, path: string) => {
+                const value = foundry.utils.getProperty(token, path);
+                return value !== undefined && value !== null
+                    ? String(value)
+                    : match;
+            },
+        );
     }
 
     #getActorEffects(
