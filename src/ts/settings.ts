@@ -4,11 +4,9 @@ import { getEffectsPanel } from "./utils/gets.ts";
 class Settings {
     // Settings keys
     #PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR = "passiveEffectsRightClickBehavior";
-    #TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR =
-        "temporaryEffectsRightClickBehavior";
+    #TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR = "temporaryEffectsRightClickBehavior";
     #PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR = "passiveEffectsShiftRightClickBehavior";
-    #TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR =
-        "temporaryEffectsShiftRightClickBehavior";
+    #TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR = "temporaryEffectsShiftRightClickBehavior";
 
     #ALLOW_RIGHT_CLICKING_ITEM_EFFECTS = "allowRightClickingItemEffects";
 
@@ -23,30 +21,16 @@ class Settings {
 
     register(): void {
         const userRoles: Record<number, string> = {};
-        userRoles[CONST.USER_ROLES.PLAYER] = game.i18n.localize(
-            "EffectsPanel.SettingPlayer",
-        );
-        userRoles[CONST.USER_ROLES.TRUSTED] = game.i18n.localize(
-            "EffectsPanel.SettingTrustedPlayer",
-        );
-        userRoles[CONST.USER_ROLES.ASSISTANT] = game.i18n.localize(
-            "EffectsPanel.SettingAssistantGM",
-        );
-        userRoles[CONST.USER_ROLES.GAMEMASTER] = game.i18n.localize(
-            "EffectsPanel.SettingGameMaster",
-        );
+        userRoles[CONST.USER_ROLES.PLAYER] = game.i18n.localize("EffectsPanel.SettingPlayer");
+        userRoles[CONST.USER_ROLES.TRUSTED] = game.i18n.localize("EffectsPanel.SettingTrustedPlayer");
+        userRoles[CONST.USER_ROLES.ASSISTANT] = game.i18n.localize("EffectsPanel.SettingAssistantGM");
+        userRoles[CONST.USER_ROLES.GAMEMASTER] = game.i18n.localize("EffectsPanel.SettingGameMaster");
         userRoles[5] = game.i18n.localize("EffectsPanel.SettingNone");
 
         const rightClickBehaviors: Record<string, string> = {};
-        rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DIALOG] = game.i18n.localize(
-            "EffectsPanel.SettingDialog",
-        );
-        rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DELETE] = game.i18n.localize(
-            "EffectsPanel.SettingDelete",
-        );
-        rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DISABLE] = game.i18n.localize(
-            "EffectsPanel.SettingDisable",
-        );
+        rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DIALOG] = game.i18n.localize("EffectsPanel.SettingDialog");
+        rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DELETE] = game.i18n.localize("EffectsPanel.SettingDelete");
+        rightClickBehaviors[RIGHT_CLICK_BEHAVIOR.DISABLE] = game.i18n.localize("EffectsPanel.SettingDisable");
 
         game.settings.register(MODULE_ID, this.#SHOW_DISABLED_EFFECTS, {
             name: "EffectsPanel.SettingShowDisabledEffects",
@@ -101,65 +85,49 @@ class Settings {
             onChange: () => getEffectsPanel()?.refresh(),
         });
 
-        game.settings.register(
-            MODULE_ID,
-            this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
-            {
-                name: "EffectsPanel.SettingPassiveEffectsRightClickBehavior",
-                hint: "EffectsPanel.SettingPassiveEffectsRightClickBehaviorHint",
-                scope: "client",
-                config: true,
-                default: RIGHT_CLICK_BEHAVIOR.DISABLE,
-                choices: rightClickBehaviors,
-                type: String,
-                onChange: () => getEffectsPanel()?.refresh(),
-            },
-        );
+        game.settings.register(MODULE_ID, this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR, {
+            name: "EffectsPanel.SettingPassiveEffectsRightClickBehavior",
+            hint: "EffectsPanel.SettingPassiveEffectsRightClickBehaviorHint",
+            scope: "client",
+            config: true,
+            default: RIGHT_CLICK_BEHAVIOR.DISABLE,
+            choices: rightClickBehaviors,
+            type: String,
+            onChange: () => getEffectsPanel()?.refresh(),
+        });
 
-        game.settings.register(
-            MODULE_ID,
-            this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
-            {
-                name: "EffectsPanel.SettingTemporaryEffectsRightClickBehavior",
-                hint: "EffectsPanel.SettingTemporaryEffectsRightClickBehaviorHint",
-                scope: "client",
-                config: true,
-                default: RIGHT_CLICK_BEHAVIOR.DIALOG,
-                choices: rightClickBehaviors,
-                type: String,
-                onChange: () => getEffectsPanel()?.refresh(),
-            },
-        );
+        game.settings.register(MODULE_ID, this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR, {
+            name: "EffectsPanel.SettingTemporaryEffectsRightClickBehavior",
+            hint: "EffectsPanel.SettingTemporaryEffectsRightClickBehaviorHint",
+            scope: "client",
+            config: true,
+            default: RIGHT_CLICK_BEHAVIOR.DIALOG,
+            choices: rightClickBehaviors,
+            type: String,
+            onChange: () => getEffectsPanel()?.refresh(),
+        });
 
-        game.settings.register(
-            MODULE_ID,
-            this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
-            {
-                name: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehavior",
-                hint: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehaviorHint",
-                scope: "client",
-                config: true,
-                default: RIGHT_CLICK_BEHAVIOR.DISABLE,
-                choices: rightClickBehaviors,
-                type: String,
-                onChange: () => getEffectsPanel()?.refresh(),
-            },
-        );
+        game.settings.register(MODULE_ID, this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR, {
+            name: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehavior",
+            hint: "EffectsPanel.SettingPassiveEffectsShiftRightClickBehaviorHint",
+            scope: "client",
+            config: true,
+            default: RIGHT_CLICK_BEHAVIOR.DISABLE,
+            choices: rightClickBehaviors,
+            type: String,
+            onChange: () => getEffectsPanel()?.refresh(),
+        });
 
-        game.settings.register(
-            MODULE_ID,
-            this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
-            {
-                name: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehavior",
-                hint: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehaviorHint",
-                scope: "client",
-                config: true,
-                default: RIGHT_CLICK_BEHAVIOR.DELETE,
-                choices: rightClickBehaviors,
-                type: String,
-                onChange: () => getEffectsPanel()?.refresh(),
-            },
-        );
+        game.settings.register(MODULE_ID, this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR, {
+            name: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehavior",
+            hint: "EffectsPanel.SettingTemporaryEffectsShiftRightClickBehaviorHint",
+            scope: "client",
+            config: true,
+            default: RIGHT_CLICK_BEHAVIOR.DELETE,
+            choices: rightClickBehaviors,
+            type: String,
+            onChange: () => getEffectsPanel()?.refresh(),
+        });
 
         game.settings.register(MODULE_ID, this.#ALLOW_RIGHT_CLICK, {
             name: "EffectsPanel.SettingAllowRightClick",
@@ -210,10 +178,7 @@ class Settings {
      * @returns the string representing the behavior
      */
     get passiveEffectsRightClickBehavior(): string {
-        return game.settings.get(
-            MODULE_ID,
-            this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR,
-        ) as unknown as string;
+        return game.settings.get(MODULE_ID, this.#PASSIVE_EFFECTS_RIGHT_CLICK_BEHAVIOR) as unknown as string;
     }
 
     /**
@@ -222,12 +187,8 @@ class Settings {
      * @returns the string representing the behavior
      */
     get temporaryEffectsRightClickBehavior(): string {
-        return game.settings.get(
-            MODULE_ID,
-            this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR,
-        ) as unknown as string;
+        return game.settings.get(MODULE_ID, this.#TEMPORARY_EFFECTS_RIGHT_CLICK_BEHAVIOR) as unknown as string;
     }
-
 
     /**
      * Returns the game setting for the passive shift right-click behavior
@@ -235,10 +196,7 @@ class Settings {
      * @returns the string representing the behavior
      */
     get passiveEffectsShiftRightClickBehavior(): string {
-        return game.settings.get(
-            MODULE_ID,
-            this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
-        ) as unknown as string;
+        return game.settings.get(MODULE_ID, this.#PASSIVE_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR) as unknown as string;
     }
 
     /**
@@ -247,10 +205,7 @@ class Settings {
      * @returns the string representing the behavior
      */
     get temporaryEffectsShiftRightClickBehavior(): string {
-        return game.settings.get(
-            MODULE_ID,
-            this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR,
-        ) as unknown as string;
+        return game.settings.get(MODULE_ID, this.#TEMPORARY_EFFECTS_SHIFT_RIGHT_CLICK_BEHAVIOR) as unknown as string;
     }
 
     /**
@@ -259,10 +214,7 @@ class Settings {
      * @returns true if disabled effects should be shown
      */
     get showDisabledEffects(): boolean {
-        return game.settings.get(
-            MODULE_ID,
-            this.#SHOW_DISABLED_EFFECTS,
-        ) as unknown as boolean;
+        return game.settings.get(MODULE_ID, this.#SHOW_DISABLED_EFFECTS) as unknown as boolean;
     }
 
     /**
@@ -271,10 +223,7 @@ class Settings {
      * @returns true if passive effects should be shown
      */
     get showPassiveEffects(): boolean {
-        return game.settings.get(
-            MODULE_ID,
-            this.#SHOW_PASSIVE_EFFECTS,
-        ) as unknown as boolean;
+        return game.settings.get(MODULE_ID, this.#SHOW_PASSIVE_EFFECTS) as unknown as boolean;
     }
 
     /**
@@ -283,10 +232,7 @@ class Settings {
      * @returns true if overlays should be shown
      */
     get showDurationOverlays(): boolean {
-        return game.settings.get(
-            MODULE_ID,
-            this.#SHOW_DURATION_OVERLAYS,
-        ) as unknown as boolean;
+        return game.settings.get(MODULE_ID, this.#SHOW_DURATION_OVERLAYS) as unknown as boolean;
     }
 
     /**
@@ -304,9 +250,7 @@ class Settings {
      * @returns a number representing the chosen role
      */
     get allowRightClick(): number {
-        return parseInt(
-            game.settings.get(MODULE_ID, this.#ALLOW_RIGHT_CLICK) as unknown as string,
-        );
+        return parseInt(game.settings.get(MODULE_ID, this.#ALLOW_RIGHT_CLICK) as unknown as string);
     }
 
     /**
@@ -315,9 +259,7 @@ class Settings {
      * @returns a number representing the chosen role
      */
     get viewPermission(): number {
-        return parseInt(
-            game.settings.get(MODULE_ID, this.#VIEW_PERMISSION) as unknown as string,
-        );
+        return parseInt(game.settings.get(MODULE_ID, this.#VIEW_PERMISSION) as unknown as string);
     }
 
     /**
@@ -326,12 +268,7 @@ class Settings {
      * @returns a number representing the chosen role
      */
     get viewDetailsPermission(): number {
-        return parseInt(
-            game.settings.get(
-                MODULE_ID,
-                this.#VIEW_DETAILS_PERMISSION,
-            ) as unknown as string,
-        );
+        return parseInt(game.settings.get(MODULE_ID, this.#VIEW_DETAILS_PERMISSION) as unknown as string);
     }
 }
 

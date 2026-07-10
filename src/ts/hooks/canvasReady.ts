@@ -6,8 +6,7 @@ const CanvasReady: Listener = {
     listen: () => {
         Hooks.on("canvasReady", () => {
             const effectsPanel = new EffectsPanelAppV2();
-            (game.modules.get(MODULE_ID) as EffectsPanelModule).effectsPanel =
-                effectsPanel;
+            (game.modules.get(MODULE_ID) as EffectsPanelModule).effectsPanel = effectsPanel;
             effectsPanel.render(true);
         });
     },

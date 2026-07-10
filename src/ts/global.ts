@@ -43,29 +43,12 @@ declare global {
     const canvas: Canvas;
 
     namespace globalThis {
-        const game: Game<
-            Actor<null>,
-            Actors<Actor<null>>,
-            ChatMessage,
-            Combat,
-            Item<null>,
-            Macro,
-            Scene,
-            User
-        >;
+        const game: Game<Actor<null>, Actors<Actor<null>>, ChatMessage, Combat, Item<null>, Macro, Scene, User>;
 
-        const ui: FoundryUI<
-            ActorDirectory,
-            ItemDirectory,
-            ChatLog,
-            CompendiumDirectory,
-            CombatTracker,
-            Hotbar<Macro>
-        >;
+        const ui: FoundryUI<ActorDirectory, ItemDirectory, ChatLog, CompendiumDirectory, CombatTracker, Hotbar<Macro>>;
     }
 
     const BUILD_MODE: "development" | "stage" | "production";
-
 
     interface EffectsPanelModule extends Module {
         effectsPanel: EffectsPanelAppV2;

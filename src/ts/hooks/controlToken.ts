@@ -6,7 +6,7 @@ const ControlToken: Listener = {
         Hooks.on("controlToken", () => {
             getEffectsPanel()?.resetCurrentShownEffectInfoId();
         });
-    }
+    },
 };
 
 export { ControlToken };

@@ -7,14 +7,9 @@ import {
     ApplicationRenderOptions,
 } from "@client/applications/_types.mjs";
 import { Settings } from "../settings.ts";
-import {
-    MODULE_ID,
-    RIGHT_CLICK_BEHAVIOR,
-    USER_FLAGS,
-} from "../constants.ts";
+import { MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
 
-const { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } =
-    foundry.applications.api;
+const { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
 const { TextEditor } = foundry.applications.ux;
 
 interface ViewData {
@@ -69,8 +64,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     static override PARTS = {
         effectsPanel: {
             id: "content",
-            template:
-                "modules/dfreds-effects-panel/templates/effects-panel.hbs",
+            template: "modules/dfreds-effects-panel/templates/effects-panel.hbs",
         },
     };
 
@@ -78,9 +72,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         this.#currentShownEffectInfoId = null;
     }
 
-    protected override async _prepareContext(
-        _options: ApplicationRenderOptions,
-    ): Promise<object> {
+    protected override async _prepareContext(_options: ApplicationRenderOptions): Promise<object> {
         const temporaryEffects = [];
         const passiveEffects = [];
         const disabledTemporaryEffects = [];
@@ -91,10 +83,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         for (const effect of effects) {
             effect.description = await TextEditor.enrichHTML(
-                this.#replaceTokenVariables(
-                    game.i18n.localize(effect.description),
-                    token,
-                ),
+                this.#replaceTokenVariables(game.i18n.localize(effect.description), token),
                 { relativeTo: effect },
             );
 
@@ -135,10 +124,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             passiveEffects,
             disabledTemporaryEffects,
             disabledPassiveEffects,
-            canViewEffectsPanel:
-                game.user.role >= this.#settings.viewPermission,
-            canViewEffectDetails:
-                game.user.role >= this.#settings.viewDetailsPermission,
+            canViewEffectsPanel: game.user.role >= this.#settings.viewPermission,
+            canViewEffectDetails: game.user.role >= this.#settings.viewDetailsPermission,
             showDurationOverlays: this.#settings.showDurationOverlays,
             iconSize,
             itemSize,
@@ -146,17 +133,11 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         } as ViewData;
     }
 
-    protected override async _onFirstRender(
-        _context: object,
-        _options: ApplicationRenderOptions,
-    ): Promise<void> {
+    protected override async _onFirstRender(_context: object, _options: ApplicationRenderOptions): Promise<void> {
         this.#rootView = $(this.element);
     }
 
-    protected override async _onRender(
-        context: object,
-        options: ApplicationRenderOptions,
-    ): Promise<void> {
+    protected override async _onRender(context: object, options: ApplicationRenderOptions): Promise<void> {
         await super._onRender(context, options);
 
         this.#initClickListeners();
@@ -168,12 +149,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 y: [0, window.outerHeight - 42],
             },
             threshold: 10,
-            onDragEnd: (
-                _element: HTMLElement,
-                _x: number,
-                y: number,
-                _event: MouseEvent,
-            ) => {
+            onDragEnd: (_element: HTMLElement, _x: number, y: number, _event: MouseEvent) => {
                 setTimeout(() => {
                     this.#resetZIndex();
                 }, 100);
@@ -197,9 +173,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         }
     }
 
-    protected override _preClose(
-        _options: ApplicationClosingOptions,
-    ): Promise<void> {
+    protected override _preClose(_options: ApplicationClosingOptions): Promise<void> {
         this.#draggable.destroy();
         return Promise.resolve();
     }
@@ -220,10 +194,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #getLeftPosition(): number {
-        const { uiScale } = game.settings.get(
-            "core",
-            "uiConfig",
-        ) as unknown as {
+        const { uiScale } = game.settings.get("core", "uiConfig") as unknown as {
             uiScale: number;
         };
 
@@ -242,8 +213,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             edges.push(sidebar.getBoundingClientRect().left);
         }
 
-        const isWebrtcRight =
-            ui.webrtc?.element?.classList.contains("right") ?? false;
+        const isWebrtcRight = ui.webrtc?.element?.classList.contains("right") ?? false;
         if (isWebrtcRight && ui.webrtc?.element) {
             edges.push(ui.webrtc.element.getBoundingClientRect().left);
         }
@@ -254,10 +224,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #getTopPosition(): number {
-        const topPosition = game.user.getFlag(
-            MODULE_ID,
-            USER_FLAGS.TOP_POSITION,
-        ) as number | undefined;
+        const topPosition = game.user.getFlag(MODULE_ID, USER_FLAGS.TOP_POSITION) as number | undefined;
         if (topPosition === undefined) {
             game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, 12);
         }
@@ -315,7 +282,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (!effect) return;
 
-        const rightClickBehavior = this.#getRightClickBehavior({ isTemporary: effect.isTemporary, isShift: event.shiftKey });
+        const rightClickBehavior = this.#getRightClickBehavior({
+            isTemporary: effect.isTemporary,
+            isShift: event.shiftKey,
+        });
 
         await this.#handleEffectChange({
             eventX: event.clientX,
@@ -325,7 +295,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         });
     }
 
-    #getRightClickBehavior({ isTemporary, isShift }: { isTemporary: boolean, isShift: boolean }): string {
+    #getRightClickBehavior({ isTemporary, isShift }: { isTemporary: boolean; isShift: boolean }): string {
         if (isTemporary && isShift) {
             return this.#settings.temporaryEffectsShiftRightClickBehavior;
         } else if (!isTemporary && isShift) {
@@ -354,18 +324,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         }
 
         if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DIALOG) {
-            const content = game.i18n.localize(
-                "EffectsPanel.DeleteOrDisableEffectContent",
-                {
-                    effect: effect.name,
-                },
-            );
+            const content = game.i18n.localize("EffectsPanel.DeleteOrDisableEffectContent", {
+                effect: effect.name,
+            });
 
             await DialogV2.wait({
                 window: {
-                    title: game.i18n.localize(
-                        "EffectsPanel.DeleteOrDisableEffect",
-                    ),
+                    title: game.i18n.localize("EffectsPanel.DeleteOrDisableEffect"),
                     controls: [],
                 },
                 position: {
@@ -433,10 +398,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return effects
             .map((effect) => {
                 const src = this.#getSourceName(effect);
-                const effectData = effect.clone(
-                    {},
-                    { keepId: true },
-                ) as EffectData;
+                const effectData = effect.clone({}, { keepId: true }) as EffectData;
 
                 effectData.infinite = effect.duration.value === Infinity;
                 effectData.timeLabel = this.#determineTimeLabel(effect);
@@ -473,26 +435,16 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
      * available on the token document is supported. Unknown paths are left
      * untouched.
      */
-    #replaceTokenVariables(
-        text: string,
-        token: TokenDocument | foundry.data.PrototypeToken<Actor> | null,
-    ): string {
+    #replaceTokenVariables(text: string, token: TokenDocument | foundry.data.PrototypeToken<Actor> | null): string {
         if (!token || !text) return text;
 
-        return text.replace(
-            /\{\{\s*token\.([\w.-]+)\s*\}\}/g,
-            (match, path: string) => {
-                const value = foundry.utils.getProperty(token, path);
-                return value !== undefined && value !== null
-                    ? String(value)
-                    : match;
-            },
-        );
+        return text.replace(/\{\{\s*token\.([\w.-]+)\s*\}\}/g, (match, path: string) => {
+            const value = foundry.utils.getProperty(token, path);
+            return value !== undefined && value !== null ? String(value) : match;
+        });
     }
 
-    #getActorEffects(
-        actor: SceneActor | Actor<null> | null,
-    ): ActiveEffect<SceneActor | Actor<null>>[] {
+    #getActorEffects(actor: SceneActor | Actor<null> | null): ActiveEffect<SceneActor | Actor<null>>[] {
         const effects: ActiveEffect<SceneActor | Actor<null>>[] = [];
         for (const effect of actor?.allApplicableEffects() || []) {
             effects.push(effect);
@@ -500,9 +452,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return effects;
     }
 
-    #getSourceName(
-        effect: ActiveEffect<SceneActor | Actor<null>>,
-    ): string | null {
+    #getSourceName(effect: ActiveEffect<SceneActor | Actor<null>>): string | null {
         if (!effect.origin) return null;
         try {
             const name = fromUuidSync(effect.origin)?.name;
@@ -515,9 +465,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         }
     }
 
-    #determineTimeLabel(
-        effect: ActiveEffect<SceneActor | Actor<null>>,
-    ): string {
+    #determineTimeLabel(effect: ActiveEffect<SceneActor | Actor<null>>): string {
         if (game.system.id === "demonlord") {
             const dlResult = this.#handleDemonLordRemainingTime(effect);
             if (dlResult) return dlResult;
@@ -530,41 +478,24 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         return effect.duration.label ?? `${effect.duration.value} ${effect.duration.units}`;
     }
 
-    #handleDemonLordRemainingTime(
-        effect: ActiveEffect<SceneActor | Actor<null>>,
-    ): string | null {
+    #handleDemonLordRemainingTime(effect: ActiveEffect<SceneActor | Actor<null>>): string | null {
         let tokenName;
-        const specialDuration = foundry.utils.getProperty(
-            effect,
-            "flags.demonlord.specialDuration",
-        ) as string | undefined;
+        const specialDuration = foundry.utils.getProperty(effect, "flags.demonlord.specialDuration") as
+            | string
+            | undefined;
         if (specialDuration !== "None" && specialDuration !== undefined) {
-            tokenName = fromUuidSync(
-                effect.origin?.substring(0, effect.origin.search(".Actor.")) ?? "",
-            )?.name;
+            tokenName = fromUuidSync(effect.origin?.substring(0, effect.origin.search(".Actor.")) ?? "")?.name;
             switch (specialDuration) {
                 case "EndOfTheRound":
-                    return (
-                        game.i18n.localize("EffectsPanel.EndOfTheRound")
-                    );
+                    return game.i18n.localize("EffectsPanel.EndOfTheRound");
                 case "NextAttackRoll":
-                    return (
-                        game.i18n.localize("EffectsPanel.NextAttackRoll")
-                    );
+                    return game.i18n.localize("EffectsPanel.NextAttackRoll");
                 case "NextChallengeRoll":
-                    return (
-                        game.i18n.localize("EffectsPanel.NextChallengeRoll")
-                    );
+                    return game.i18n.localize("EffectsPanel.NextChallengeRoll");
                 case "TurnEndSource":
-                    return (
-                        game.i18n.localize("EffectsPanel.TurnEnd") +
-                        ` [${tokenName}]`
-                    );
+                    return game.i18n.localize("EffectsPanel.TurnEnd") + ` [${tokenName}]`;
                 case "TurnStartSource":
-                    return (
-                        game.i18n.localize("EffectsPanel.TurnStart") +
-                        ` [${tokenName}]`
-                    );
+                    return game.i18n.localize("EffectsPanel.TurnStart") + ` [${tokenName}]`;
                 case "TurnEnd":
                     return game.i18n.localize("EffectsPanel.TurnEnd");
                 case "TurnStart":

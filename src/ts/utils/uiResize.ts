@@ -12,9 +12,7 @@ import { getEffectsPanel } from "./gets.ts";
  *   - the window being resized.
  */
 function uiResize() {
-    const target =
-        document.getElementById("ui-right") ??
-        document.getElementById("sidebar");
+    const target = document.getElementById("ui-right") ?? document.getElementById("sidebar");
     if (!target) return;
 
     const observer = new ResizeObserver(() => {

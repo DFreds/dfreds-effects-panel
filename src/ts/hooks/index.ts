@@ -34,4 +34,3 @@ const HooksEffectsPanel: Listener = {
 
 export { HooksEffectsPanel };
 export type { Listener };
-
