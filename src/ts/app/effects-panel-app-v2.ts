@@ -53,6 +53,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #currentShownEffectInfoId: string | null = null;
     #isManageMode = false;
+    #wasDragged = false;
 
     constructor(options?: DeepPartial<ApplicationConfiguration>) {
         super(options);
@@ -201,11 +202,17 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 y: [0, window.outerHeight - 42],
             },
             threshold: 10,
+            onDragStart: () => {
+                this.#wasDragged = true;
+            },
             onDragEnd: (_element: HTMLElement, _x: number, y: number, _event: MouseEvent) => {
                 setTimeout(() => {
                     this.#resetZIndex();
                 }, 100);
                 game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, y);
+                setTimeout(() => {
+                    this.#wasDragged = false;
+                }, 0);
             },
         });
 
@@ -293,6 +300,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         icons.on("click", this.#onIconClick.bind(this));
         icons.on("contextmenu", this.#onIconRightClick.bind(this));
         icons.on("dblclick", this.#onIconDoubleClick.bind(this));
+
         const manageToggle = this.#rootView.find("button.manage-toggle");
         manageToggle.on("click", this.#onManageToggleClick.bind(this));
         manageToggle.on("contextmenu", this.#onManageToggleRightClick.bind(this));
@@ -337,6 +345,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #onIconClick(event: Event): void {
         if (event.currentTarget === null) return;
+
+        if (this.#wasDragged) return;
 
         this.#resetZIndex();
 
