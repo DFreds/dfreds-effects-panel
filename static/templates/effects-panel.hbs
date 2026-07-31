@@ -27,12 +27,15 @@
             {{/if}}
         </div>
         <div
-            class="effect-icon-container {{type}} {{#if disabled}}effect-disabled{{/if}}"
+            class="effect-icon-container {{type}} {{#if disabled}}effect-disabled{{/if}} {{#if effect.isHidden}}effect-hidden{{/if}}"
             style="height: {{iconSize}}px; width: {{iconSize}}px;"
         >
             <div class="icon"
                  style="background-color: {{effect.tint.css}}; background-image: url('{{effect.img}}'); mask-image: url('{{effect.img}}'); -webkit-mask-image: url('{{effect.img}}'); height: {{iconSize}}px; width: {{iconSize}}px;">
             </div>
+            {{#if isManageMode}}
+                <i class="visibility-badge fas {{#if effect.isHidden}}fa-eye-slash{{else}}fa-eye{{/if}}" style="font-size: {{badgeSize}}px;"></i>
+            {{/if}}
             {{#if showDurationOverlays}}
                 {{#if effect.duration.expired}}
                     <i class="expired badge fas fa-clock" style="font-size: {{badgeSize}}px;"></i>
@@ -49,6 +52,19 @@
 <section id="effects-panel" class="effect-panel">
     {{#if canViewEffectsPanel}}
         <div class="effects-panel-container">
+            {{!-- Manage Display Toggle --}}
+            {{#if hasEffects}}
+                <button
+                    type="button"
+                    class="manage-toggle {{#if isManageMode}}active{{/if}}"
+                    style="width: {{iconSize}}px;"
+                    data-tooltip="{{localize 'EffectsPanel.ManageDisplayTooltip'}}"
+                    data-tooltip-direction="LEFT"
+                >
+                    <i class="fa-solid {{#if isManageMode}}fa-eye{{else}}fa-sliders{{/if}}"></i>
+                </button>
+            {{/if}}
+
             {{!-- Temporary Effects --}}
             {{#each temporaryEffects as |effect|}}
                 {{> effect-item
@@ -58,6 +74,7 @@
                     iconSize=@root.iconSize
                     itemSize=@root.itemSize
                     badgeSize=@root.badgeSize
+                    isManageMode=@root.isManageMode
                     type="temporary"
                 }}
             {{/each}}
@@ -75,6 +92,7 @@
                     iconSize=@root.iconSize
                     itemSize=@root.itemSize
                     badgeSize=@root.badgeSize
+                    isManageMode=@root.isManageMode
                     type="passive"
                 }}
             {{/each}}
@@ -92,6 +110,7 @@
                     iconSize=@root.iconSize
                     itemSize=@root.itemSize
                     badgeSize=@root.badgeSize
+                    isManageMode=@root.isManageMode
                     type="temporary"
                     disabled=true
                 }}
@@ -106,6 +125,7 @@
                     iconSize=@root.iconSize
                     itemSize=@root.itemSize
                     badgeSize=@root.badgeSize
+                    isManageMode=@root.isManageMode
                     type="passive"
                     disabled=true
                 }}

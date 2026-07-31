@@ -64,6 +64,33 @@ $panel-tag-colors: (
             width: 42px;
         }
 
+        .manage-toggle {
+            align-self: end;
+            background: none;
+            border: none;
+            box-shadow: none;
+            color: $white;
+            cursor: pointer;
+            flex: 0 0 auto;
+            height: auto;
+            line-height: 1;
+            margin: 0 0 4px;
+            min-height: 0;
+            opacity: 0.3;
+            padding: 2px 0;
+            text-shadow: 0px 0px 2px $black;
+            transition: opacity 0.2s ease-in-out;
+
+            &:hover,
+            &.active {
+                opacity: 1;
+            }
+        }
+
+        &:hover .manage-toggle {
+            opacity: 1;
+        }
+
         .effect-item {
             display: flex;
             align-items: center;
@@ -146,6 +173,13 @@ $panel-tag-colors: (
                     filter: grayscale(0.8);
                 }
 
+                &.effect-hidden {
+                    .icon,
+                    .badge {
+                        opacity: 0.25;
+                    }
+                }
+
                 &.temporary {
                     border-radius: 10%;
                 }
@@ -184,6 +218,15 @@ $panel-tag-colors: (
                     &.expired {
                         color: $orange;
                     }
+                }
+
+                .visibility-badge {
+                    top: 1px;
+                    right: 1px;
+                    position: absolute;
+                    color: $white;
+                    display: inline-block;
+                    text-shadow: 0px 0px 2px $black;
                 }
             }
         }

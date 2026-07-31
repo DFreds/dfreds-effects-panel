@@ -8,8 +8,14 @@ const RIGHT_CLICK_BEHAVIOR = {
     DISABLE: "disable",
 };
 
-const USER_FLAGS = {
-    TOP_POSITION: "topPosition",
+const EFFECT_DISPLAY = {
+    SHOW: "show",
+    HIDE: "hide",
 };
 
-export { RIGHT_CLICK_BEHAVIOR, USER_FLAGS };
+const USER_FLAGS = {
+    TOP_POSITION: "topPosition",
+    EFFECT_OVERRIDES: "effectOverrides",
+};
+
+export { EFFECT_DISPLAY, RIGHT_CLICK_BEHAVIOR, USER_FLAGS };

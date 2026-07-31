@@ -42,6 +42,10 @@
         "SettingViewDetailsPermission": "View Details Permission",
         "SettingViewDetailsPermissionHint": "This defines the minimum permission level to see the details of the effects in the panel such as the duration and description. Setting this to None will never show any details.",
 
+        "ManageDisplayTooltip": "Choose which effects show in the panel. Right-click to reset all choices.",
+        "ResetEffectDisplayOverrides": "Reset Effect Display",
+        "ResetEffectDisplayOverridesContent": "Reset every effect you have chosen to always show or always hide? The panel will go back to using only the module settings.",
+
         "FromParent": "From {parent}",
         "FromParentItem": "From Parent Item",
 

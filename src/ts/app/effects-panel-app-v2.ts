@@ -7,7 +7,14 @@ import {
     ApplicationRenderOptions,
 } from "@client/applications/_types.mjs";
 import { Settings } from "../settings.ts";
-import { MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
+import { EFFECT_DISPLAY, MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
+import {
+    clearEffectOverrides,
+    deleteEffectOverride,
+    getEffectOverrideKey,
+    getEffectOverrides,
+    setEffectOverride,
+} from "../utils/effectOverrides.ts";
 
 const { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
 const { TextEditor } = foundry.applications.ux;
@@ -20,6 +27,8 @@ interface ViewData {
     canViewEffectsPanel: boolean;
     canViewEffectDetails: boolean;
     showDurationOverlays: boolean;
+    hasEffects: boolean;
+    isManageMode: boolean;
     iconSize: number;
     itemSize: number;
     badgeSize: number;
@@ -32,6 +41,7 @@ interface EffectData extends ActiveEffect<SceneActor | Actor<null> | Item<null>>
     infinite: boolean;
     src: string | null;
     parentDescription: string | null;
+    isHidden: boolean;
 }
 
 class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -42,6 +52,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     #draggable: Draggable;
 
     #currentShownEffectInfoId: string | null = null;
+    #isManageMode = false;
 
     constructor(options?: DeepPartial<ApplicationConfiguration>) {
         super(options);
@@ -72,6 +83,42 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         this.#currentShownEffectInfoId = null;
     }
 
+    exitManageMode(): void {
+        if (!this.#isManageMode) return;
+        this.#isManageMode = false;
+        this.refresh();
+    }
+
+    #resolveVisibility(
+        effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>,
+        overrides: Record<string, string> = getEffectOverrides(),
+    ): boolean {
+        const override = overrides[getEffectOverrideKey(effect.name)];
+
+        if (override) return override === EFFECT_DISPLAY.SHOW;
+
+        return this.#inheritedVisibility(effect);
+    }
+
+    #inheritedVisibility(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): boolean {
+        if (effect.disabled) return this.#settings.showDisabledEffects;
+        if (effect.isTemporary) return true;
+        return this.#settings.showPassiveEffects;
+    }
+
+    async #toggleEffectVisibility(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): Promise<void> {
+        const key = getEffectOverrideKey(effect.name);
+        const shouldShow = !this.#resolveVisibility(effect);
+
+        if (shouldShow === this.#inheritedVisibility(effect)) {
+            await deleteEffectOverride(key);
+        } else {
+            await setEffectOverride(key, shouldShow ? EFFECT_DISPLAY.SHOW : EFFECT_DISPLAY.HIDE);
+        }
+
+        this.refresh();
+    }
+
     protected override async _prepareContext(_options: ApplicationRenderOptions): Promise<object> {
         const temporaryEffects = [];
         const passiveEffects = [];
@@ -80,8 +127,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const effects = this.#actorEffects;
         const token = this.#token;
+        const overrides = getEffectOverrides();
 
         for (const effect of effects) {
+            effect.isHidden = !this.#resolveVisibility(effect, overrides);
+
+            if (effect.isHidden && !this.#isManageMode) continue;
+
             effect.description = await TextEditor.enrichHTML(
                 this.#replaceTokenVariables(game.i18n.localize(effect.description), token),
                 { relativeTo: effect },
@@ -98,18 +150,16 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 );
             }
 
-            if (effect.disabled && this.#settings.showDisabledEffects) {
+            if (effect.disabled) {
                 if (effect.isTemporary) {
                     disabledTemporaryEffects.push(effect);
                 } else {
                     disabledPassiveEffects.push(effect);
                 }
-            }
-
-            if (!effect.disabled) {
+            } else {
                 if (effect.isTemporary) {
                     temporaryEffects.push(effect);
-                } else if (this.#settings.showPassiveEffects) {
+                } else {
                     passiveEffects.push(effect);
                 }
             }
@@ -127,6 +177,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             canViewEffectsPanel: game.user.role >= this.#settings.viewPermission,
             canViewEffectDetails: game.user.role >= this.#settings.viewDetailsPermission,
             showDurationOverlays: this.#settings.showDurationOverlays,
+            hasEffects: effects.length > 0,
+            isManageMode: this.#isManageMode,
             iconSize,
             itemSize,
             badgeSize,
@@ -241,12 +293,57 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         icons.on("click", this.#onIconClick.bind(this));
         icons.on("contextmenu", this.#onIconRightClick.bind(this));
         icons.on("dblclick", this.#onIconDoubleClick.bind(this));
+        const manageToggle = this.#rootView.find("button.manage-toggle");
+        manageToggle.on("click", this.#onManageToggleClick.bind(this));
+        manageToggle.on("contextmenu", this.#onManageToggleRightClick.bind(this));
+    }
+
+    #onManageToggleClick(): void {
+        if (this.#wasDragged) return;
+
+        this.#resetZIndex();
+
+        this.#isManageMode = !this.#isManageMode;
+
+        this.#currentShownEffectInfoId = null;
+
+        this.refresh();
+    }
+
+    async #onManageToggleRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
+        event.preventDefault();
+
+        this.#resetZIndex();
+
+        const confirmed = await DialogV2.confirm({
+            window: {
+                title: game.i18n.localize("EffectsPanel.ResetEffectDisplayOverrides"),
+                controls: [],
+            },
+            position: {
+                width: 300,
+                top: event.clientY,
+                left: event.clientX - 300 - 18,
+            },
+            content: `<p>${game.i18n.localize("EffectsPanel.ResetEffectDisplayOverridesContent")}</p>`,
+            rejectClose: false,
+        });
+
+        if (!confirmed) return;
+
+        await clearEffectOverrides();
+        this.refresh();
     }
 
     #onIconClick(event: Event): void {
         if (event.currentTarget === null) return;
 
         this.#resetZIndex();
+
+        if (this.#isManageMode) {
+            this.#onManageModeIconClick(event);
+            return;
+        }
 
         const $target = $(event.currentTarget);
         const $effectItem = $target.closest(".effect-item");
@@ -264,10 +361,24 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         }
     }
 
+    #onManageModeIconClick(event: Event): void {
+        const $effectItem = $(event.currentTarget as HTMLElement).closest(".effect-item");
+        const effectId = $effectItem.attr("data-effect-id");
+
+        const effects = this.#getActorEffects(this.#actor);
+        const effect = effects.find((e) => e.id === effectId);
+
+        if (!effect) return;
+
+        this.#toggleEffectVisibility(effect);
+    }
+
     async #onIconRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
         if (event.currentTarget === null) return;
 
         this.#resetZIndex();
+
+        if (this.#isManageMode) return;
 
         if (game.user.role < this.#settings.allowRightClick) return;
 
@@ -373,6 +484,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #onIconDoubleClick(event: Event): void {
         if (event.currentTarget === null) return;
+
+        if (this.#isManageMode) return;
 
         const $target = $(event.currentTarget);
         const $effectItem = $target.closest(".effect-item");
