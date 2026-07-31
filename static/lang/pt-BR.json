@@ -42,6 +42,10 @@
         "SettingViewDetailsPermission": "Ver Detalhes de Permissão",
         "SettingViewDetailsPermissionHint": "Isso define o nível mínimo de permissão para ver os detalhes dos efeitos no painel, como a duração e a descrição. Configurar para Nenhum(a) não mostrará detalhe algum.",
 
+        "ManageDisplayTooltip": "Escolha quais efeitos serão exibidos no painel. Clique direito para restaurar todas as opções.",
+        "ResetEffectDisplayOverrides": "Restaurar Exibição dos Efeitos",
+        "ResetEffectDisplayOverridesContent": "Restaurar todas as escolhas de efeitos que você definiu para sempre exibir ou sempre ocultar? O painel voltará a usar apenas as configurações do módulo.",
+
         "FromParent": "De {parent}",
         "FromParentItem": "De Item Pai",
 
