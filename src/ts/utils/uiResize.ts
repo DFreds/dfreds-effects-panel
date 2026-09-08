@@ -11,7 +11,7 @@ import { getEffectsPanel } from "./gets.ts";
  *     --ui-scale, so a scale change resizes its box immediately), and
  *   - the window being resized.
  */
-function uiResize() {
+function uiResize(): void {
     const target = document.getElementById("ui-right") ?? document.getElementById("sidebar");
     if (!target) return;
 

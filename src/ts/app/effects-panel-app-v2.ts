@@ -608,8 +608,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     #handleDemonLordRemainingTime(effect: ActiveEffect<SceneActor | Actor<null>>): string | null {
         let tokenName;
         const specialDuration = foundry.utils.getProperty(effect, "flags.demonlord.specialDuration") as
-            | string
-            | undefined;
+            string | undefined;
         if (specialDuration !== "None" && specialDuration !== undefined) {
             tokenName = fromUuidSync(effect.origin?.substring(0, effect.origin.search(".Actor.")) ?? "")?.name;
             switch (specialDuration) {
