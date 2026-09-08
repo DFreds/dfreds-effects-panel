@@ -196,6 +196,9 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         // A refresh can occur after the element left the DOM due to debounce
         if (!this.element.isConnected) return;
+
+        this.#draggable?.destroy();
+
         const leftPosition = this.#getLeftPosition();
         this.#draggable = new Draggable(this.element, {
             limit: {
