@@ -49,7 +49,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
     #settings: Settings;
     #rootView: JQuery<HTMLElement>;
-    #draggable: Draggable;
+    #draggable: Draggable | null = null;
 
     #currentShownEffectInfoId: string | null = null;
     #isManageMode = false;
@@ -234,7 +234,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     protected override _preClose(_options: ApplicationClosingOptions): Promise<void> {
-        this.#draggable.destroy();
+        this.#draggable?.destroy();
         return Promise.resolve();
     }
 
@@ -247,7 +247,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         // Keep the draggable's horizontal lock in sync with the new position so
         // a subsequent drag does not snap the panel back to its old location.
-        this.#draggable.setLimit({
+        this.#draggable?.setLimit({
             x: [leftPosition, leftPosition],
             y: [0, window.outerHeight - 42],
         });
