@@ -7,6 +7,7 @@ const ControlToken: Listener = {
             const effectsPanel = getEffectsPanel();
             effectsPanel?.resetCurrentShownEffectInfoId();
             effectsPanel?.exitManageMode();
+            effectsPanel?.refresh();
         });
     },
 };

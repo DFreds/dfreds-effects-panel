@@ -5,9 +5,13 @@ import { Listener } from "./index.ts";
 const CanvasReady: Listener = {
     listen: () => {
         Hooks.on("canvasReady", () => {
-            const effectsPanel = new EffectsPanelAppV2();
-            (game.modules.get(MODULE_ID) as EffectsPanelModule).effectsPanel = effectsPanel;
-            effectsPanel.render(true);
+            const module = game.modules.get(MODULE_ID) as EffectsPanelModule;
+            module.effectsPanel ??= new EffectsPanelAppV2();
+
+            module.effectsPanel.resetCurrentShownEffectInfoId();
+            module.effectsPanel.exitManageMode();
+
+            module.effectsPanel.render(true);
         });
     },
 };

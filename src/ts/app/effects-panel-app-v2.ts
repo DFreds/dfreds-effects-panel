@@ -87,7 +87,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     exitManageMode(): void {
         if (!this.#isManageMode) return;
         this.#isManageMode = false;
-        this.refresh();
     }
 
     #resolveVisibility(
@@ -195,6 +194,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         this.#initClickListeners();
 
+        // A refresh can occur after the element left the DOM due to debounce
+        if (!this.element.isConnected) return;
         const leftPosition = this.#getLeftPosition();
         this.#draggable = new Draggable(this.element, {
             limit: {
