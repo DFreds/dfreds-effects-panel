@@ -13,7 +13,7 @@
         "SettingShowDisabledEffectsHint": "Si está habilitado, los efectos deshabilitados se mostrarán en el panel con un tono gris.",
 
         "SettingShowPassiveEffects": "Mostrar efectos pasivos",
-        "SettingShowPassiveEffectsHint": "Si está habilitado, los efectos pasivos se mostrarán en el panel.",
+        "SettingShowPassiveEffectsHint": "Si está habilitado, los efectos pasivos se mostrarán en el panel. Los efectos pasivos con Mostrar icono en Siempre se muestran de todos modos.",
 
         "SettingShowDurationOverlays": "Mostrar superposiciones de duración",
         "SettingShowDurationOverlaysHint": "Si está habilitado, se mostrará un icono superpuesto sobre cada efecto para indicar su duración.",

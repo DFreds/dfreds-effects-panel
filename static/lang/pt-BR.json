@@ -13,7 +13,7 @@
         "SettingShowDisabledEffectsHint": "Se habilitado, efeitos desabilitados sesão mostrados no painel com uma coloração cinza.",
 
         "SettingShowPassiveEffects": "Mostrar Efeito Passivos",
-        "SettingShowPassiveEffectsHint": "Se habilitado, efeitos passivos serão mostrados no painel.",
+        "SettingShowPassiveEffectsHint": "Se habilitado, efeitos passivos serão mostrados no painel. Efeitos passivos com Mostrar ícone definido como Sempre são mostrados de qualquer forma.",
 
         "SettingShowDurationOverlays": "Mostrar Duração",
         "SettingShowDurationOverlaysHint": "Se habilitado, uma sobreposição no ícone dos efeitos mostrará a duração de cada um deles.",

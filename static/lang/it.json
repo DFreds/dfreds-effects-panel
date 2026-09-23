@@ -13,7 +13,7 @@
         "SettingShowDisabledEffectsHint": "Se abilitati, gli effetti disabilitati verranno visualizzati nel pannello con una sfumatura grigia.",
 
         "SettingShowPassiveEffects": "Mostra Effetti Passivi",
-        "SettingShowPassiveEffectsHint": "Se abilitato, gli effetti passivi verranno visualizzati nel pannello.",
+        "SettingShowPassiveEffectsHint": "Se abilitato, gli effetti passivi verranno visualizzati nel pannello. Gli effetti passivi con Mostra icona impostato su Sempre vengono visualizzati comunque.",
 
         "SettingShowDurationOverlays": "Mostra Overlays Durata",
         "SettingShowDurationOverlaysHint": "Se abilitato, verrà mostrata un'icona sovrapposta su ciascun effetto per indicarne la durata.",

@@ -13,7 +13,7 @@
         "SettingShowDisabledEffectsHint": "If enabled, disabled effects will be shown in the panel with a grey tint.",
 
         "SettingShowPassiveEffects": "Show Passive Effects",
-        "SettingShowPassiveEffectsHint": "If enabled, passive effects will be shown in the panel.",
+        "SettingShowPassiveEffectsHint": "If enabled, passive effects will be shown in the panel. Passive effects with Show Icon set to Always are shown either way.",
 
         "SettingShowDurationOverlays": "Show Duration Overlays",
         "SettingShowDurationOverlaysHint": "If enabled, an overlay icon will be shown over each effect to indicate its duration.",

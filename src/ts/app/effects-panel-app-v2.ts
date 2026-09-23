@@ -103,6 +103,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     #inheritedVisibility(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): boolean {
         if (effect.disabled) return this.#settings.showDisabledEffects;
         if (effect.isTemporary) return true;
+        if (effect.showIcon === CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS) return true;
         return this.#settings.showPassiveEffects;
     }
 

@@ -42,6 +42,7 @@
 - Double-click any effect to quickly access its configuration
 - Customize right-click behavior to enable, disable, or delete effects with a single click
 - Configure visibility settings for different effect types and adjust panel behavior to match your preferences
+- Effects with Show Icon set to Always are shown in the panel even when passive effects are hidden
 - Pick individual effects to always show or always hide, so you can surface a couple of important passives without turning on every passive. These choices are per player, override the visibility settings, and are managed from the toggle at the top of the panel
 
 ![Effects Panel](https://www.dfreds-modules.com/assets/images/effects-panel-6fb9a8eceda4102afdd74eccf1f887d3.png)
