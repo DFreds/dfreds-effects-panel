@@ -1,6 +1,7 @@
 import { CanvasReady } from "./canvasReady.ts";
 import { ControlToken } from "./controlToken.ts";
 import { CrudActiveEffects } from "./crudActiveEffects.ts";
+import { HotReload } from "./hot-reload.ts";
 import { Init } from "./init.ts";
 import { Ready } from "./ready.ts";
 import { RefreshToken } from "./refreshToken.ts";
@@ -15,6 +16,7 @@ interface Listener {
 const HooksEffectsPanel: Listener = {
     listen(): void {
         const listeners: Listener[] = [
+            HotReload,
             Init,
             Ready,
             Setup,
