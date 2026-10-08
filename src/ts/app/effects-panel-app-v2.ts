@@ -48,7 +48,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     refresh: () => void;
 
     #settings: Settings;
-    #rootView: JQuery<HTMLElement>;
     #draggable: Draggable | null = null;
 
     #currentShownEffectInfoId: string | null = null;
@@ -60,7 +59,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         this.refresh = foundry.utils.debounce(this.render.bind(this), 100);
 
         this.#settings = new Settings();
-        this.#rootView = $("<div>"); // Init it to something for now
     }
 
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration> = {
@@ -186,10 +184,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         } as ViewData;
     }
 
-    protected override async _onFirstRender(_context: object, _options: ApplicationRenderOptions): Promise<void> {
-        this.#rootView = $(this.element);
-    }
-
     protected override async _onRender(context: object, options: ApplicationRenderOptions): Promise<void> {
         await super._onRender(context, options);
 
@@ -232,8 +226,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         });
 
         if (this.#currentShownEffectInfoId) {
-            const $effectItem = this.#rootView.find(`[data-effect-id="${this.#currentShownEffectInfoId}"]`);
-            $effectItem.find(".effect-info").show();
+            const effectInfo = this.element.querySelector<HTMLElement>(
+                `[data-effect-id="${this.#currentShownEffectInfoId}"] .effect-info`,
+            );
+            if (effectInfo) effectInfo.style.display = "block";
         }
     }
 
@@ -262,7 +258,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             uiScale: number;
         };
 
-        const panelWidth = $("#effects-panel").width() ?? 42;
+        const panelWidth = this.element.clientWidth;
         const padding = 18 * uiScale;
         const rightUiLeftEdge = this.#getRightUiLeftEdge();
 
@@ -301,14 +297,15 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #initClickListeners(): void {
-        const icons = this.#rootView.find("div.effect-icon-container");
-        icons.on("click", this.#onIconClick.bind(this));
-        icons.on("contextmenu", this.#onIconRightClick.bind(this));
-        icons.on("dblclick", this.#onIconDoubleClick.bind(this));
+        for (const icon of this.element.querySelectorAll<HTMLElement>("div.effect-icon-container")) {
+            icon.addEventListener("click", this.#onIconClick.bind(this));
+            icon.addEventListener("contextmenu", this.#onIconRightClick.bind(this));
+            icon.addEventListener("dblclick", this.#onIconDoubleClick.bind(this));
+        }
 
-        const manageToggle = this.#rootView.find("button.manage-toggle");
-        manageToggle.on("click", this.#onManageToggleClick.bind(this));
-        manageToggle.on("contextmenu", this.#onManageToggleRightClick.bind(this));
+        const manageToggle = this.element.querySelector<HTMLElement>("button.manage-toggle");
+        manageToggle?.addEventListener("click", this.#onManageToggleClick.bind(this));
+        manageToggle?.addEventListener("contextmenu", this.#onManageToggleRightClick.bind(this));
     }
 
     #onManageToggleClick(): void {
@@ -323,7 +320,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         this.refresh();
     }
 
-    async #onManageToggleRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
+    async #onManageToggleRightClick(event: MouseEvent): Promise<void> {
         event.preventDefault();
 
         this.#resetZIndex();
@@ -360,25 +357,27 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             return;
         }
 
-        const $target = $(event.currentTarget);
-        const $effectItem = $target.closest(".effect-item");
-        const $effectInfo = $effectItem.find(".effect-info");
+        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
+        const effectInfo = effectItem?.querySelector<HTMLElement>(".effect-info");
+        if (!effectItem || !effectInfo) return;
 
-        const effectId = $effectItem.attr("data-effect-id");
+        const effectId = effectItem.dataset.effectId;
 
-        if ($effectInfo.is(":visible")) {
-            $effectInfo.hide();
+        if (effectInfo.style.display === "block") {
+            effectInfo.style.display = "none";
             this.#currentShownEffectInfoId = null;
         } else {
-            this.#rootView.find(".effect-info").hide();
-            $effectInfo.show();
+            for (const info of this.element.querySelectorAll<HTMLElement>(".effect-info")) {
+                info.style.display = "none";
+            }
+            effectInfo.style.display = "block";
             this.#currentShownEffectInfoId = effectId ?? null;
         }
     }
 
     #onManageModeIconClick(event: Event): void {
-        const $effectItem = $(event.currentTarget as HTMLElement).closest(".effect-item");
-        const effectId = $effectItem.attr("data-effect-id");
+        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
+        const effectId = effectItem?.dataset.effectId;
 
         const effects = this.#getActorEffects(this.#actor);
         const effect = effects.find((e) => e.id === effectId);
@@ -388,7 +387,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         this.#toggleEffectVisibility(effect);
     }
 
-    async #onIconRightClick(event: JQuery.ContextMenuEvent): Promise<void> {
+    async #onIconRightClick(event: MouseEvent): Promise<void> {
         if (event.currentTarget === null) return;
 
         this.#resetZIndex();
@@ -397,12 +396,11 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (game.user.role < this.#settings.allowRightClick) return;
 
-        const $target = $(event.currentTarget);
-        const $effectItem = $target.closest(".effect-item");
+        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
 
         const actor = this.#actor;
         const effects = this.#getActorEffects(actor);
-        const effectId = $effectItem.attr("data-effect-id");
+        const effectId = effectItem?.dataset.effectId;
 
         const effect = effects.find((e) => e.id === effectId);
 
@@ -502,12 +500,11 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (this.#isManageMode) return;
 
-        const $target = $(event.currentTarget);
-        const $effectItem = $target.closest(".effect-item");
+        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
 
         const actor = this.#actor;
         const effects = this.#getActorEffects(actor);
-        const effectId = $effectItem.attr("data-effect-id");
+        const effectId = effectItem?.dataset.effectId;
 
         const effect = effects.find((effect) => effect.id === effectId);
 
