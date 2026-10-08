@@ -179,7 +179,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             iconSize,
             itemSize,
             badgeSize,
-        } as ViewData;
+        } satisfies ViewData;
     }
 
     protected override async _onRender(context: object, options: ApplicationRenderOptions): Promise<void> {
