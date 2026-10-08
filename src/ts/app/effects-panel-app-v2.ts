@@ -376,12 +376,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #onManageModeIconClick(event: Event): void {
-        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
-        const effectId = effectItem?.dataset.effectId;
-
-        const effects = this.#getActorEffects(this.#actor);
-        const effect = effects.find((e) => e.id === effectId);
-
+        const effect = this.#effectFromEvent(event);
         if (!effect) return;
 
         this.#toggleEffectVisibility(effect);
@@ -396,14 +391,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (game.user.role < this.#settings.allowRightClick) return;
 
-        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
-
-        const actor = this.#actor;
-        const effects = this.#getActorEffects(actor);
-        const effectId = effectItem?.dataset.effectId;
-
-        const effect = effects.find((e) => e.id === effectId);
-
+        const effect = this.#effectFromEvent(event);
         if (!effect) return;
 
         const rightClickBehavior = this.#getRightClickBehavior({
@@ -500,17 +488,14 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (this.#isManageMode) return;
 
-        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
+        this.#effectFromEvent(event)?.sheet?.render(true);
+    }
 
-        const actor = this.#actor;
-        const effects = this.#getActorEffects(actor);
+    #effectFromEvent(event: Event): ActiveEffect<SceneActor | Actor<null>> | undefined {
+        const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
         const effectId = effectItem?.dataset.effectId;
 
-        const effect = effects.find((effect) => effect.id === effectId);
-
-        if (!effect) return;
-
-        effect.sheet?.render(true);
+        return this.#getActorEffects(this.#actor).find((effect) => effect.id === effectId);
     }
 
     get #actorEffects(): EffectData[] {
