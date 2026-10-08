@@ -456,7 +456,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                         icon: "fa-solid fa-trash",
                         callback: async () => {
                             await effect.delete();
-                            this.refresh();
                         },
                     },
                     {
@@ -475,7 +474,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             });
         } else if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DELETE) {
             await effect.delete();
-            this.refresh();
         } else if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DISABLE) {
             await effect.update({ disabled: !effect.disabled });
         }
