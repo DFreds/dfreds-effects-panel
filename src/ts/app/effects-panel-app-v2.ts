@@ -548,11 +548,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #getActorEffects(actor: SceneActor | Actor<null> | null): ActiveEffect<SceneActor | Actor<null>>[] {
-        const effects: ActiveEffect<SceneActor | Actor<null>>[] = [];
-        for (const effect of actor?.allApplicableEffects() || []) {
-            effects.push(effect);
-        }
-        return effects;
+        return [...(actor?.allApplicableEffects() ?? [])];
     }
 
     #determineTimeLabel(effect: ActiveEffect<SceneActor | Actor<null>>): string {
