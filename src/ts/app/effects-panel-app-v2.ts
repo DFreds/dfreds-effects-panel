@@ -11,7 +11,6 @@ import { EFFECT_DISPLAY, MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../
 import {
     clearEffectOverrides,
     deleteEffectOverride,
-    getEffectOverrideKey,
     getEffectOverrides,
     setEffectOverride,
 } from "../utils/effectOverrides.ts";
@@ -89,7 +88,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>,
         overrides: Record<string, string> = getEffectOverrides(),
     ): boolean {
-        const override = overrides[getEffectOverrideKey(effect.name)];
+        const override = overrides[effect.name.slugify()];
 
         if (override) return override === EFFECT_DISPLAY.SHOW;
 
@@ -104,7 +103,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     async #toggleEffectVisibility(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): Promise<void> {
-        const key = getEffectOverrideKey(effect.name);
+        const key = effect.name.slugify();
         const shouldShow = !this.#resolveVisibility(effect);
 
         if (shouldShow === this.#inheritedVisibility(effect)) {
