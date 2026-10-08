@@ -38,8 +38,6 @@ type SceneActor = Actor<TokenDocument<Scene> | null> | null;
 
 interface EffectData extends ActiveEffect<SceneActor | Actor<null> | Item<null>> {
     timeLabel: string;
-    infinite: boolean;
-    src: string | null;
     parentDescription: string | null;
     isHidden: boolean;
 }
@@ -507,12 +505,9 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         return effects
             .map((effect) => {
-                const src = this.#getSourceName(effect);
                 const effectData = effect.clone({}, { keepId: true }) as EffectData;
 
-                effectData.infinite = effect.duration.value === Infinity;
                 effectData.timeLabel = this.#determineTimeLabel(effect);
-                effectData.src = src;
 
                 return effectData;
             })
@@ -560,19 +555,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             effects.push(effect);
         }
         return effects;
-    }
-
-    #getSourceName(effect: ActiveEffect<SceneActor | Actor<null>>): string | null {
-        if (!effect.origin) return null;
-        try {
-            const name = fromUuidSync(effect.origin)?.name;
-
-            if (name === undefined) return null;
-
-            return name;
-        } catch {
-            return null;
-        }
     }
 
     #determineTimeLabel(effect: ActiveEffect<SceneActor | Actor<null>>): string {
