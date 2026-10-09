@@ -281,12 +281,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     #getTopPosition(): number {
-        const topPosition = game.user.getFlag(MODULE_ID, USER_FLAGS.TOP_POSITION) as number | undefined;
-        if (topPosition === undefined) {
-            game.user.setFlag(MODULE_ID, USER_FLAGS.TOP_POSITION, 12);
-        }
-
-        return topPosition ?? 12;
+        return (game.user.getFlag(MODULE_ID, USER_FLAGS.TOP_POSITION) as number | undefined) ?? 12;
     }
 
     #resetZIndex(): void {
