@@ -80,7 +80,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     exitManageMode(): void {
-        if (!this.#isManageMode) return;
         this.#isManageMode = false;
     }
 
@@ -244,7 +243,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         // Keep the draggable's horizontal lock in sync with the new position so
         // a subsequent drag does not snap the panel back to its old location.
-        this.#draggable?.setLimit({
+        this.#draggable.setLimit({
             x: [leftPosition, leftPosition],
             y: [0, window.outerHeight - 42],
         });
