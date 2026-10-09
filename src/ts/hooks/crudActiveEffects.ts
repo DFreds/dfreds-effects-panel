@@ -3,15 +3,11 @@ import { Listener } from "./index.ts";
 
 const CrudActiveEffects: Listener = {
     listen: () => {
-        Hooks.on("createActiveEffect", () => {
-            getEffectsPanel()?.refresh();
-        });
-        Hooks.on("updateActiveEffect", () => {
-            getEffectsPanel()?.refresh();
-        });
-        Hooks.on("deleteActiveEffect", () => {
-            getEffectsPanel()?.refresh();
-        });
+        for (const action of ["create", "update", "delete"]) {
+            Hooks.on(`${action}ActiveEffect`, () => {
+                getEffectsPanel()?.refresh();
+            });
+        }
     },
 };
 
