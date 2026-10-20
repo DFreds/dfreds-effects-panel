@@ -6,6 +6,7 @@ import {
     ApplicationConfiguration,
     ApplicationRenderOptions,
 } from "@client/applications/_types.mjs";
+import type { NotificationOptions } from "@client/applications/ui/notifications.mjs";
 import { Settings } from "../settings.ts";
 import { EFFECT_DISPLAY, MODULE_ID, RIGHT_CLICK_BEHAVIOR, USER_FLAGS } from "../constants.ts";
 import {
@@ -422,7 +423,17 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         rightClickBehavior: string;
     }): Promise<void> {
         if (effect.parent && effect.parent instanceof Item && !this.#settings.allowRightClickingItemEffects) {
-            ui.notifications.warn(game.i18n.localize("EffectsPanel.DisablingOrDeletingItemEffectsNotAllowed"));
+            const item = effect.parent;
+            ui.notifications.warn(game.i18n.localize("EffectsPanel.DisablingOrDeletingItemEffectsNotAllowed"), {
+                actions: [
+                    {
+                        label: game.i18n.localize("EffectsPanel.OpenItem"),
+                        icon: "fas fa-suitcase",
+                        // @ts-expect-error ActiveEffect parent is typed as an actor only, so an Item parent narrows to never
+                        callback: () => item.sheet?.render(true),
+                    },
+                ],
+            } as NotificationOptions);
             return;
         }
 

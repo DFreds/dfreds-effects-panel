@@ -21,6 +21,7 @@
         "SettingAllowRightClickingItemEffects": "Allow Right-Clicking on Item Effects",
         "SettingAllowRightClickingItemEffectsHint": "If enabled, the user will be able to execute the right-click behavior on effects provided by items.",
         "DisablingOrDeletingItemEffectsNotAllowed": "Disabling or deleting effects provided by items is not enabled.",
+        "OpenItem": "Open Item",
 
         "SettingIconSize": "Icon Size",
         "SettingIconSizeHint": "This defines the size of the icons in the effects panel.",
