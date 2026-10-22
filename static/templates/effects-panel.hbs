@@ -12,7 +12,7 @@
                 {{/if}}
 
                 <div class="panel-tags">
-                    <div class="panel-tag panel-tag_primary">{{type}}</div>
+                    <div class="panel-tag panel-tag_primary">{{#if (eq type "temporary")}}{{localize "EffectsPanel.Temporary"}}{{else}}{{localize "EffectsPanel.Passive"}}{{/if}}</div>
                     <div class="panel-tag panel-tag_secondary">{{effect.timeLabel}}</div>
                     {{#if effect.flags.core.overlay}}
                         <div class="panel-tag panel-tag_tertiary">{{localize "EffectsPanel.Overlay"}}</div>
