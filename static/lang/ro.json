@@ -21,6 +21,7 @@
         "SettingAllowRightClickingItemEffects": "Permite click-dreapta pe efecte de obiecte",
         "SettingAllowRightClickingItemEffectsHint": "Dacă este activ, utilizatorul va putea executa comportamentul click-dreapta pe efecte furnizate de obiecte.",
         "DisablingOrDeletingItemEffectsNotAllowed": "Dezactivarea sau ștergerea efectelor furnizate de obiecte nu este activată.",
+        "OpenItem": "Deschide obiectul",
 
         "SettingIconSize": "Dimensiune Iconiță",
         "SettingIconSizeHint": "Determină dimensiunea iconițelor în panoul de efecte.",
@@ -41,6 +42,10 @@
         "SettingViewPermissionHint": "Determină nivelul minim de permisiune pentru a vedea panoul de efecte. Dacă setezi opțiunea la Niciunul, panoul nu va fi afișat.",
         "SettingViewDetailsPermission": "Permisiune Vizualizare Detalii",
         "SettingViewDetailsPermissionHint": "Determină nivelul minim de permisiune pentru a vedea detaliile efectelor în panou, precum durata si descrierea. Dacă setezi opțiunea la Niciunul, detaliile nu vor fi afișate.",
+
+        "ManageDisplayTooltip": "Alege ce efecte apar în panou. Click dreapta pentru a reseta toate alegerile.",
+        "ResetEffectDisplayOverrides": "Resetează afișarea efectelor",
+        "ResetEffectDisplayOverridesContent": "Resetezi toate efectele pe care ai ales să le afișezi sau să le ascunzi mereu? Panoul va folosi din nou doar setările modulului.",
 
         "FromParent": "De {parent}",
         "FromParentItem": "De element părinte",

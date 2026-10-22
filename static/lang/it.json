@@ -21,6 +21,7 @@
         "SettingAllowRightClickingItemEffects": "Consenti clic destro sugli effetti degli oggetti",
         "SettingAllowRightClickingItemEffectsHint": "Se abilitato, l'utente potrà eseguire il comportamento del clic destro sugli effetti forniti dagli oggetti.",
         "DisablingOrDeletingItemEffectsNotAllowed": "Disabilitare o eliminare effetti forniti dagli oggetti non è abilitato.",
+        "OpenItem": "Apri oggetto",
 
         "SettingIconSize": "Dimensione icona",
         "SettingIconSizeHint": "Definisce la dimensione delle icone nel pannello degli effetti.",
@@ -41,6 +42,10 @@
         "SettingViewPermissionHint": "Definisce il livello minimo di autorizzazione per vedere il pannello degli effetti. Impostandolo su Nessuno non verrà mai mostrato il pannello degli effetti.",
         "SettingViewDetailsPermission": "Permessi Vedi Dettagli",
         "SettingViewDetailsPermissionHint": "Definisce il livello minimo di autorizzazione per vedere i dettagli degli effetti nel pannello come la durata e la descrizione. Impostandolo su Nessuno non verrà mai mostrato alcun dettaglio.",
+
+        "ManageDisplayTooltip": "Scegli quali effetti mostrare nel pannello. Clic destro per ripristinare tutte le scelte.",
+        "ResetEffectDisplayOverrides": "Ripristina visualizzazione effetti",
+        "ResetEffectDisplayOverridesContent": "Ripristinare tutti gli effetti che hai scelto di mostrare o nascondere sempre? Il pannello tornerà a usare solo le impostazioni del modulo.",
 
         "FromParent": "Da {parent}",
         "FromParentItem": "Da elemento padre",

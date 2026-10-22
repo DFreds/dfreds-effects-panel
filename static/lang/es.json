@@ -21,6 +21,7 @@
         "SettingAllowRightClickingItemEffects": "Permitir clic derecho en efectos de elementos",
         "SettingAllowRightClickingItemEffectsHint": "Si está habilitado, el usuario podrá ejecutar el comportamiento del clic derecho en efectos proporcionados por elementos.",
         "DisablingOrDeletingItemEffectsNotAllowed": "Deshabilitar o eliminar efectos proporcionados por elementos no está habilitado.",
+        "OpenItem": "Abrir elemento",
 
         "SettingIconSize": "Tamaño de icono",
         "SettingIconSizeHint": "Esto define el tamaño de los iconos en el panel de efectos.",
@@ -41,6 +42,10 @@
         "SettingViewPermissionHint": "Esto define el nivel mínimo de permiso para ver el panel de efectos. Configurarlo en 'Ninguno' evitará que el panel de efectos se muestre.",
         "SettingViewDetailsPermission": "Permiso para ver detalles",
         "SettingViewDetailsPermissionHint": "Esto define el nivel mínimo de permiso para ver los detalles de los efectos en el panel, como la duración y la descripción. Configurarlo en 'Ninguno' evitará que se muestren detalles.",
+
+        "ManageDisplayTooltip": "Elige qué efectos se muestran en el panel. Haz clic derecho para restablecer todas las opciones.",
+        "ResetEffectDisplayOverrides": "Restablecer visualización de efectos",
+        "ResetEffectDisplayOverridesContent": "¿Restablecer todos los efectos que elegiste mostrar u ocultar siempre? El panel volverá a usar solo los ajustes del módulo.",
 
         "FromParent": "De {parent}",
         "FromParentItem": "De elemento padre",

@@ -21,6 +21,7 @@
         "SettingAllowRightClickingItemEffects": "Permitir Clique Direito em Efeitos de Itens",
         "SettingAllowRightClickingItemEffectsHint": "Se habilitado, o usuário poderá executar o comportamento do clique direito em efeitos fornecidos por itens.",
         "DisablingOrDeletingItemEffectsNotAllowed": "Desabilitar ou excluir efeitos fornecidos por itens não está habilitado.",
+        "OpenItem": "Abrir Item",
 
         "SettingIconSize": "Tamanho do Ícone",
         "SettingIconSizeHint": "Isso define o tamanho dos ícones no painel de efeitos.",
