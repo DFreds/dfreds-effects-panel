@@ -67,7 +67,7 @@
         "ManySeconds": "{seconds} secondi",
 
         "DeleteOrDisableEffect": "Cancella o Disattiva Effetto",
-        "DeleteOrDisableEffectContent": "Cancella o Disattiva {effect}",
+        "DeleteOrDisableEffectContent": "Cancella o Disattiva {effect}?",
         "Delete": "Cancella",
         "Enable": "Attiva",
         "Disable": "Disattiva",

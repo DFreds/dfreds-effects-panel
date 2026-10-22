@@ -439,7 +439,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         if (rightClickBehavior === RIGHT_CLICK_BEHAVIOR.DIALOG) {
             const content = game.i18n.localize("EffectsPanel.DeleteOrDisableEffectContent", {
-                effect: effect.name,
+                effect: foundry.utils.escapeHTML(effect.name),
             });
 
             await DialogV2.wait({
@@ -452,7 +452,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                     top: eventY,
                     left: eventX - 300 - 18,
                 },
-                content: `<p>${content}?</p>`,
+                content: `<p>${content}</p>`,
                 buttons: [
                     {
                         action: "delete",

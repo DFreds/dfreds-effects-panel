@@ -67,7 +67,7 @@
         "ManySeconds": "{seconds} secunde",
 
         "DeleteOrDisableEffect": "Șterge sau Dezactivează Efectul",
-        "DeleteOrDisableEffectContent": "Șterge sau Dezactivează {effect}",
+        "DeleteOrDisableEffectContent": "Șterge sau Dezactivează {effect}?",
         "Delete": "Șterge",
         "Enable": "Activează",
         "Disable": "Dezactivează",

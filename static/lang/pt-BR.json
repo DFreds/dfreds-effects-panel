@@ -71,7 +71,7 @@
         "ManySeconds": "{seconds} segundos",
 
         "DeleteOrDisableEffect": "Excluir ou Desabilitar Efeito",
-        "DeleteOrDisableEffectContent": "Excluir ou desabilitar {effect}",
+        "DeleteOrDisableEffectContent": "Excluir ou desabilitar {effect}?",
         "Delete": "Excluir",
         "Enable": "Habilitar",
         "Disable": "Desabilitar",
