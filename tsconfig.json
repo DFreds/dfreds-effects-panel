@@ -42,7 +42,6 @@
     },
     "include": [
         "./src/**/*",
-        "./types/libWrapper/index.d.ts",
         "./vite.config.ts"
     ],
     "watchOptions": {
