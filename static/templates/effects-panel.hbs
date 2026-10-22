@@ -80,7 +80,7 @@
             {{/each}}
 
             {{#if (and temporaryEffects.length passiveEffects.length)}}
-                <hr style="width: {{effectsPanelIconSize}}px;" />
+                <hr style="width: {{iconSize}}px;" />
             {{/if}}
 
             {{!-- Passive Effects --}}
@@ -98,7 +98,7 @@
             {{/each}}
 
             {{#if (and (or disabledTemporaryEffects.length disabledPassiveEffects.length) (or temporaryEffects.length passiveEffects.length))}}
-                <hr style="width: {{effectsPanelIconSize}}px;" />
+                <hr style="width: {{iconSize}}px;" />
             {{/if}}
 
             {{!-- Disabled Temporary Effects --}}
