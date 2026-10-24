@@ -122,7 +122,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const disabledPassiveEffects = [];
 
         const effects = this.#actorEffects;
-        const token = this.#token;
+        const token = this.token;
         const overrides = getEffectOverrides();
 
         for (const effect of effects) {
@@ -495,11 +495,11 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         const effectItem = (event.currentTarget as HTMLElement).closest<HTMLElement>(".effect-item");
         const effectId = effectItem?.dataset.effectId;
 
-        return this.#getActorEffects(this.#actor).find((effect) => effect.id === effectId);
+        return this.#getActorEffects(this.actor).find((effect) => effect.id === effectId);
     }
 
     get #actorEffects(): EffectData[] {
-        const actor = this.#actor;
+        const actor = this.actor;
 
         if (!actor) return [];
 
@@ -523,16 +523,16 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             });
     }
 
-    get #actor(): SceneActor | Actor<null> | null {
+    get actor(): SceneActor | Actor<null> | null {
         const userActor = game.user?.character as Actor<null> | null;
         return canvas.tokens.controlled[0]?.actor ?? userActor ?? null;
     }
 
-    get #token(): TokenDocument | foundry.data.PrototypeToken<Actor> | null {
+    get token(): TokenDocument | foundry.data.PrototypeToken<Actor> | null {
         const controlledToken = canvas.tokens.controlled[0]?.document;
         if (controlledToken) return controlledToken;
 
-        const actor = this.#actor;
+        const actor = this.actor;
         return actor?.token ?? actor?.prototypeToken ?? null;
     }
 

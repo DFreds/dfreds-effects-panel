@@ -4,9 +4,10 @@ import { CrudActiveEffects } from "./crudActiveEffects.ts";
 import { HotReload } from "./hot-reload.ts";
 import { Init } from "./init.ts";
 import { Ready } from "./ready.ts";
-import { RefreshToken } from "./refreshToken.ts";
 import { RtcSettingsChanged } from "./rtcSettingsChanged.ts";
 import { Setup } from "./setup.ts";
+import { UpdateItem } from "./updateItem.ts";
+import { UpdateToken } from "./updateToken.ts";
 import { UpdateWorldTime } from "./updateWorldTime.ts";
 
 interface Listener {
@@ -23,8 +24,9 @@ const HooksEffectsPanel: Listener = {
             CanvasReady,
             RtcSettingsChanged,
             ControlToken,
-            RefreshToken,
             CrudActiveEffects,
+            UpdateItem,
+            UpdateToken,
             UpdateWorldTime,
         ];
 
