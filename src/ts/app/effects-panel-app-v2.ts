@@ -192,10 +192,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const leftPosition = this.#getLeftPosition();
         this.#draggable = new Draggable(this.element, {
-            limit: {
-                x: [leftPosition, leftPosition],
-                y: [0, window.outerHeight - 42],
-            },
+            limit: this.#dragLimit(leftPosition),
             threshold: 10,
             onDragStart: () => {
                 this.#wasDragged = true;
@@ -238,10 +235,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         // Keep the draggable's horizontal lock in sync with the new position so
         // a subsequent drag does not snap the panel back to its old location.
-        this.#draggable.setLimit({
-            x: [leftPosition, leftPosition],
-            y: [0, window.outerHeight - 42],
-        });
+        this.#draggable.setLimit(this.#dragLimit(leftPosition));
     }
 
     #getLeftPosition(): number {
@@ -272,6 +266,13 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         if (edges.length === 0) return window.innerWidth;
 
         return Math.min(...edges);
+    }
+
+    #dragLimit(leftPosition: number): { x: [number, number]; y: [number, number] } {
+        return {
+            x: [leftPosition, leftPosition],
+            y: [0, window.innerHeight - 42],
+        };
     }
 
     #getTopPosition(): number {
