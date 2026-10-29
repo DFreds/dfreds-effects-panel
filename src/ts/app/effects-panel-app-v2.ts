@@ -1,4 +1,3 @@
-// @ts-expect-error Has no types
 import Draggable from "draggable";
 
 import {
@@ -201,7 +200,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
             onDragStart: () => {
                 this.#wasDragged = true;
             },
-            onDragEnd: (_element: HTMLElement, _x: number, y: number, _event: MouseEvent) => {
+            onDragEnd: (_element: HTMLElement, _x: number, y: number) => {
                 setTimeout(() => {
                     this.#resetZIndex();
                 }, 100);
@@ -210,11 +209,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                     this.#wasDragged = false;
                 }, 0);
             },
-        });
-
-        this.#draggable.set({
-            left: leftPosition,
-            top: this.#getTopPosition(),
         });
 
         this.setPosition({

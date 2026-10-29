@@ -42,6 +42,7 @@
     },
     "include": [
         "./src/**/*",
+        "./types/draggable/index.d.ts",
         "./vite.config.ts"
     ],
     "watchOptions": {
