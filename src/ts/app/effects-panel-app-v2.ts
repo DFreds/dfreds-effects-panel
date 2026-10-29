@@ -507,11 +507,6 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
                 return effectData;
             })
-            .sort((a, b) => {
-                if (a.isTemporary) return -1;
-                if (b.isTemporary) return 1;
-                return 0;
-            })
             .filter((effectData) => {
                 return !effectData.isSuppressed;
             });
