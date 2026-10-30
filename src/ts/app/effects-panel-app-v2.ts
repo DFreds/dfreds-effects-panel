@@ -383,7 +383,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const rightClickBehavior = this.#getRightClickBehavior({
             isTemporary: effect.isTemporary,
-            isShift: event.shiftKey,
+            isShiftOrAlt: event.shiftKey || event.altKey,
         });
 
         await this.#handleEffectChange({
@@ -394,10 +394,10 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         });
     }
 
-    #getRightClickBehavior({ isTemporary, isShift }: { isTemporary: boolean; isShift: boolean }): string {
-        if (isTemporary && isShift) {
+    #getRightClickBehavior({ isTemporary, isShiftOrAlt }: { isTemporary: boolean; isShiftOrAlt: boolean }): string {
+        if (isTemporary && isShiftOrAlt) {
             return this.#settings.temporaryEffectsShiftRightClickBehavior;
-        } else if (!isTemporary && isShift) {
+        } else if (!isTemporary && isShiftOrAlt) {
             return this.#settings.passiveEffectsShiftRightClickBehavior;
         } else if (isTemporary) {
             return this.#settings.temporaryEffectsRightClickBehavior;

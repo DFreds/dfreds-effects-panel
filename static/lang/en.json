@@ -32,9 +32,9 @@
         "SettingTemporaryEffectsRightClickBehaviorHint": "This defines the behavior when right-clicking a temporary effect.",
 
         "SettingPassiveEffectsShiftRightClickBehavior": "Passive Effects Shift Right-Click Behavior",
-        "SettingPassiveEffectsShiftRightClickBehaviorHint": "This defines the behavior when shift right-clicking a passive effect.",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "This defines the behavior when shift right-clicking (or alt right-clicking in Firefox) a passive effect.",
         "SettingTemporaryEffectsShiftRightClickBehavior": "Temporary Effects Shift Right-Click Behavior",
-        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "This defines the behavior when shift right-clicking a temporary effect.",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "This defines the behavior when shift right-clicking (or alt right-clicking in Firefox) a temporary effect.",
 
         "SettingAllowRightClick": "Allow Right-Click",
         "SettingAllowRightClickHint": "This defines the minimum permission level to execute the right-click behavior on an effect. Setting this to None will never allow right-clicking an effect.",
