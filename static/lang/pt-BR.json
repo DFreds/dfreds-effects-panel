@@ -32,9 +32,9 @@
         "SettingTemporaryEffectsRightClickBehaviorHint": "Isso define o comportamento do clique direito em um efeito temporário.",
 
         "SettingPassiveEffectsShiftRightClickBehavior": "Clique Direito com Shift em Efeitos Passivos",
-        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique direito com Shift em um efeito passivo.",
+        "SettingPassiveEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique direito com Shift (ou Alt + clique direito no Firefox) em um efeito passivo.",
         "SettingTemporaryEffectsShiftRightClickBehavior": "Clique Direito com Shift em Efeitos Temporários",
-        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique direito com Shift em um efeito temporário.",
+        "SettingTemporaryEffectsShiftRightClickBehaviorHint": "Isso define o comportamento do clique direito com Shift (ou Alt + clique direito no Firefox) em um efeito temporário.",
 
         "SettingAllowRightClick": "Permitir Clique Direito",
         "SettingAllowRightClickHint": "Isso define o nível mínimo de permissão para executar o comportamento do clique direito em um efeito. Configurar para Nenhum(a) não permitirá o clique direito em um efeito.",
