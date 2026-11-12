@@ -87,11 +87,15 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
         effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>,
         overrides: Record<string, string> = getEffectOverrides(),
     ): boolean {
-        const override = overrides[effect.name.slugify()];
+        const override = overrides[this.#overrideKey(effect)];
 
         if (override) return override === EFFECT_DISPLAY.SHOW;
 
         return this.#inheritedVisibility(effect);
+    }
+
+    #overrideKey(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): string {
+        return effect.name.slugify().replaceAll(".", "-");
     }
 
     #inheritedVisibility(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): boolean {
@@ -102,7 +106,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     async #toggleEffectVisibility(effect: ActiveEffect<SceneActor | Actor<null> | Item<null>>): Promise<void> {
-        const key = effect.name.slugify();
+        const key = this.#overrideKey(effect);
         const shouldShow = !this.#resolveVisibility(effect);
 
         if (shouldShow === this.#inheritedVisibility(effect)) {
