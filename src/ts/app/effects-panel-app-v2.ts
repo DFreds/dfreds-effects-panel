@@ -372,6 +372,8 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
     async #onIconRightClick(event: MouseEvent): Promise<void> {
         if (event.currentTarget === null) return;
 
+        if (this.#wasDragged) return;
+
         this.#resetZIndex();
 
         if (this.#isManageMode) return;
