@@ -6,6 +6,7 @@ import { Init } from "./init.ts";
 import { Ready } from "./ready.ts";
 import { RtcSettingsChanged } from "./rtcSettingsChanged.ts";
 import { Setup } from "./setup.ts";
+import { UpdateCombat } from "./updateCombat.ts";
 import { UpdateItem } from "./updateItem.ts";
 import { UpdateToken } from "./updateToken.ts";
 import { UpdateWorldTime } from "./updateWorldTime.ts";
@@ -25,6 +26,7 @@ const HooksEffectsPanel: Listener = {
             RtcSettingsChanged,
             ControlToken,
             CrudActiveEffects,
+            UpdateCombat,
             UpdateItem,
             UpdateToken,
             UpdateWorldTime,
