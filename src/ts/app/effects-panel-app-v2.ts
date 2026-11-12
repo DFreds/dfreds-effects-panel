@@ -509,7 +509,7 @@ class EffectsPanelAppV2 extends HandlebarsApplicationMixin(ApplicationV2) {
                 return effectData;
             })
             .filter((effectData) => {
-                return !effectData.isSuppressed;
+                return !effectData.isSuppressed || effectData.duration.expired;
             });
     }
 
