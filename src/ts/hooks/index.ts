@@ -1,13 +1,13 @@
 import { CanvasReady } from "./canvasReady.ts";
 import { ControlToken } from "./controlToken.ts";
 import { CrudActiveEffects } from "./crudActiveEffects.ts";
+import { CrudItems } from "./crudItems.ts";
 import { HotReload } from "./hot-reload.ts";
 import { Init } from "./init.ts";
 import { Ready } from "./ready.ts";
 import { RtcSettingsChanged } from "./rtcSettingsChanged.ts";
 import { Setup } from "./setup.ts";
 import { UpdateCombat } from "./updateCombat.ts";
-import { UpdateItem } from "./updateItem.ts";
 import { UpdateToken } from "./updateToken.ts";
 import { UpdateWorldTime } from "./updateWorldTime.ts";
 
@@ -26,8 +26,8 @@ const HooksEffectsPanel: Listener = {
             RtcSettingsChanged,
             ControlToken,
             CrudActiveEffects,
+            CrudItems,
             UpdateCombat,
-            UpdateItem,
             UpdateToken,
             UpdateWorldTime,
         ];
