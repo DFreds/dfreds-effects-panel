@@ -6,7 +6,7 @@
             {{#if canViewEffectDetails}}
                 {{#if effect.description}}
                     <div class="effect-description">{{{effect.description}}}</div>
-                {{else}}
+                {{else if effect.parentDescription}}
                     <h2 class="effect-description-header">{{localize "EffectsPanel.FromParent" parent=effect.parent.name}}</h2>
                     <div class="effect-description">{{{effect.parentDescription}}}</div>
                 {{/if}}
